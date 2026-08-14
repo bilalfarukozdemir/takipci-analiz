@@ -57,7 +57,6 @@ izler.
 - Türkçe arayüz, koyu tema, Android uyarlanabilir uygulama simgesi
 - Kendi anahtarıyla imzalanmış release APK üretimi
 
+1.2.1 öncesi sürümler yalnızca yerelde derlendi; ilk yayınlanan sürüm 1.2.1'dir.
+
 [1.2.1]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.2.1
-[1.2.0]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.2.0
-[1.1.0]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.1.0
-[1.0.0]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.0.0
