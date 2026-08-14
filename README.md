@@ -272,3 +272,13 @@ Güvenlik açığı bulduysan [SECURITY.md](SECURITY.md) yolunu izle.
 Yapımcı: [**vitrincim.com**](https://vitrincim.com)
 
 </div>
+
+---
+
+## Destek
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/bilalfarukozdemir?label=sponsor&logo=githubsponsors&color=ea4aaa)](https://github.com/sponsors/bilalfarukozdemir)
+
+Bu proje ücretsiz ve ücretsiz kalacak. İşine yaradıysa
+[sponsor olabilirsin](https://github.com/sponsors/bilalfarukozdemir); bir yıldız
+ya da iyi bir hata bildirimi de en az onun kadar kıymetli.
