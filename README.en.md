@@ -16,6 +16,12 @@ No server, no account, no ads — everything stays on your phone.
 [Türkçe](README.md) ·
 [Contributing](CONTRIBUTING.md)
 
+<br />
+
+<img src="docs/screenshots/ana-ekran.jpeg" alt="Home screen showing summary counts, last-fetch card and the highlighted lists" width="300" />
+
+<sub>Home screen — summary counts, last fetch info and the highlighted lists</sub>
+
 </div>
 
 > The app's interface is in **Turkish**. This document is for developers who want to

@@ -18,6 +18,12 @@ Sunucu yok, hesap yok, reklam yok — her şey telefonunda kalır.
 [Katkı](CONTRIBUTING.md) ·
 [Değişiklikler](CHANGELOG.md)
 
+<br />
+
+<img src="docs/screenshots/ana-ekran.jpeg" alt="Ana ekran: özet sayılar, son analiz kartı ve öne çıkan listeler" width="300" />
+
+<sub>Ana ekran — özet sayılar, son çekim bilgisi ve öne çıkan listeler</sub>
+
 </div>
 
 ---
