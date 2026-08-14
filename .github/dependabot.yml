@@ -1,20 +1,15 @@
 version: 2
 updates:
+  # Expo paketleri tek tek yükseltilemez: expo, react, react-native ve tüm
+  # expo-* modüllerinin sürümleri SDK ile birlikte belirlenir. Doğru yol
+  # `npx expo install --fix` çalıştırmak, dependabot'un tekil PR'larını almak
+  # değil. Bu yüzden sürüm yükseltme PR'ları kapalı (limit 0); dependabot
+  # yine de **güvenlik** güncellemeleri için PR açar.
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: monthly
-    open-pull-requests-limit: 5
-    groups:
-      expo:
-        patterns: ['expo', 'expo-*', 'react-native', 'react-native-*', '@expo/*']
-    # Expo SDK sürümleri birlikte yükseltilmeli; tekil ana sürüm atlamaları
-    # `npx expo install --fix` ile yapılır.
-    ignore:
-      - dependency-name: expo
-        update-types: [version-update:semver-major]
-      - dependency-name: react-native
-        update-types: [version-update:semver-major]
+    open-pull-requests-limit: 0
 
   - package-ecosystem: github-actions
     directory: /
