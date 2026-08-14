@@ -1,0 +1,31 @@
+name: 💡 Öneri
+description: Yeni bir özellik ya da iyileştirme öner
+labels: [öneri]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Başlamadan önce: aşağıdakiler bilinçli olarak **eklenmeyecek** —
+        toplu takipten çıkarma/takip etme, sunucu veya hesap sistemi, bulut
+        yedekleme, analitik/reklam, uygulama içinde şifre isteyen giriş formu.
+        Gerekçeler [CONTRIBUTING.md](../../CONTRIBUTING.md) içinde.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Hangi sorunu çözüyor?
+      description: Özelliğin kendisinden çok, karşılaştığın durumu anlat.
+    validations:
+      required: true
+
+  - type: textarea
+    id: cozum
+    attributes:
+      label: Aklındaki çözüm
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatif
+    attributes:
+      label: Denediğin ya da düşündüğün alternatifler

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔐 Güvenlik açığı
+    url: https://github.com/bilalfarukozdemir/takipci-analiz/security/advisories/new
+    about: Güvenlik açıklarını herkese açık issue olarak değil, buradan bildir.
+  - name: 📄 Arşiv biçimi desteklenmiyor
+    url: https://github.com/bilalfarukozdemir/takipci-analiz/blob/main/CONTRIBUTING.md
+    about: Instagram arşivin okunamadıysa, dosya adlarını (içeriği değil) hata bildiriminde paylaş.

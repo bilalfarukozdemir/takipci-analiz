@@ -1,0 +1,15 @@
+# Depoda LF, Windows'a özgü betiklerde CRLF
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.png binary
+*.jpg binary
+*.apk binary
+*.aab binary
+*.keystore binary
+
+# GitHub dil istatistikleri
+*.ps1 linguist-language=PowerShell

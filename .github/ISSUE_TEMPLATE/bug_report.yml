@@ -1,0 +1,66 @@
+name: 🐞 Hata bildirimi
+description: Beklenmedik bir davranış ya da çökme bildir
+labels: [hata]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Gerçek kullanıcı adları veya profil bağlantıları paylaşma.**
+        Örnek dosya eklemen gerekiyorsa kullanıcı adlarını `kullanici1`,
+        `kullanici2` gibi değiştir.
+
+  - type: textarea
+    id: ne-oldu
+    attributes:
+      label: Ne oldu?
+      description: Beklediğin ve gördüğün davranışı yaz.
+      placeholder: |
+        Beklediğim: ...
+        Gördüğüm: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: adimlar
+    attributes:
+      label: Nasıl tekrarlanır?
+      placeholder: |
+        1. Uygulamayı aç
+        2. "Instagram'a bağlan" butonuna bas
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: yontem
+    attributes:
+      label: Hangi yöntemi kullandın?
+      options:
+        - Canlı çekim (Instagram'a bağlan)
+        - Veri arşivi (dosya yükleme)
+        - İkisi de / ilgisiz
+    validations:
+      required: true
+
+  - type: input
+    id: surum
+    attributes:
+      label: Uygulama sürümü
+      description: Yardım sekmesinin en altında yazıyor.
+      placeholder: "1.2.1"
+    validations:
+      required: true
+
+  - type: input
+    id: cihaz
+    attributes:
+      label: Cihaz ve Android sürümü
+      placeholder: "Samsung A54, Android 14"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ek
+    attributes:
+      label: Ekran görüntüsü / ek bilgi
+      description: Ekran görüntüsündeki kullanıcı adlarını karalamayı unutma.

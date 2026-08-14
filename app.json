@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Takipci Analiz",
+    "slug": "takipci-analiz",
+    "version": "1.2.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "takipcianaliz",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0A0F",
+    "primaryColor": "#E1306C",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bilal.takipcianaliz"
+    },
+    "android": {
+      "package": "com.bilal.takipcianaliz",
+      "versionCode": 4,
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0F",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-sharing",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0A0F",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180
+        }
+      ],
+      "./plugins/withTurkishAppName",
+      "./plugins/withInstagramQuery",
+      "./plugins/withBuildTuning",
+      "./plugins/withReleaseSigning"
+    ]
+  }
+}

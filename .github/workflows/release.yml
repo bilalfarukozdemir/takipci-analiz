@@ -1,0 +1,87 @@
+name: Release APK
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    name: Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Bağımlılıklar
+        run: npm ci
+
+      # İmzalama secret'ları tanımlıysa release anahtarıyla, değilse Android'in
+      # debug anahtarıyla imzalanır. Debug anahtarlı APK sürüme yüklenmez.
+      - name: İmzalama anahtarını hazırla
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PW: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PW: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "::notice::İmzalama secret'ları yok — APK debug anahtarıyla imzalanacak."
+            echo "SIGNED=false" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          mkdir -p credentials
+          echo "$KEYSTORE_B64" | base64 -d > credentials/release.keystore
+          jq -n --arg sp "$STORE_PW" --arg al "$KEY_ALIAS" --arg kp "$KEY_PW" \
+            '{keystoreFile:"release.keystore",storePassword:$sp,keyAlias:$al,keyPassword:$kp}' \
+            > credentials/keystore.json
+          echo "SIGNED=true" >> "$GITHUB_ENV"
+
+      - name: Native projeyi üret
+        run: npx expo prebuild -p android --no-install
+
+      - name: Gradle derlemesi
+        run: ./gradlew assembleRelease --no-daemon --console=plain
+        working-directory: android
+
+      - name: APK'yı adlandır
+        id: apk
+        run: |
+          mkdir -p out
+          NAME="takipci-analiz-${GITHUB_REF_NAME}"
+          if [ "$SIGNED" != "true" ]; then NAME="$NAME-debugkey"; fi
+          cp android/app/build/outputs/apk/release/app-release.apk "out/$NAME.apk"
+          echo "path=out/$NAME.apk" >> "$GITHUB_OUTPUT"
+          ls -lh out/
+
+      - name: Anahtarı temizle
+        if: always()
+        run: rm -rf credentials/release.keystore credentials/keystore.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: takipci-analiz-apk
+          path: out/*.apk
+          if-no-files-found: error
+
+      # Yalnızca gerçek release anahtarıyla imzalandıysa sürüme eklenir; aksi
+      # halde elle yüklenmiş imzalı APK'nın üzerine yazılmaz.
+      - name: Sürüme ekle
+        if: startsWith(github.ref, 'refs/tags/') && env.SIGNED == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" "${{ steps.apk.outputs.path }}" --clobber

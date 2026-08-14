@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      expo:
+        patterns: ['expo', 'expo-*', 'react-native', 'react-native-*', '@expo/*']
+    # Expo SDK sürümleri birlikte yükseltilmeli; tekil ana sürüm atlamaları
+    # `npx expo install --fix` ile yapılır.
+    ignore:
+      - dependency-name: expo
+        update-types: [version-update:semver-major]
+      - dependency-name: react-native
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

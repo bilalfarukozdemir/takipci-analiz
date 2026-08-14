@@ -1,0 +1,53 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.keystore
+*.mobileprovision
+
+# İMZALAMA ANAHTARI — asla depoya girmemeli.
+# Anahtarı kaybeden ya da sızdıran, uygulamanın güncellemelerini yayınlayamaz.
+credentials/*
+!credentials/README.md
+!credentials/keystore.example.json
+
+# üretilen APK — sürümler GitHub Releases üzerinden dağıtılır
+*.apk
+*.aab
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+.testbuild/
+
+# generated native folders
+/ios
+/android
