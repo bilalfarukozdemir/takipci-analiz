@@ -104,8 +104,7 @@ export function Home({
         style={[st.hero, { paddingTop: topInset + 26 }]}>
         <Text style={st.heroTitle}>Takipçi Analiz</Text>
         <Text style={st.heroSub}>
-          Instagram veri arşivinden takipçi hareketlerini çıkarır. Şifre istemez, veri internete
-          gitmez.
+          Takipçi hareketlerini çıkarır. Şifren uygulamaya girilmez, verilerin telefonundan çıkmaz.
         </Text>
 
         {hasData ? (

@@ -4,6 +4,15 @@ Bu dosya [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) biçimini,
 sürüm numaraları [Semantic Versioning](https://semver.org/lang/tr/) kurallarını
 izler.
 
+## [1.2.2] – 2026-08-14
+
+### Düzeltildi
+- Ana ekranın üst yazısı canlı çekim eklendikten sonra güncellenmemişti;
+  uygulamayı hâlâ yalnızca veri arşivi okuyormuş gibi tanıtıyordu. Ayrıca
+  "şifre istemez" ifadesi, ana butonu "Instagram'a bağlan" olan bir ekranda
+  yanıltıcıydı — şifre gerçekten uygulamaya girilmiyor ama bunu açıkça söylemek
+  gerekiyordu.
+
 ## [1.2.1] – 2026-08-14
 
 ### Eklendi
@@ -59,4 +68,5 @@ izler.
 
 1.2.1 öncesi sürümler yalnızca yerelde derlendi; ilk yayınlanan sürüm 1.2.1'dir.
 
+[1.2.2]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.2.2
 [1.2.1]: https://github.com/bilalfarukozdemir/takipci-analiz/releases/tag/v1.2.1

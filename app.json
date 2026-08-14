@@ -2,7 +2,7 @@
   "expo": {
     "name": "Takipci Analiz",
     "slug": "takipci-analiz",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "takipcianaliz",
@@ -15,7 +15,7 @@
     },
     "android": {
       "package": "com.bilal.takipcianaliz",
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "backgroundColor": "#0A0A0F",
         "foregroundImage": "./assets/android-icon-foreground.png",

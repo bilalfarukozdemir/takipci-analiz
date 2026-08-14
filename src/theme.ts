@@ -30,7 +30,7 @@ export const GRADIENT = ['#F9A03F', '#E1306C', '#8A3AB9'] as const;
 export const ROW_HEIGHT = 70;
 
 /** app.json'daki "version" ile aynı tutulmalı. */
-export const APP_VERSION = '1.2.1';
+export const APP_VERSION = '1.2.2';
 
 export const YAPIMCI_URL = 'https://vitrincim.com';
 export const YAPIMCI_AD = 'vitrincim.com';
