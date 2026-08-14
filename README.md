@@ -20,9 +20,22 @@ Sunucu yok, hesap yok, reklam yok — her şey telefonunda kalır.
 
 <br />
 
-<img src="docs/screenshots/ana-ekran.jpeg" alt="Ana ekran: özet sayılar, son analiz kartı ve öne çıkan listeler" width="300" />
-
-<sub>Ana ekran — özet sayılar, son çekim bilgisi ve öne çıkan listeler</sub>
+<table>
+<tr>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/ana-ekran.jpeg" alt="Ana ekran: özet sayılar, son çekim kartı ve öne çıkan listeler" width="240" />
+<br /><sub><b>Ana ekran</b><br />Özet sayılar, son çekim bilgisi ve<br />öne çıkan listeler</sub>
+</td>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/instagrama-baglan.jpeg" alt="Instagram'a bağlan ekranı: giriş yapıldıktan sonra çekim onayı ve uyarı" width="240" />
+<br /><sub><b>Instagram'a bağlan</b><br />Giriş Instagram'ın kendi sayfasında;<br />çekimden önce açık uyarı</sub>
+</td>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/gecmis.jpeg" alt="Geçmiş ekranı: kayıtlı çekimler ve Yeni/Eski karşılaştırma seçimi" width="240" />
+<br /><sub><b>Geçmiş</b><br />Kayıtlı çekimler ve hangi ikisinin<br />karşılaştırılacağı seçimi</sub>
+</td>
+</tr>
+</table>
 
 </div>
 

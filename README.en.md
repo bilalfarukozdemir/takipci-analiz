@@ -18,9 +18,24 @@ No server, no account, no ads — everything stays on your phone.
 
 <br />
 
-<img src="docs/screenshots/ana-ekran.jpeg" alt="Home screen showing summary counts, last-fetch card and the highlighted lists" width="300" />
+<table>
+<tr>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/ana-ekran.jpeg" alt="Home screen with summary counts, last-fetch card and the highlighted lists" width="240" />
+<br /><sub><b>Home</b><br />Summary counts, last fetch info<br />and the highlighted lists</sub>
+</td>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/instagrama-baglan.jpeg" alt="Connect screen: fetch confirmation and warning after logging in" width="240" />
+<br /><sub><b>Connect to Instagram</b><br />Login happens on Instagram's own page;<br />an explicit warning before fetching</sub>
+</td>
+<td align="center" valign="top" width="33%">
+<img src="docs/screenshots/gecmis.jpeg" alt="History screen: stored snapshots and the newer/older comparison picker" width="240" />
+<br /><sub><b>History</b><br />Stored snapshots and which two<br />get compared</sub>
+</td>
+</tr>
+</table>
 
-<sub>Home screen — summary counts, last fetch info and the highlighted lists</sub>
+<sub>The interface is in Turkish.</sub>
 
 </div>
 
