@@ -72,7 +72,7 @@ jobs:
         if: always()
         run: rm -rf credentials/release.keystore credentials/keystore.json
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: takipci-analiz-apk
           path: out/*.apk
