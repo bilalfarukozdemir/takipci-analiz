@@ -4,6 +4,19 @@ Bu dosya [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) biçimini,
 sürüm numaraları [Semantic Versioning](https://semver.org/lang/tr/) kurallarını
 izler.
 
+## [Yayınlanmamış]
+
+### Eklendi
+- **İngilizce dil desteği.** Arayüz artık Türkçe ve İngilizce; varsayılan
+  cihazın sistem diline göre otomatik seçilir, Geçmiş sekmesindeki dil
+  seçiciden elle de değiştirilebilir. Tercih cihazda kalıcı olarak saklanır.
+- Play Store yayını için `PRIVACY.md` / `PRIVACY.en.md` gizlilik politikası
+
+### Planlanan
+- **Geliştiriciyi Destekle** — Google Play Billing üzerinden isteğe bağlı,
+  tek seferlik bağış. Hiçbir özelliği kilitlemez; ödeme tamamen Google Play
+  tarafından yürütülür.
+
 ## [1.2.2] – 2026-08-14
 
 ### Düzeltildi
