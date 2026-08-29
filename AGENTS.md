@@ -17,7 +17,9 @@ Bunlar bilinçli tercihler, "eksik" değil:
 - **Sunucu, hesap sistemi, analitik, reklam yok.** Veri cihazdan çıkmaz.
 - **Uygulama içinde şifre isteyen giriş formu yok.** Giriş her zaman WebView
   içinde Instagram'ın kendi sayfasında yapılır; kod şifreyi hiç görmez.
-- **Kullanıcıya görünen tüm metinler Türkçe.**
+- **Varsayılan dil Türkçe; uygulama Türkçe ve İngilizce'yi destekler (i18n).**
+  Yeni kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a eklenir, koda
+  hardcoded yazılmaz.
 
 ## Yapı
 
