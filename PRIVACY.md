@@ -57,8 +57,9 @@ script'i çalışır (`src/lib/igLive.ts`). Bu script:
   kendi çerez deposunda kalır; uygulamanın kendi kodu (`src/lib/storage.ts`)
   bu çerezi hiçbir zaman okumaz ya da kaydetmez.
 
-Bu yöntem Instagram'ın kullanım şartlarına aykırıdır ve sık kullanımda
-hesaba geçici işlem engeli getirebilir; uygulama bunu çekimden önce açıkça
+Bu yöntem, Instagram'ın resmî olarak belgelenmiş bir geliştirici arayüzünü
+değil, web arayüzünün kendi kullandığı uçları kullanır. Sık kullanımda
+hesaba geçici işlem engeli gelebilir; uygulama bunu çekimden önce açıkça
 uyarı olarak gösterir. Riski istemeyen kullanıcı veri arşivi yöntemini
 kullanabilir.
 

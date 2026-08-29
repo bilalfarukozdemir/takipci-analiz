@@ -58,10 +58,11 @@ After login, a JavaScript script runs **inside** the page
   (the Android system WebView); the app's own code (`src/lib/storage.ts`)
   never reads or saves it.
 
-This method violates Instagram's Terms of Service and frequent use can lead
-to a temporary action block on the account; the app shows an explicit
-warning about this before fetching. Users who want zero risk can use the
-data-export method instead.
+This method uses the endpoints Instagram's own web interface calls, not a
+formally documented developer API. Frequent use can lead to a temporary
+action block on the account; the app shows an explicit warning about this
+before fetching. Users who want zero risk can use the data-export method
+instead.
 
 ## Where data is stored
 
