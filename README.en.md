@@ -180,6 +180,11 @@ Expo SDK 56 · React Native 0.85 · React 19 · TypeScript ·
 `fflate` (zip) · `react-native-webview` · `expo-sqlite/kv-store` ·
 `expo-file-system` · `expo-document-picker`
 
+## Privacy
+
+Detailed privacy policy, prepared for the Google Play release:
+[PRIVACY.en.md](PRIVACY.en.md) ([Turkish version](PRIVACY.md)).
+
 ## Disclaimer
 
 This project is **not affiliated with** Instagram, Meta Platforms Inc., or any of

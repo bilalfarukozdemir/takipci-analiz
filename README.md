@@ -143,6 +143,9 @@ Kabaca 1000 hesap ≈ 8 MB.
   fotoğrafları) ve senin açtığın bağlantılar.
 - Uygulamayı silersen tüm kayıtlar da silinir.
 
+Play Store yayını için hazırlanan ayrıntılı gizlilik politikası:
+[PRIVACY.md](PRIVACY.md).
+
 ## Kurulum
 
 ### Kullanıcıysan
@@ -279,9 +282,15 @@ Yapımcı: [**vitrincim.com**](https://vitrincim.com)
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/bilalfarukozdemir?label=sponsor&logo=githubsponsors&color=ea4aaa)](https://github.com/sponsors/bilalfarukozdemir)
 
-Bu proje ücretsiz ve ücretsiz kalacak. İşine yaradıysa
-[sponsor olabilirsin](https://github.com/sponsors/bilalfarukozdemir); bir yıldız
-ya da iyi bir hata bildirimi de en az onun kadar kıymetli.
+Bu proje ücretsiz ve ücretsiz kalacak. İşine yaradıysa iki yol var:
+
+- **GitHub Sponsors** — [sponsor olabilirsin](https://github.com/sponsors/bilalfarukozdemir),
+  aylık ya da tek seferlik.
+- **Uygulama içinden** — Play Store sürümünde "Geliştiriciyi Destekle"
+  bölümünden tek seferlik bağış. Ödeme tamamen Google Play üzerinden yürür,
+  kart bilgisi uygulamaya hiç ulaşmaz.
+
+Bir yıldız ya da iyi bir hata bildirimi de en az onlar kadar kıymetli.
 
 ---
 
@@ -290,7 +299,7 @@ ya da iyi bir hata bildirimi de en az onun kadar kıymetli.
 | | |
 |---|---|
 | Bakım | Tek geliştirici, boş zamanlarında — [@bilalfarukozdemir](https://github.com/bilalfarukozdemir) |
-| Finansman | Yok. Reklam, telemetri ve ücretli sürüm yok; tek gelir kalemi [GitHub Sponsors](https://github.com/sponsors/bilalfarukozdemir) |
+| Finansman | Reklam ve telemetri yok; ücretli sürüm yok. Gelir kalemleri: [GitHub Sponsors](https://github.com/sponsors/bilalfarukozdemir) ve Play Store sürümünde isteğe bağlı, hiçbir özelliği kilitlemeyen uygulama içi bağış |
 | Durum | Aktif geliştiriliyor |
 | Lisans | MIT |
 | Destek | Hata bildirimleri okunur ve ele alınır. Yanıt süresi taahhüdü ve garanti yoktur |
