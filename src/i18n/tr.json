@@ -1,0 +1,369 @@
+{
+  "common": {
+    "cancel": "Vazgeç",
+    "continueBtn": "Devam et",
+    "skip": "Atla",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "clear": "Temizle",
+    "connectInstagram": "Instagram’a bağlan",
+    "pickArchiveFile": "Veri arşivi dosyası seç",
+    "loadingFile": "Dosya okunuyor…",
+    "followersLower": "takipçi",
+    "followingLower": "takip",
+    "copy": "📋  Kopyala",
+    "share": "📤  Paylaş"
+  },
+  "tabs": {
+    "home": "Analiz",
+    "history": "Geçmiş",
+    "help": "Yardım"
+  },
+  "app": {
+    "fileType": {
+      "title": "Bu dosya hangisi?",
+      "message": "“{{name}}” dosyasının türü anlaşılamadı. İçindeki hesaplar neyi ifade ediyor?",
+      "followers": "Takipçilerim",
+      "following": "Takip ettiklerim"
+    },
+    "source": {
+      "live": "Instagram (canlı çekim)",
+      "multipleFiles": "{{count}} dosya"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "Liste boş geldi",
+        "message": "Instagram hiçbir hesap döndürmedi. Biraz sonra tekrar dene ya da veri arşivi yöntemini kullan."
+      },
+      "pickFailed": {
+        "title": "Dosya açılamadı",
+        "message": "Dosya seçilirken bir sorun oldu. Tekrar dener misin?"
+      },
+      "tooLarge": {
+        "title": "Dosya çok büyük",
+        "message": "Seçtiğin arşiv çok büyük görünüyor; muhtemelen tüm Instagram verini indirdin. Uygulama takılabilir.\n\nDaha sağlıklısı: Instagram’dan yalnızca “Takipçiler ve takip edilenler” verisini indirmek.",
+        "confirm": "Yine de dene"
+      },
+      "noFollowerData": {
+        "title": "Takipçi verisi bulunamadı",
+        "message": "Seçtiğin dosyada followers / following listesi yok.\n\nInstagram’dan “Takipçiler ve takip edilenler” bölümünü JSON formatında indirip gelen .zip dosyasını seçtiğinden emin ol. Yardım sekmesinde adım adım anlatıyorum."
+      },
+      "missingList": {
+        "title": "Eksik liste",
+        "message": "Dosyada {{missing}} bulunamadı. Karşılaştırmalar eksik çıkacak.\n\nYine de kaydedeyim mi?"
+      },
+      "zipNoData": {
+        "title": "Zip içinde takipçi verisi yok",
+        "message": "Seçtiğin arşivde followers / following dosyaları bulunamadı.\n\nInstagram’dan indirirken “Takipçiler ve takip edilenler” kutusunu işaretlediğinden emin ol."
+      },
+      "fileUnreadable": {
+        "title": "Dosya okunamadı",
+        "message": "Dosya bozuk olabilir ya da beklenen biçimde değil. Zip’i açıp içindeki followers_1.json ve following.json dosyalarını doğrudan seçmeyi dene."
+      }
+    },
+    "list": {
+      "followerList": "takipçi listesi",
+      "followingList": "takip edilenler listesi"
+    },
+    "messages": {
+      "liveSaved": "{{f}} takipçi, {{g}} takip çekildi",
+      "importSaved": "{{f}} takipçi, {{g}} takip yüklendi",
+      "allDataCleared": "Tüm veriler silindi",
+      "selectedAsNew": "Yeni kayıt olarak seçildi",
+      "sameRecordError": "Aynı kayıt hem yeni hem eski olamaz",
+      "oldMustBeEarlier": "Eski kayıt, yeni kayıttan önceki bir tarih olmalı",
+      "selectedAsOld": "Eski kayıt olarak seçildi",
+      "recordDeleted": "Kayıt silindi"
+    }
+  },
+  "home": {
+    "title": "Takipçi Analiz",
+    "subtitle": "Takipçi hareketlerini çıkarır. Şifren uygulamaya girilmez, verilerin telefonundan çıkmaz.",
+    "stats": {
+      "followers": "Takipçi",
+      "following": "Takip",
+      "mutual": "Karşılıklı",
+      "notFollowingBack": "Geri takip etmeyen"
+    },
+    "noData": {
+      "title": "Başlamak için listeni al",
+      "fastLabel": "Hızlı yol:",
+      "fastText": " Instagram’a bağlan, listeler doğrudan çekilsin.",
+      "safeLabel": "Güvenli yol:",
+      "safeText": " Instagram’dan “Takipçiler ve takip edilenler” verisini JSON olarak indirip .zip dosyasını burada seç.",
+      "whatsTheDifference": "Aradaki fark ne?"
+    },
+    "lastAnalysis": "Son analiz",
+    "compareWith": "🔁 Karşılaştırma: ",
+    "compareWithSuffix": " tarihli yükleme",
+    "needSecondUploadPre": "⚠️ Takipten çıkanları görmek için ",
+    "needSecondUploadBold": "ikinci bir veri",
+    "needSecondUploadPost": " yüklemen gerekiyor. Bir süre sonra Instagram’dan yeni arşiv indirip tekrar yükle.",
+    "highlights": "Öne çıkanlar",
+    "otherLists": "Diğer listeler"
+  },
+  "history": {
+    "title": "Geçmiş",
+    "recordCount": "{{count}} kayıtlı yükleme",
+    "empty": {
+      "title": "Henüz kayıt yok",
+      "desc": "Instagram veri arşivini yükledikçe her yükleme burada saklanır ve aralarındaki farkı görürsün."
+    },
+    "howItWorks": {
+      "title": "Nasıl çalışır?",
+      "pre": "Takipten çıkanlar iki yükleme karşılaştırılarak bulunur. ",
+      "mid": " olarak seçtiğin kayıt bugünkü durumu, ",
+      "post": " olarak seçtiğin kayıt geçmişteki durumu temsil eder."
+    },
+    "roleNew": "Yeni",
+    "roleOld": "Eski",
+    "deleteRecord": {
+      "title": "Kaydı sil",
+      "message": "Bu yükleme kaydı silinsin mi?"
+    },
+    "vsPrevious": "bir öncekine göre",
+    "photos": {
+      "title": "Profil fotoğrafları",
+      "desc": "Canlı çekimde gelen fotoğraflar, listede ilk göründüklerinde cihaza indirilir. Instagram’ın adresleri kısa ömürlü olduğu için indirilmezse sonradan kaybolurlar.",
+      "clearButton": "Fotoğrafları sil ({{mb}} MB)",
+      "emptyCache": "Önbellek boş",
+      "confirmTitle": "Profil fotoğraflarını sil",
+      "confirmMessage": "İndirilen tüm profil fotoğrafları silinecek. Listeler harf simgesine döner."
+    },
+    "marked": {
+      "title": "İşaretlediklerin",
+      "desc": "Listelerde ✓ ile işaretlediğin {{count}} hesap var. İşaretlenenler varsayılan olarak listelerde gizlenir.",
+      "clearButton": "İşaretleri temizle",
+      "confirmTitle": "İşaretleri temizle",
+      "confirmMessage": "Tüm ✓ işaretleri kaldırılsın mı?"
+    },
+    "clearAll": {
+      "button": "Tüm verileri sil",
+      "confirmTitle": "Tüm verileri sil",
+      "confirmMessage": "Kayıtlı tüm yüklemeler ve işaretler silinecek. Bu geri alınamaz.",
+      "confirmButton": "Hepsini sil"
+    },
+    "language": {
+      "title": "Dil / Language",
+      "system": "Sistem",
+      "turkish": "Türkçe",
+      "english": "English"
+    }
+  },
+  "help": {
+    "title": "Nasıl kullanılır?",
+    "subtitle": "İki yöntem, aynı sonuç",
+    "connect": {
+      "title": "⚡ Instagram’a bağlan (hızlı)",
+      "text": "Instagram’ın kendi giriş sayfasında oturum açarsın, listeler birkaç dakikada çekilir. Anında sonuç verir; kişilerin görünen adlarını ve profil fotoğraflarını da getirir.",
+      "warning": "Instagram’ın kullanım şartlarına aykırıdır; sık kullanırsan geçici işlem engeli riski vardır."
+    },
+    "archive": {
+      "title": "📂 Veri arşivi (kurallara uygun)",
+      "text": "Instagram’ın kendi verdiği arşivi okur. Hiçbir risk yoktur ve “bu kişiyi ne zamandan beri takip ediyorum” bilgisini de içerir. Dosyanın hazırlanmasını beklemen gerekir.",
+      "openDownloadPage": "İndirme sayfasını aç"
+    },
+    "steps": [
+      {
+        "title": "Instagram’da Hesap Merkezi’ni aç",
+        "desc": "Profil → sağ üstteki ☰ menü → “Ayarlar ve gizlilik” → en üstteki “Hesap Merkezi”."
+      },
+      {
+        "title": "Bilgilerini indir bölümüne gir",
+        "desc": "“Bilgileriniz ve izinleriniz” → “Bilgilerini indir” → “Bilgileri indir”."
+      },
+      {
+        "title": "Sadece takipçi verisini seç",
+        "desc": "Hesabını seç → “Bilgilerinin bir kısmını seç” → listeden yalnızca “Takipçiler ve takip edilenler”i işaretle. Tümünü seçersen arşiv günler sürer ve yüzlerce MB olur."
+      },
+      {
+        "title": "Formatı JSON yap",
+        "desc": "Tarih aralığı: “Tüm zamanlar”. Format: “JSON”. Sonra “Dosya oluştur”. Sadece takipçi verisi seçildiğinde genelde dakikalar içinde hazır olur."
+      },
+      {
+        "title": "Zip dosyasını buraya yükle",
+        "desc": "İndirdiğin .zip dosyasını “Veri arşivi dosyası seç” ile aç. Zip’i açtıysan followers_1.json ve following.json dosyalarını birlikte de seçebilirsin."
+      }
+    ],
+    "faqSectionTitle": "Sık sorulanlar",
+    "faq": [
+      {
+        "q": "Takipten çıkanları neden ilk seferde göremiyorum?",
+        "a": "Instagram hiçbir yöntemle “kim seni takipten çıktı” bilgisini vermiyor — ne arşivde ne de arayüzünde böyle bir kayıt var. Bunu bulmanın tek yolu iki farklı zamandaki takipçi listeni karşılaştırmak. İlk çekim başlangıç noktan olur; ikinciden itibaren takipten çıkanlar listelenir."
+      },
+      {
+        "q": "Şifrem uygulamada saklanıyor mu?",
+        "a": "Hayır. “Instagram’a bağlan” dediğinde açılan sayfa Instagram’ın kendi giriş sayfası. Şifreni doğrudan Instagram’a giriyorsun; uygulama şifreyi görmüyor, kaydetmiyor, hiçbir yere göndermiyor. Sadece oluşan oturum çerezi telefonda kalıyor."
+      },
+      {
+        "q": "Canlı çekim hesabımı riske atar mı?",
+        "a": "Bu yöntem Instagram’ın kullanım şartlarına aykırıdır. İstekler yavaş ve aralıklı atılıyor ama çok sık tekrarlarsan Instagram geçici “işlem engeli” koyabilir (genelde birkaç saatte kalkar). Günde birden fazla çekme; çok büyük hesaplarda haftada bir yeterli. Riski sıfırlamak istersen veri arşivi yöntemini kullan."
+      },
+      {
+        "q": "Hesabım açık, neden yine de giriş gerekiyor?",
+        "a": "Çıkış yapmış haldeyken açık bir profilde sadece takipçi sayısını görebilirsin; listeye tıklayınca Instagram giriş ister. Listeyi döndüren uçlar açık hesaplarda bile oturum çerezi istiyor. Bu Instagram’ın tercihi, uygulamanın kısıtı değil."
+      },
+      {
+        "q": "İki yöntemin farkı ne?",
+        "a": "Canlı çekim anında sonuç verir; görünen adları ve profil fotoğraflarını da getirir, ama takip tarihi yoktur ve ToS’a aykırıdır. Veri arşivi yavaştır ama tamamen kurallara uygundur ve “bu kişiyi ne zamandan beri takip ediyorum” bilgisini içerir; fotoğraf içermez. İkisini karışık da kullanabilirsin; kayıtlar aynı listede birikir."
+      },
+      {
+        "q": "Profil fotoğrafları nereden geliyor?",
+        "a": "Canlı çekimde Instagram fotoğraf adreslerini de veriyor ama bu adresler imzalı ve kısa ömürlü — birkaç gün sonra ölüyorlar. Bu yüzden fotoğraf listede ilk göründüğünde telefona indirilip saklanıyor; sonrasında internet olmadan da görünüyor ve eski kayıtlarda kaybolmuyor. Sadece kaydırdığın kadarı iniyor, hepsi birden değil. Geçmiş sekmesinden kapatabilir ya da indirilenleri silebilirsin."
+      },
+      {
+        "q": "Verilerim bir yere gönderiliyor mu?",
+        "a": "Hayır. Tüm işlem telefonunda yapılır. Uygulamayı silersen kayıtlar da silinir."
+      },
+      {
+        "q": "Uygulamadan takipten çıkabilir miyim?",
+        "a": "Hayır, bilerek eklenmedi — toplu takipten çıkma, hesap engeli yemenin en hızlı yoludur. Listedeki bir hesaba dokununca profili Instagram’da açılır, oradan elle çıkabilirsin. Hallettiklerini ✓ ile işaretleyip listeden gizleyebilirsin."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Instagram'a bağlan",
+    "subtitleLogin": "Instagram’ın kendi giriş sayfası",
+    "subtitleWorking": "Listeler çekiliyor",
+    "errors": {
+      "session": {
+        "title": "Oturum kapandı",
+        "message": "Instagram oturumu düştü. Tekrar giriş yapman gerekiyor."
+      },
+      "limit": {
+        "title": "Instagram hız sınırı koydu",
+        "message": "Çok fazla istek gitti ve Instagram geçici olarak durdurdu. 15–30 dakika bekleyip tekrar dene. Hesabında bir sorun yok, engel kendiliğinden kalkar."
+      },
+      "http": {
+        "title": "Instagram beklenmedik cevap verdi",
+        "message": "Instagram arayüzü değişmiş olabilir. Biraz sonra tekrar dene; sorun sürerse dosya yükleme yöntemini kullan."
+      },
+      "timeout": {
+        "title": "Yanıt gelmedi",
+        "message": "Instagram uzun süre cevap vermedi. Bağlantını kontrol edip tekrar dene."
+      },
+      "cancel": {
+        "title": "Durduruldu",
+        "message": "İşlemi sen durdurdun."
+      },
+      "unknown": {
+        "title": "Bir şeyler ters gitti",
+        "message": "İşlem tamamlanamadı. Tekrar dene ya da dosya yükleme yöntemini kullan."
+      }
+    },
+    "ready": {
+      "title": "Giriş yapıldı ✓",
+      "text": "Takipçi ve takip listen Instagram’dan sayfa sayfa çekilecek. Hesap engeli riskini düşürmek için istekler arasında 1–2 saniye bekleniyor; büyük hesaplarda birkaç dakika sürebilir.",
+      "warning": "Bu yöntem Instagram’ın kullanım şartlarına aykırıdır. Çok sık tekrarlarsan hesabına geçici işlem engeli gelebilir. Günde bir kereden fazla çekmeni önermem.",
+      "fetchButton": "Listeleri çek"
+    },
+    "working": {
+      "fetchingFollowing": "Takip ettiklerin çekiliyor",
+      "fetchingFollowers": "Takipçilerin çekiliyor",
+      "backgroundWarning": "Uygulamayı arka plana alma, işlem durur.",
+      "stopButton": "Durdur"
+    },
+    "error": {
+      "partialData": "O ana kadar {{f}} takipçi, {{g}} takip çekilmişti. Eksik veri kaydedilmez.",
+      "retryButton": "Tekrar dene",
+      "backButton": "Geri dön"
+    },
+    "loginNote": "🔒 Bu, Instagram’ın kendi giriş sayfası. Şifren uygulamaya girilmiyor, kaydedilmiyor ve hiçbir yere gönderilmiyor."
+  },
+  "list": {
+    "searchPlaceholder": "Kullanıcı adı ara…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "En yeni",
+      "oldest": "En eski"
+    },
+    "hideMarked": "İşaretlediklerimi gizle",
+    "accountCount": "{{count}} hesap",
+    "hiddenSuffix": " · {{count}} gizli",
+    "usernameCopied": "@{{username}} kopyalandı",
+    "usernamesCopied": "{{count}} kullanıcı adı kopyalandı",
+    "empty": {
+      "noMatch": "Eşleşme yok",
+      "noOne": "Bu listede kimse yok",
+      "tryDifferent": "Farklı bir kullanıcı adı dene."
+    }
+  },
+  "credit": {
+    "label": "Yapımcı",
+    "footerNote": "Takipçi Analiz v{{version}} · Bu uygulama Instagram veya Meta ile bağlantılı değildir. Tüm veriler yalnızca cihazında saklanır."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Takipten çıkanlar",
+      "desc": "Önceki yüklemede seni takip ediyordu, artık etmiyor"
+    },
+    "notFollowingBack": {
+      "title": "Geri takip etmeyenler",
+      "desc": "Sen takip ediyorsun, o seni etmiyor",
+      "tsLabel": "Takip başlangıcı"
+    },
+    "fans": {
+      "title": "Hayranların",
+      "desc": "Seni takip ediyor, sen onu etmiyorsun",
+      "tsLabel": "Seni takip ettiği tarih"
+    },
+    "newFollowers": {
+      "title": "Yeni takipçiler",
+      "desc": "Son yüklemeden bu yana seni takibe başlayanlar",
+      "tsLabel": "Seni takip ettiği tarih"
+    },
+    "mutual": {
+      "title": "Karşılıklı takip",
+      "desc": "İkiniz de birbirinizi takip ediyorsunuz",
+      "tsLabel": "Seni takip ettiği tarih"
+    },
+    "pendingSent": {
+      "title": "Bekleyen isteklerin",
+      "desc": "Takip isteği gönderdin, henüz onaylanmadı"
+    },
+    "requestsReceived": {
+      "title": "Sana gelen istekler",
+      "desc": "Seni takip etmek isteyip beklemede olanlar"
+    },
+    "stoppedFollowing": {
+      "title": "Senin bıraktıkların",
+      "desc": "Son yüklemeden bu yana takibi bıraktığın hesaplar"
+    },
+    "startedFollowing": {
+      "title": "Yeni takip ettiklerin",
+      "desc": "Son yüklemeden bu yana takibe başladığın hesaplar"
+    },
+    "recentlyUnfollowed": {
+      "title": "Yakında bıraktıkların",
+      "desc": "Instagram'ın kaydettiği, son zamanlarda takipten çıktığın hesaplar"
+    },
+    "closeFriends": {
+      "title": "Yakın arkadaşlar",
+      "desc": "Yakın arkadaş listendeki hesaplar"
+    },
+    "blocked": {
+      "title": "Engellediklerin",
+      "desc": "Engellediğin hesaplar"
+    },
+    "followers": {
+      "title": "Tüm takipçilerin",
+      "desc": "Seni takip eden herkes",
+      "tsLabel": "Seni takip ettiği tarih"
+    },
+    "following": {
+      "title": "Tüm takip ettiklerin",
+      "desc": "Senin takip ettiğin herkes",
+      "tsLabel": "Takip başlangıcı"
+    }
+  },
+  "fmt": {
+    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "justNow": "az önce",
+    "minutesAgo": "{{count}} dakika önce",
+    "hoursAgo": "{{count}} saat önce",
+    "daysAgo": "{{count}} gün önce",
+    "monthsAgo": "{{count}} ay önce",
+    "yearsAgo": "{{count}} yıl önce"
+  }
+}

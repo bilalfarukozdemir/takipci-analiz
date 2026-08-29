@@ -1,0 +1,369 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "continueBtn": "Continue",
+    "skip": "Skip",
+    "delete": "Delete",
+    "save": "Save",
+    "clear": "Clear",
+    "connectInstagram": "Connect to Instagram",
+    "pickArchiveFile": "Choose data archive file",
+    "loadingFile": "Reading file…",
+    "followersLower": "followers",
+    "followingLower": "following",
+    "copy": "📋  Copy",
+    "share": "📤  Share"
+  },
+  "tabs": {
+    "home": "Analysis",
+    "history": "History",
+    "help": "Help"
+  },
+  "app": {
+    "fileType": {
+      "title": "Which file is this?",
+      "message": "Couldn't figure out the type of \"{{name}}\". What do the accounts inside represent?",
+      "followers": "My followers",
+      "following": "Accounts I follow"
+    },
+    "source": {
+      "live": "Instagram (live fetch)",
+      "multipleFiles": "{{count}} files"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "List came back empty",
+        "message": "Instagram didn't return any accounts. Try again in a bit, or use the data archive method instead."
+      },
+      "pickFailed": {
+        "title": "Couldn't open file",
+        "message": "Something went wrong while picking the file. Want to try again?"
+      },
+      "tooLarge": {
+        "title": "File is very large",
+        "message": "The archive you selected looks very large; you probably downloaded your entire Instagram data. The app might freeze up.\n\nA better option: download only the \"Followers and following\" data from Instagram.",
+        "confirm": "Try anyway"
+      },
+      "noFollowerData": {
+        "title": "No follower data found",
+        "message": "The file you selected doesn't contain a followers / following list.\n\nMake sure you download the \"Followers and following\" section from Instagram in JSON format and select the resulting .zip file. Step-by-step instructions are in the Help tab."
+      },
+      "missingList": {
+        "title": "Missing list",
+        "message": "Couldn't find {{missing}} in the file. Comparisons will be incomplete.\n\nSave it anyway?"
+      },
+      "zipNoData": {
+        "title": "No follower data in the zip",
+        "message": "The archive you selected doesn't contain followers / following files.\n\nMake sure you check the \"Followers and following\" box when downloading from Instagram."
+      },
+      "fileUnreadable": {
+        "title": "Couldn't read file",
+        "message": "The file might be corrupted or not in the expected format. Try opening the zip and selecting the followers_1.json and following.json files directly."
+      }
+    },
+    "list": {
+      "followerList": "the followers list",
+      "followingList": "the following list"
+    },
+    "messages": {
+      "liveSaved": "Fetched {{f}} followers, {{g}} following",
+      "importSaved": "Loaded {{f}} followers, {{g}} following",
+      "allDataCleared": "All data cleared",
+      "selectedAsNew": "Selected as the new record",
+      "sameRecordError": "The same record can't be both new and old",
+      "oldMustBeEarlier": "The old record must be earlier than the new one",
+      "selectedAsOld": "Selected as the old record",
+      "recordDeleted": "Record deleted"
+    }
+  },
+  "home": {
+    "title": "Takipçi Analiz",
+    "subtitle": "Extracts follower changes. Your password is never entered into the app, and your data never leaves your phone.",
+    "stats": {
+      "followers": "Followers",
+      "following": "Following",
+      "mutual": "Mutual",
+      "notFollowingBack": "Not following back"
+    },
+    "noData": {
+      "title": "Get your list to start",
+      "fastLabel": "Fast way:",
+      "fastText": " Connect to Instagram, lists are fetched directly.",
+      "safeLabel": "Safe way:",
+      "safeText": " Download the \"Followers and following\" data from Instagram as JSON and select the .zip file here.",
+      "whatsTheDifference": "What's the difference?"
+    },
+    "lastAnalysis": "Last analysis",
+    "compareWith": "🔁 Comparing with the upload from: ",
+    "compareWithSuffix": "",
+    "needSecondUploadPre": "⚠️ To see who unfollowed you, you need to upload ",
+    "needSecondUploadBold": "a second data set",
+    "needSecondUploadPost": ". Download a new archive from Instagram after a while and upload it again.",
+    "highlights": "Highlights",
+    "otherLists": "Other lists"
+  },
+  "history": {
+    "title": "History",
+    "recordCount": "{{count}} saved uploads",
+    "empty": {
+      "title": "No records yet",
+      "desc": "As you upload Instagram data archives, each upload is stored here and you can see the difference between them."
+    },
+    "howItWorks": {
+      "title": "How does it work?",
+      "pre": "Unfollows are found by comparing two uploads. ",
+      "mid": " represents today's state, and the record you pick as ",
+      "post": " represents an earlier state."
+    },
+    "roleNew": "New",
+    "roleOld": "Old",
+    "deleteRecord": {
+      "title": "Delete record",
+      "message": "Delete this upload record?"
+    },
+    "vsPrevious": "vs. previous",
+    "photos": {
+      "title": "Profile photos",
+      "desc": "Photos from live fetches are downloaded to the device the first time they appear in a list. Since Instagram's addresses are short-lived, they'd disappear later if not downloaded.",
+      "clearButton": "Delete photos ({{mb}} MB)",
+      "emptyCache": "Cache is empty",
+      "confirmTitle": "Delete profile photos",
+      "confirmMessage": "All downloaded profile photos will be deleted. Lists will fall back to letter icons."
+    },
+    "marked": {
+      "title": "What you've marked",
+      "desc": "You have {{count}} accounts marked with ✓ in the lists. Marked accounts are hidden from lists by default.",
+      "clearButton": "Clear marks",
+      "confirmTitle": "Clear marks",
+      "confirmMessage": "Remove all ✓ marks?"
+    },
+    "clearAll": {
+      "button": "Delete all data",
+      "confirmTitle": "Delete all data",
+      "confirmMessage": "All saved uploads and marks will be deleted. This can't be undone.",
+      "confirmButton": "Delete everything"
+    },
+    "language": {
+      "title": "Dil / Language",
+      "system": "System",
+      "turkish": "Türkçe",
+      "english": "English"
+    }
+  },
+  "help": {
+    "title": "How does it work?",
+    "subtitle": "Two methods, same result",
+    "connect": {
+      "title": "⚡ Connect to Instagram (fast)",
+      "text": "You sign in on Instagram's own login page, and lists are fetched within a few minutes. Gives instant results; also brings display names and profile photos.",
+      "warning": "This is against Instagram's terms of service; using it often carries a risk of a temporary action block."
+    },
+    "archive": {
+      "title": "📂 Data archive (compliant)",
+      "text": "Reads the archive Instagram itself provides. No risk at all, and it includes \"how long have I been following this person\" info. You'll need to wait for the file to be prepared.",
+      "openDownloadPage": "Open the download page"
+    },
+    "steps": [
+      {
+        "title": "Open Accounts Center on Instagram",
+        "desc": "Profile → ☰ menu in the top right → \"Settings and privacy\" → \"Accounts Center\" at the top."
+      },
+      {
+        "title": "Go to the \"Download your information\" section",
+        "desc": "\"Your information and permissions\" → \"Download your information\" → \"Download information\"."
+      },
+      {
+        "title": "Select only the follower data",
+        "desc": "Select your account → \"Select some of your information\" → check only \"Followers and following\" from the list. Selecting everything makes the archive take days and hundreds of MB."
+      },
+      {
+        "title": "Set the format to JSON",
+        "desc": "Date range: \"All time\". Format: \"JSON\". Then \"Create file\". When only follower data is selected, it's usually ready within minutes."
+      },
+      {
+        "title": "Upload the zip file here",
+        "desc": "Open the .zip file you downloaded with \"Choose data archive file\". If you've already extracted the zip, you can also select the followers_1.json and following.json files together."
+      }
+    ],
+    "faqSectionTitle": "Frequently asked questions",
+    "faq": [
+      {
+        "q": "Why can't I see who unfollowed me the first time?",
+        "a": "Instagram never provides \"who unfollowed you\" info through any method — there's no such record in the archive or in the interface. The only way to find this out is to compare your follower list at two different points in time. The first fetch becomes your starting point; unfollows are listed starting from the second one."
+      },
+      {
+        "q": "Is my password stored in the app?",
+        "a": "No. The page that opens when you tap \"Connect to Instagram\" is Instagram's own login page. You enter your password directly into Instagram; the app never sees it, stores it, or sends it anywhere. Only the resulting session cookie stays on your phone."
+      },
+      {
+        "q": "Does live fetching put my account at risk?",
+        "a": "This method is against Instagram's terms of service. Requests are sent slowly and with delays, but if you repeat it too often, Instagram may impose a temporary \"action block\" (usually lifts within a few hours). Don't fetch more than once a day; once a week is enough for very large accounts. Use the data archive method if you want zero risk."
+      },
+      {
+        "q": "My account is public, why do I still need to log in?",
+        "a": "While logged out, you can only see the follower count on a public profile; tapping the list prompts an Instagram login. The endpoints that return the list require a session cookie even on public accounts. This is Instagram's own restriction, not a limitation of the app."
+      },
+      {
+        "q": "What's the difference between the two methods?",
+        "a": "Live fetching gives instant results; it also brings display names and profile photos, but has no follow date and violates the ToS. The data archive is slow but fully compliant, and includes \"since when have I been following this person\" info; it has no photos. You can mix both; records accumulate in the same list."
+      },
+      {
+        "q": "Where do the profile photos come from?",
+        "a": "During a live fetch, Instagram also provides photo addresses, but these addresses are signed and short-lived — they expire after a few days. That's why a photo is downloaded to the phone the first time it appears in a list; after that it's shown even without internet and doesn't disappear from older records. Only what you scroll through gets downloaded, not everything at once. You can turn this off from the History tab, or delete what's already downloaded."
+      },
+      {
+        "q": "Is my data sent anywhere?",
+        "a": "No. Everything happens on your phone. If you delete the app, the records are deleted too."
+      },
+      {
+        "q": "Can I unfollow accounts from the app?",
+        "a": "No, this was left out on purpose — mass unfollowing is the fastest way to get an account block. Tapping an account in a list opens its profile on Instagram, where you can unfollow manually. You can mark the ones you've dealt with using ✓ to hide them from the list."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Connect to Instagram",
+    "subtitleLogin": "Instagram's own login page",
+    "subtitleWorking": "Fetching lists",
+    "errors": {
+      "session": {
+        "title": "Session ended",
+        "message": "Your Instagram session was dropped. You need to log in again."
+      },
+      "limit": {
+        "title": "Instagram applied a rate limit",
+        "message": "Too many requests were sent and Instagram temporarily stopped them. Wait 15–30 minutes and try again. There's nothing wrong with your account, the block lifts on its own."
+      },
+      "http": {
+        "title": "Instagram gave an unexpected response",
+        "message": "Instagram's interface may have changed. Try again shortly; if the problem persists, use the file upload method."
+      },
+      "timeout": {
+        "title": "No response",
+        "message": "Instagram didn't respond for a long time. Check your connection and try again."
+      },
+      "cancel": {
+        "title": "Stopped",
+        "message": "You stopped the operation."
+      },
+      "unknown": {
+        "title": "Something went wrong",
+        "message": "The operation couldn't be completed. Try again or use the file upload method."
+      }
+    },
+    "ready": {
+      "title": "Logged in ✓",
+      "text": "Your follower and following lists will be fetched from Instagram page by page. There's a 1–2 second delay between requests to reduce the risk of an account block; this can take a few minutes for large accounts.",
+      "warning": "This method is against Instagram's terms of service. Repeating it too often may result in a temporary action block on your account. I don't recommend fetching more than once a day.",
+      "fetchButton": "Fetch lists"
+    },
+    "working": {
+      "fetchingFollowing": "Fetching accounts you follow",
+      "fetchingFollowers": "Fetching your followers",
+      "backgroundWarning": "Don't put the app in the background, it will stop the process.",
+      "stopButton": "Stop"
+    },
+    "error": {
+      "partialData": "{{f}} followers and {{g}} following had already been fetched. Incomplete data isn't saved.",
+      "retryButton": "Try again",
+      "backButton": "Go back"
+    },
+    "loginNote": "🔒 This is Instagram's own login page. Your password is never entered into the app, saved, or sent anywhere."
+  },
+  "list": {
+    "searchPlaceholder": "Search username…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "Newest",
+      "oldest": "Oldest"
+    },
+    "hideMarked": "Hide the ones I've marked",
+    "accountCount": "{{count}} accounts",
+    "hiddenSuffix": " · {{count}} hidden",
+    "usernameCopied": "@{{username}} copied",
+    "usernamesCopied": "{{count}} usernames copied",
+    "empty": {
+      "noMatch": "No matches",
+      "noOne": "No one is in this list",
+      "tryDifferent": "Try a different username."
+    }
+  },
+  "credit": {
+    "label": "Made by",
+    "footerNote": "Takipçi Analiz v{{version}} · This app is not affiliated with Instagram or Meta. All data is stored only on your device."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Unfollowed you",
+      "desc": "Was following you in the previous upload, not anymore"
+    },
+    "notFollowingBack": {
+      "title": "Not following back",
+      "desc": "You follow them, they don't follow you",
+      "tsLabel": "Started following"
+    },
+    "fans": {
+      "title": "Your fans",
+      "desc": "They follow you, you don't follow them",
+      "tsLabel": "Date they followed you"
+    },
+    "newFollowers": {
+      "title": "New followers",
+      "desc": "Started following you since the last upload",
+      "tsLabel": "Date they followed you"
+    },
+    "mutual": {
+      "title": "Mutual follows",
+      "desc": "You both follow each other",
+      "tsLabel": "Date they followed you"
+    },
+    "pendingSent": {
+      "title": "Your pending requests",
+      "desc": "You sent a follow request, not yet accepted"
+    },
+    "requestsReceived": {
+      "title": "Requests to you",
+      "desc": "People waiting for you to accept their follow request"
+    },
+    "stoppedFollowing": {
+      "title": "Accounts you unfollowed",
+      "desc": "Accounts you stopped following since the last upload"
+    },
+    "startedFollowing": {
+      "title": "Accounts you started following",
+      "desc": "Accounts you started following since the last upload"
+    },
+    "recentlyUnfollowed": {
+      "title": "Recently unfollowed by you",
+      "desc": "Accounts Instagram recorded you recently unfollowed"
+    },
+    "closeFriends": {
+      "title": "Close friends",
+      "desc": "Accounts on your close friends list"
+    },
+    "blocked": {
+      "title": "Blocked by you",
+      "desc": "Accounts you've blocked"
+    },
+    "followers": {
+      "title": "All your followers",
+      "desc": "Everyone who follows you",
+      "tsLabel": "Date they followed you"
+    },
+    "following": {
+      "title": "Everyone you follow",
+      "desc": "Everyone you follow",
+      "tsLabel": "Started following"
+    }
+  },
+  "fmt": {
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "justNow": "just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "monthsAgo": "{{count}}mo ago",
+    "yearsAgo": "{{count}}y ago"
+  }
+}
