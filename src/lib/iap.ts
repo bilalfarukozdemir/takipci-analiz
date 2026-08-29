@@ -2,7 +2,6 @@ import {
   ErrorCode,
   type Product,
   type Purchase,
-  type PurchaseError,
   finishTransaction as expoFinishTransaction,
   fetchProducts,
   initConnection,
@@ -11,8 +10,17 @@ import {
   requestPurchase,
 } from 'expo-iap';
 
-export type { Product, Purchase, PurchaseError };
+export type { Product, Purchase };
 export { ErrorCode };
+
+/**
+ * `purchaseErrorListener`'ın beklediği tam parametre tipi. expo-iap 'expo-iap'
+ * paketinden iki farklı `PurchaseError` tipi dışa açıyor (types.ts'teki
+ * `code: ErrorCode` zorunlu sürüm ile errorMapping.ts'teki `code?: ErrorCode`
+ * opsiyonel sürüm) — bunlardan yanlışını import edip tip uyuşmazlığı almamak
+ * için gerçek fonksiyon imzasından türetiyoruz.
+ */
+export type PurchaseError = Parameters<Parameters<typeof purchaseErrorListener>[0]>[0];
 
 /**
  * expo-iap sarmalayıcısı. Sadece Google Play Billing (Android) ile

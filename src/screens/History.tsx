@@ -11,6 +11,7 @@ import { avatarCacheSize, clearAvatarCache } from '../lib/avatars';
 import { goreceli, sayi, tarihSaat } from '../lib/fmt';
 import { C, S } from '../theme';
 import type { SnapshotMeta } from '../types';
+import { DestekKarti } from '../ui/DestekKarti';
 import { Btn, Card, Empty, Header, Row } from '../ui/kit';
 
 type Props = {
@@ -232,6 +233,8 @@ export function History({
             disabled={markedCount === 0}
           />
         </Card>
+
+        <DestekKarti />
 
         <Btn
           label={t('history.clearAll.button')}
