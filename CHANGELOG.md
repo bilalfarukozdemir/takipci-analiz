@@ -11,11 +11,11 @@ izler.
   cihazın sistem diline göre otomatik seçilir, Geçmiş sekmesindeki dil
   seçiciden elle de değiştirilebilir. Tercih cihazda kalıcı olarak saklanır.
 - Play Store yayını için `PRIVACY.md` / `PRIVACY.en.md` gizlilik politikası
-
-### Planlanan
-- **Geliştiriciyi Destekle** — Google Play Billing üzerinden isteğe bağlı,
-  tek seferlik bağış. Hiçbir özelliği kilitlemez; ödeme tamamen Google Play
-  tarafından yürütülür.
+- **Geliştiriciyi Destekle** — Google Play Billing (`expo-iap`) üzerinden
+  isteğe bağlı, tekrarlanabilir bağış (Bir kahve ısmarla / Bir öğün
+  ısmarla / Cömert destek). Hiçbir özelliği kilitlemez; ödeme tamamen
+  Google Play tarafından yürütülür, kart bilgisi uygulamaya hiç ulaşmaz.
+  Geçmiş sekmesinde yeni bir kart olarak görünür.
 
 ## [1.2.2] – 2026-08-14
 

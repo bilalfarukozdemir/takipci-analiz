@@ -97,7 +97,11 @@ Bunlar bilinçli kararlar; PR açmadan önce bilmen zaman kazandırır:
 - **Toplu takipten çıkarma / takip etme.** Hesap engeli yemenin en hızlı yolu.
 - **Sunucu, hesap sistemi, bulut yedekleme.** Uygulamanın tek gerçek güvencesi
   verinin cihazdan çıkmaması.
-- **Analitik, reklam, takip kodu.**
+- **Analitik, reklam, takip kodu.** İstisna: isteğe bağlı "Geliştiriciyi
+  destekle" bağışı Google Play Billing (`expo-iap`) üzerinden çalışır. Bu
+  analitik/reklam/takip değildir — hiçbir kullanım verisi toplamaz, uygulamayı
+  Google'a hesap açmaya zorlamaz; sadece Play'in kendi ödeme akışını tetikler
+  ve kart/kimlik bilgisi uygulamaya hiç ulaşmaz.
 - **Şifreyi uygulama içinde isteyen giriş formu.** Giriş her zaman Instagram'ın
   kendi sayfasında yapılır.
 

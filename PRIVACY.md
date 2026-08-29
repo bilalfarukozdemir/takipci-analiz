@@ -90,9 +90,9 @@ hesabıdır.
 
 ## Bağış (Google Play Billing)
 
-Uygulamaya isteğe bağlı bir "Geliştiriciyi Destekle" bağış özelliği
-eklenecek. Bu özellik **Google Play'in kendi satın alma sistemi (Google Play
-Billing)** üzerinden çalışacak:
+Uygulamada isteğe bağlı bir "Geliştiriciyi Destekle" bağış özelliği var.
+Bu özellik **Google Play'in kendi satın alma sistemi (Google Play
+Billing)** üzerinden çalışır:
 
 - Ödeme tamamen Google Play tarafından yürütülür; kart numarası, fatura
   adresi ya da kimlik bilgisi uygulamaya hiçbir zaman ulaşmaz.
@@ -101,10 +101,6 @@ Billing)** üzerinden çalışacak:
 - Google Play Billing'in kendi veri işleme kuralları Google'ın gizlilik
   politikasına tabidir; bu bölüm sadece uygulamanın bu sistemi nasıl
   kullandığını anlatır.
-
-> Not: Bu özellik bu belgenin yazıldığı tarihte henüz koda eklenmemiştir;
-> yukarıdaki açıklama planlanan davranışı anlatır. Özellik yayınlandığında
-> bu belge, gerçek uygulamayla eşleştiği doğrulanarak gözden geçirilecektir.
 
 ## Verini silme
 

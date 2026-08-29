@@ -15,6 +15,10 @@ Bunlar bilinçli tercihler, "eksik" değil:
 
 - **Toplu takipten çıkarma/takip etme yok.** Hesap engeli yemenin en hızlı yolu.
 - **Sunucu, hesap sistemi, analitik, reklam yok.** Veri cihazdan çıkmaz.
+  İstisna: isteğe bağlı "Geliştiriciyi destekle" bağışı Google Play Billing
+  (`expo-iap`) üzerinden çalışır — analitik/reklam/takip değildir, hiçbir
+  kullanım verisi toplamaz; sadece Play'in kendi ödeme akışını tetikler ve
+  kart/kimlik bilgisi uygulamaya hiç ulaşmaz.
 - **Uygulama içinde şifre isteyen giriş formu yok.** Giriş her zaman WebView
   içinde Instagram'ın kendi sayfasında yapılır; kod şifreyi hiç görmez.
 - **Varsayılan dil Türkçe; uygulama Türkçe ve İngilizce'yi destekler (i18n).**

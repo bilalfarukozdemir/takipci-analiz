@@ -91,9 +91,8 @@ Instagram account you already have.
 
 ## Donations (Google Play Billing)
 
-An optional "Support the Developer" donation feature is planned for the
-app. It will work through **Google Play's own purchase system (Google Play
-Billing)**:
+The app has an optional "Support the Developer" donation feature. It works
+through **Google Play's own purchase system (Google Play Billing)**:
 
 - Payment is handled entirely by Google Play; card numbers, billing
   addresses, or identity information never reach the app.
@@ -101,11 +100,6 @@ Billing)**:
   feature — a user who doesn't donate gets full functionality identically.
 - Google Play Billing's own data handling is governed by Google's privacy
   policy; this section only describes how the app uses that system.
-
-> Note: as of the date this document was written, this feature has not yet
-> been implemented in code; the description above reflects the planned
-> behavior. This document will be reviewed against the actual
-> implementation once the feature ships.
 
 ## Deleting your data
 
