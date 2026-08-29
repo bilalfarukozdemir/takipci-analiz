@@ -6,6 +6,10 @@ const K_INDEX = 'ig:index';
 const K_SNAP = (id: string) => `ig:snap:${id}`;
 const K_WHITELIST = 'ig:whitelist';
 const K_SETTINGS = 'ig:settings';
+const K_LANGUAGE = 'ig:language';
+
+/** Dil tercihi: 'system' cihaz diline uyar, 'tr'/'en' manuel zorlamadır. */
+export type LanguagePreference = 'system' | 'tr' | 'en';
 
 export type Settings = {
   /** profil fotoğraflarını indir ve göster */
@@ -92,4 +96,15 @@ export async function getSettings(): Promise<Settings> {
 
 export async function saveSettings(s: Settings): Promise<void> {
   await Storage.setItem(K_SETTINGS, JSON.stringify(s));
+}
+
+/** Kullanıcının manuel dil seçimi. Varsayılan 'system' (cihaz diline uy). */
+export async function getLanguagePreference(): Promise<LanguagePreference> {
+  const raw = await Storage.getItem(K_LANGUAGE);
+  if (raw === 'tr' || raw === 'en' || raw === 'system') return raw;
+  return 'system';
+}
+
+export async function setLanguagePreference(pref: LanguagePreference): Promise<void> {
+  await Storage.setItem(K_LANGUAGE, pref);
 }

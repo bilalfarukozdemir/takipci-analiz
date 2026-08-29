@@ -60,12 +60,14 @@ export type CatKey =
 
 export type Category = {
   key: CatKey;
-  title: string;
-  desc: string;
+  /** i18n anahtarı — src/i18n/{tr,en}.json içindeki categories.<key>.title */
+  titleKey: string;
+  /** i18n anahtarı — categories.<key>.desc */
+  descKey: string;
   icon: string;
   color: string;
   /** iki anlık görüntü karşılaştırması gerektirir */
   needsDiff?: boolean;
-  /** zaman damgası "ne zamandan beri" mi yoksa "takip etti" mi */
-  tsLabel?: string;
+  /** i18n anahtarı — zaman damgası "ne zamandan beri" mi yoksa "takip etti" mi (categories.<key>.tsLabel) */
+  tsLabelKey?: string;
 };
