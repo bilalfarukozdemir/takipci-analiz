@@ -8,6 +8,7 @@
     "expo-document-picker": "~56.0.4",
     "expo-file-system": "~56.0.9",
     "expo-haptics": "~56.0.3",
+    "expo-iap": "^5.4.1",
     "expo-linear-gradient": "~56.0.4",
     "expo-localization": "~56.0.6",
     "expo-sharing": "~56.0.24",

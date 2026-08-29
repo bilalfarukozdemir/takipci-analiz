@@ -39,6 +39,7 @@
         }
       ],
       "expo-localization",
+      "expo-iap",
       "./plugins/withTurkishAppName",
       "./plugins/withInstagramQuery",
       "./plugins/withBuildTuning",

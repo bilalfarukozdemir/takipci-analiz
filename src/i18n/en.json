@@ -150,6 +150,30 @@
       "english": "English"
     }
   },
+  "destek": {
+    "title": "Support the developer",
+    "desc": "The app will stay free and ad-free. If it's been useful, you can leave an optional donation — payment runs entirely through Google Play, and card details never reach the app.",
+    "tiers": {
+      "destek_kahve": "☕ Buy me a coffee",
+      "destek_ogun": "🍔 Buy me a meal",
+      "destek_comert": "💖 Generous support"
+    },
+    "loading": "Loading donation options…",
+    "unavailable": {
+      "title": "Donations aren't available right now",
+      "desc": "Couldn't connect through Google Play on this device. The Play Store app needs to be up to date and signed in."
+    },
+    "error": {
+      "title": "Something went wrong",
+      "desc": "The purchase couldn't be completed.",
+      "retryButton": "Try again"
+    },
+    "thanks": {
+      "title": "Thank you! 💛",
+      "desc": "Your donation went through. You can support again anytime.",
+      "backButton": "OK"
+    }
+  },
   "help": {
     "title": "How does it work?",
     "subtitle": "Two methods, same result",

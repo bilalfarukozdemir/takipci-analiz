@@ -150,6 +150,30 @@
       "english": "English"
     }
   },
+  "destek": {
+    "title": "Geliştiriciyi destekle",
+    "desc": "Uygulama ücretsiz ve reklamsız kalacak. İşine yaradıysa isteğe bağlı bir bağış bırakabilirsin — ödeme tamamen Google Play üzerinden yürür, kart bilgisi uygulamaya hiç ulaşmaz.",
+    "tiers": {
+      "destek_kahve": "☕ Bir kahve ısmarla",
+      "destek_ogun": "🍔 Bir öğün ısmarla",
+      "destek_comert": "💖 Cömert destek"
+    },
+    "loading": "Bağış seçenekleri yükleniyor…",
+    "unavailable": {
+      "title": "Bağış şu an kullanılamıyor",
+      "desc": "Bu cihazda Google Play üzerinden bağlanılamadı. Play Store uygulaması güncel ve oturum açık olmalı."
+    },
+    "error": {
+      "title": "Bir şeyler ters gitti",
+      "desc": "Satın alma tamamlanamadı.",
+      "retryButton": "Tekrar dene"
+    },
+    "thanks": {
+      "title": "Teşekkürler! 💛",
+      "desc": "Bağışın alındı. Dilediğin zaman tekrar destek olabilirsin.",
+      "backButton": "Tamam"
+    }
+  },
   "help": {
     "title": "Nasıl kullanılır?",
     "subtitle": "İki yöntem, aynı sonuç",
