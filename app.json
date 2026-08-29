@@ -38,6 +38,7 @@
           "imageWidth": 180
         }
       ],
+      "expo-localization",
       "./plugins/withTurkishAppName",
       "./plugins/withInstagramQuery",
       "./plugins/withBuildTuning",
