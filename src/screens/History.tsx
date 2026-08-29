@@ -1,6 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 
+import {
+  changeLanguagePreference,
+  getLanguagePreference,
+  type LanguagePreference,
+} from '../i18n';
 import { avatarCacheSize, clearAvatarCache } from '../lib/avatars';
 import { goreceli, sayi, tarihSaat } from '../lib/fmt';
 import { C, S } from '../theme';
@@ -65,6 +71,7 @@ export function History({
   avatarsOn,
   onToggleAvatars,
 }: Props) {
+  const { t } = useTranslation();
   const [cacheMb, setCacheMb] = useState(0);
 
   const olcCache = useCallback(() => {
@@ -75,22 +82,22 @@ export function History({
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title="Geçmiş" subtitle={`${snapshots.length} kayıtlı yükleme`} />
+      <Header title={t('history.title')} subtitle={t('history.recordCount', { count: snapshots.length })} />
       <ScrollView contentContainerStyle={{ padding: S.pad, paddingBottom: 40, gap: S.gap }}>
+        <LanguageCard />
+
         {snapshots.length === 0 ? (
-          <Empty
-            icon="🗂️"
-            title="Henüz kayıt yok"
-            desc="Instagram veri arşivini yükledikçe her yükleme burada saklanır ve aralarındaki farkı görürsün."
-          />
+          <Empty icon="🗂️" title={t('history.empty.title')} desc={t('history.empty.desc')} />
         ) : (
           <>
             <Card>
-              <Text style={st.infoTitle}>Nasıl çalışır?</Text>
+              <Text style={st.infoTitle}>{t('history.howItWorks.title')}</Text>
               <Text style={st.infoTxt}>
-                Takipten çıkanlar iki yükleme karşılaştırılarak bulunur.{' '}
-                <Text style={st.b}>Yeni</Text> olarak seçtiğin kayıt bugünkü durumu,{' '}
-                <Text style={st.b}>Eski</Text> olarak seçtiğin kayıt geçmişteki durumu temsil eder.
+                {t('history.howItWorks.pre')}
+                <Text style={st.b}>{t('history.roleNew')}</Text>
+                {t('history.howItWorks.mid')}
+                <Text style={st.b}>{t('history.roleOld')}</Text>
+                {t('history.howItWorks.post')}
               </Text>
             </Card>
 
@@ -107,9 +114,9 @@ export function History({
                     <Pressable
                       hitSlop={10}
                       onPress={() =>
-                        Alert.alert('Kaydı sil', 'Bu yükleme kaydı silinsin mi?', [
-                          { text: 'Vazgeç', style: 'cancel' },
-                          { text: 'Sil', style: 'destructive', onPress: () => onDelete(s.id) },
+                        Alert.alert(t('history.deleteRecord.title'), t('history.deleteRecord.message'), [
+                          { text: t('common.cancel'), style: 'cancel' },
+                          { text: t('common.delete'), style: 'destructive', onPress: () => onDelete(s.id) },
                         ])
                       }>
                       <Text style={st.trash}>🗑️</Text>
@@ -123,11 +130,11 @@ export function History({
                   <Row style={{ gap: 16, marginTop: 10 }}>
                     <View>
                       <Text style={st.num}>{sayi(s.followers)}</Text>
-                      <Text style={st.numLbl}>takipçi</Text>
+                      <Text style={st.numLbl}>{t('common.followersLower')}</Text>
                     </View>
                     <View>
                       <Text style={st.num}>{sayi(s.following)}</Text>
-                      <Text style={st.numLbl}>takip</Text>
+                      <Text style={st.numLbl}>{t('common.followingLower')}</Text>
                     </View>
                     {dFollowers !== null ? (
                       <View>
@@ -139,20 +146,20 @@ export function History({
                           {dFollowers >= 0 ? '+' : ''}
                           {sayi(dFollowers)}
                         </Text>
-                        <Text style={st.numLbl}>bir öncekine göre</Text>
+                        <Text style={st.numLbl}>{t('history.vsPrevious')}</Text>
                       </View>
                     ) : null}
                   </Row>
 
                   <Row style={{ gap: 8, marginTop: 14 }}>
                     <RoleBtn
-                      label="Yeni"
+                      label={t('history.roleNew')}
                       color={C.green}
                       active={currentId === s.id}
                       onPress={() => onSelect('current', s.id)}
                     />
                     <RoleBtn
-                      label="Eski"
+                      label={t('history.roleOld')}
                       color={C.yellow}
                       active={prevId === s.id}
                       onPress={() => onSelect('prev', s.id)}
@@ -164,17 +171,14 @@ export function History({
           </>
         )}
 
-        <Btn label="Instagram’a bağlan" icon="⚡" onPress={onConnect} />
-        <Btn label="Veri arşivi dosyası seç" icon="📂" kind="ghost" onPress={onImport} busy={busy} />
+        <Btn label={t('common.connectInstagram')} icon="⚡" onPress={onConnect} />
+        <Btn label={t('common.pickArchiveFile')} icon="📂" kind="ghost" onPress={onImport} busy={busy} />
 
         <Card>
           <Row style={{ justifyContent: 'space-between', gap: 12 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={st.infoTitle}>Profil fotoğrafları</Text>
-              <Text style={st.infoTxt}>
-                Canlı çekimde gelen fotoğraflar, listede ilk göründüklerinde cihaza indirilir.
-                Instagram’ın adresleri kısa ömürlü olduğu için indirilmezse sonradan kaybolurlar.
-              </Text>
+              <Text style={st.infoTitle}>{t('history.photos.title')}</Text>
+              <Text style={st.infoTxt}>{t('history.photos.desc')}</Text>
             </View>
             <Switch
               value={avatarsOn}
@@ -185,17 +189,21 @@ export function History({
           </Row>
           <View style={{ height: 12 }} />
           <Btn
-            label={cacheMb > 0 ? `Fotoğrafları sil (${cacheMb} MB)` : 'Önbellek boş'}
+            label={
+              cacheMb > 0
+                ? t('history.photos.clearButton', { mb: cacheMb })
+                : t('history.photos.emptyCache')
+            }
             kind="ghost"
             disabled={cacheMb === 0}
             onPress={() =>
               Alert.alert(
-                'Profil fotoğraflarını sil',
-                'İndirilen tüm profil fotoğrafları silinecek. Listeler harf simgesine döner.',
+                t('history.photos.confirmTitle'),
+                t('history.photos.confirmMessage'),
                 [
-                  { text: 'Vazgeç', style: 'cancel' },
+                  { text: t('common.cancel'), style: 'cancel' },
                   {
-                    text: 'Sil',
+                    text: t('common.delete'),
                     style: 'destructive',
                     onPress: () => {
                       clearAvatarCache();
@@ -209,19 +217,16 @@ export function History({
         </Card>
 
         <Card>
-          <Text style={st.infoTitle}>İşaretlediklerin</Text>
-          <Text style={st.infoTxt}>
-            Listelerde ✓ ile işaretlediğin {sayi(markedCount)} hesap var. İşaretlenenler varsayılan
-            olarak listelerde gizlenir.
-          </Text>
+          <Text style={st.infoTitle}>{t('history.marked.title')}</Text>
+          <Text style={st.infoTxt}>{t('history.marked.desc', { count: sayi(markedCount) })}</Text>
           <View style={{ height: 12 }} />
           <Btn
-            label="İşaretleri temizle"
+            label={t('history.marked.clearButton')}
             kind="ghost"
             onPress={() =>
-              Alert.alert('İşaretleri temizle', 'Tüm ✓ işaretleri kaldırılsın mı?', [
-                { text: 'Vazgeç', style: 'cancel' },
-                { text: 'Temizle', style: 'destructive', onPress: onClearMarks },
+              Alert.alert(t('history.marked.confirmTitle'), t('history.marked.confirmMessage'), [
+                { text: t('common.cancel'), style: 'cancel' },
+                { text: t('common.clear'), style: 'destructive', onPress: onClearMarks },
               ])
             }
             disabled={markedCount === 0}
@@ -229,22 +234,61 @@ export function History({
         </Card>
 
         <Btn
-          label="Tüm verileri sil"
+          label={t('history.clearAll.button')}
           kind="danger"
           icon="⚠️"
           onPress={() =>
-            Alert.alert(
-              'Tüm verileri sil',
-              'Kayıtlı tüm yüklemeler ve işaretler silinecek. Bu geri alınamaz.',
-              [
-                { text: 'Vazgeç', style: 'cancel' },
-                { text: 'Hepsini sil', style: 'destructive', onPress: onClearAll },
-              ]
-            )
+            Alert.alert(t('history.clearAll.confirmTitle'), t('history.clearAll.confirmMessage'), [
+              { text: t('common.cancel'), style: 'cancel' },
+              { text: t('history.clearAll.confirmButton'), style: 'destructive', onPress: onClearAll },
+            ])
           }
         />
       </ScrollView>
     </View>
+  );
+}
+
+/** Dil / Language: Sistem, Türkçe, English arasında seçim. Seçim src/lib/storage.ts'e kalıcı yazılır. */
+function LanguageCard() {
+  const { t } = useTranslation();
+  const [pref, setPref] = useState<LanguagePreference>('system');
+
+  useEffect(() => {
+    let alive = true;
+    getLanguagePreference().then((p) => {
+      if (alive) setPref(p);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const secenekler: { key: LanguagePreference; label: string }[] = [
+    { key: 'system', label: t('history.language.system') },
+    { key: 'tr', label: t('history.language.turkish') },
+    { key: 'en', label: t('history.language.english') },
+  ];
+
+  return (
+    <Card>
+      <Text style={st.infoTitle}>{t('history.language.title')}</Text>
+      <View style={{ height: 10 }} />
+      <Row style={{ gap: 8 }}>
+        {secenekler.map((s) => (
+          <RoleBtn
+            key={s.key}
+            label={s.label}
+            color={C.pink}
+            active={pref === s.key}
+            onPress={() => {
+              setPref(s.key);
+              changeLanguagePreference(s.key).catch(() => undefined);
+            }}
+          />
+        ))}
+      </Row>
+    </Card>
   );
 }
 

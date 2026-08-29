@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Alert,
@@ -13,6 +14,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { initI18n } from './src/i18n';
 import { analyze, timestampIndex } from './src/lib/analyze';
 import { clearAvatarCache, loadAvatarIndex } from './src/lib/avatars';
 import { BUYUK_DOSYA, pickFiles } from './src/lib/importer';
@@ -46,35 +48,37 @@ import {
 
 type Tab = 'home' | 'history' | 'help';
 
-const TABS: { key: Tab; label: string; icon: string }[] = [
-  { key: 'home', label: 'Analiz', icon: '📊' },
-  { key: 'history', label: 'Geçmiş', icon: '🗂️' },
-  { key: 'help', label: 'Yardım', icon: '❓' },
+type T = (key: string, opts?: Record<string, unknown>) => string;
+
+const TAB_KEYS: { key: Tab; labelKey: string; icon: string }[] = [
+  { key: 'home', labelKey: 'tabs.home', icon: '📊' },
+  { key: 'history', labelKey: 'tabs.history', icon: '🗂️' },
+  { key: 'help', labelKey: 'tabs.help', icon: '❓' },
 ];
 
-function onay(title: string, message: string, okText = 'Devam et'): Promise<boolean> {
+function onay(t: T, title: string, message: string, okText?: string): Promise<boolean> {
   return new Promise((resolve) => {
     Alert.alert(
       title,
       message,
       [
-        { text: 'Vazgeç', style: 'cancel', onPress: () => resolve(false) },
-        { text: okText, onPress: () => resolve(true) },
+        { text: t('common.cancel'), style: 'cancel', onPress: () => resolve(false) },
+        { text: okText ?? t('common.continueBtn'), onPress: () => resolve(true) },
       ],
       { cancelable: false }
     );
   });
 }
 
-function sorTur(name: string): Promise<'followers' | 'following' | null> {
+function sorTur(t: T, name: string): Promise<'followers' | 'following' | null> {
   return new Promise((resolve) => {
     Alert.alert(
-      'Bu dosya hangisi?',
-      `“${name}” dosyasının türü anlaşılamadı. İçindeki hesaplar neyi ifade ediyor?`,
+      t('app.fileType.title'),
+      t('app.fileType.message', { name }),
       [
-        { text: 'Takipçilerim', onPress: () => resolve('followers') },
-        { text: 'Takip ettiklerim', onPress: () => resolve('following') },
-        { text: 'Atla', style: 'cancel', onPress: () => resolve(null) },
+        { text: t('app.fileType.followers'), onPress: () => resolve('followers') },
+        { text: t('app.fileType.following'), onPress: () => resolve('following') },
+        { text: t('common.skip'), style: 'cancel', onPress: () => resolve(null) },
       ],
       { cancelable: false }
     );
@@ -83,6 +87,7 @@ function sorTur(name: string): Promise<'followers' | 'following' | null> {
 
 function Main() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -112,6 +117,7 @@ function Main() {
     (async () => {
       SystemUI.setBackgroundColorAsync(C.bg).catch(() => undefined);
       loadAvatarIndex();
+      await initI18n();
       const [list, wl, ayarlar] = await Promise.all([
         listSnapshots(),
         getWhitelist(),
@@ -215,19 +221,16 @@ function Main() {
     async (followers: IgUser[], following: IgUser[]) => {
       if (!followers.length && !following.length) {
         setConnectOpen(false);
-        Alert.alert(
-          'Liste boş geldi',
-          'Instagram hiçbir hesap döndürmedi. Biraz sonra tekrar dene ya da veri arşivi yöntemini kullan.'
-        );
+        Alert.alert(t('app.alerts.emptyLive.title'), t('app.alerts.emptyLive.message'));
         return;
       }
       await kaydet(
         { ...EMPTY_DATA(), followers, following },
-        'Instagram (canlı çekim)',
-        `${followers.length} takipçi, ${following.length} takip çekildi`
+        t('app.source.live'),
+        t('app.messages.liveSaved', { f: followers.length, g: following.length })
       );
     },
-    [kaydet]
+    [kaydet, t]
   );
 
   // ---- içe aktarma ----
@@ -237,7 +240,7 @@ function Main() {
     try {
       files = await pickFiles();
     } catch (e) {
-      Alert.alert('Dosya açılamadı', 'Dosya seçilirken bir sorun oldu. Tekrar dener misin?');
+      Alert.alert(t('app.alerts.pickFailed.title'), t('app.alerts.pickFailed.message'));
       return;
     }
     if (!files || !files.length) return;
@@ -245,9 +248,10 @@ function Main() {
     const toplam = files.reduce((a, f) => a + f.size, 0);
     if (toplam > BUYUK_DOSYA) {
       const devam = await onay(
-        'Dosya çok büyük',
-        'Seçtiğin arşiv çok büyük görünüyor; muhtemelen tüm Instagram verini indirdin. Uygulama takılabilir.\n\nDaha sağlıklısı: Instagram’dan yalnızca “Takipçiler ve takip edilenler” verisini indirmek.',
-        'Yine de dene'
+        t,
+        t('app.alerts.tooLarge.title'),
+        t('app.alerts.tooLarge.message'),
+        t('app.alerts.tooLarge.confirm')
       );
       if (!devam) return;
     }
@@ -261,7 +265,7 @@ function Main() {
 
       // adı tanınmayan dosyalar için kullanıcıya sor
       for (const bilinmeyen of res.unknown) {
-        const tur = await sorTur(bilinmeyen.name);
+        const tur = await sorTur(t, bilinmeyen.name);
         if (!tur) continue;
         res.data[tur] = dedupe(res.data[tur].concat(bilinmeyen.users));
       }
@@ -270,41 +274,33 @@ function Main() {
       const gCount = res.data.following.length;
 
       if (fCount === 0 && gCount === 0) {
-        Alert.alert(
-          'Takipçi verisi bulunamadı',
-          'Seçtiğin dosyada followers / following listesi yok.\n\nInstagram’dan “Takipçiler ve takip edilenler” bölümünü JSON formatında indirip gelen .zip dosyasını seçtiğinden emin ol. Yardım sekmesinde adım adım anlatıyorum.'
-        );
+        Alert.alert(t('app.alerts.noFollowerData.title'), t('app.alerts.noFollowerData.message'));
         return;
       }
 
       if (fCount === 0 || gCount === 0) {
-        const eksik = fCount === 0 ? 'takipçi listesi' : 'takip edilenler listesi';
+        const eksik = fCount === 0 ? t('app.list.followerList') : t('app.list.followingList');
         const devam = await onay(
-          'Eksik liste',
-          `Dosyada ${eksik} bulunamadı. Karşılaştırmalar eksik çıkacak.\n\nYine de kaydedeyim mi?`,
-          'Kaydet'
+          t,
+          t('app.alerts.missingList.title'),
+          t('app.alerts.missingList.message', { missing: eksik }),
+          t('common.save')
         );
         if (!devam) return;
       }
 
-      const kaynak = files.length === 1 ? files[0].name : `${files.length} dosya`;
-      await kaydet(res.data, kaynak, `${fCount} takipçi, ${gCount} takip yüklendi`);
+      const kaynak = files.length === 1 ? files[0].name : t('app.source.multipleFiles', { count: files.length });
+      await kaydet(res.data, kaynak, t('app.messages.importSaved', { f: fCount, g: gCount }));
     } catch (e) {
       if (e instanceof ZipContentError) {
-        Alert.alert(
-          'Zip içinde takipçi verisi yok',
-          'Seçtiğin arşivde followers / following dosyaları bulunamadı.\n\nInstagram’dan indirirken “Takipçiler ve takip edilenler” kutusunu işaretlediğinden emin ol.'
-        );
+        Alert.alert(t('app.alerts.zipNoData.title'), t('app.alerts.zipNoData.message'));
       } else {
-        Alert.alert(
-          'Dosya okunamadı',
-          'Dosya bozuk olabilir ya da beklenen biçimde değil. Zip’i açıp içindeki followers_1.json ve following.json dosyalarını doğrudan seçmeyi dene.'
-        );
+        Alert.alert(t('app.alerts.fileUnreadable.title'), t('app.alerts.fileUnreadable.message'));
       }
     } finally {
       setBusy(false);
     }
-  }, [busy, kaydet]);
+  }, [busy, kaydet, t]);
 
   // ---- işaretleme ----
   const toggleMark = useCallback((username: string) => {
@@ -335,26 +331,26 @@ function Main() {
         if (!p || p.createdAt >= secilen.createdAt) {
           setPrevId(snapshots.find((s) => s.createdAt < secilen.createdAt)?.id ?? null);
         }
-        showToast('Yeni kayıt olarak seçildi');
+        showToast(t('app.messages.selectedAsNew'));
       } else {
         if (id === prevId) {
           setPrevId(null);
           return;
         }
         if (id === currentId) {
-          showToast('Aynı kayıt hem yeni hem eski olamaz');
+          showToast(t('app.messages.sameRecordError'));
           return;
         }
         const c = snapshots.find((s) => s.id === currentId);
         if (c && secilen.createdAt >= c.createdAt) {
-          showToast('Eski kayıt, yeni kayıttan önceki bir tarih olmalı');
+          showToast(t('app.messages.oldMustBeEarlier'));
           return;
         }
         setPrevId(id);
-        showToast('Eski kayıt olarak seçildi');
+        showToast(t('app.messages.selectedAsOld'));
       }
     },
-    [snapshots, currentId, prevId, showToast]
+    [snapshots, currentId, prevId, showToast, t]
   );
 
   const removeSnapshot = useCallback(
@@ -374,9 +370,9 @@ function Main() {
 
       setCurrentId(yeniCurrent);
       setPrevId(yeniPrev);
-      showToast('Kayıt silindi');
+      showToast(t('app.messages.recordDeleted'));
     },
-    [currentId, prevId, showToast]
+    [currentId, prevId, showToast, t]
   );
 
   const avatarlariAyarla = useCallback((v: boolean) => {
@@ -398,8 +394,8 @@ function Main() {
     setMarked(new Set());
     setTab('home');
     setOpenCat(null);
-    showToast('Tüm veriler silindi');
-  }, [showToast]);
+    showToast(t('app.messages.allDataCleared'));
+  }, [showToast, t]);
 
   if (!ready) {
     return (
@@ -469,19 +465,19 @@ function Main() {
 
       {tabBarVisible ? (
         <View style={[st.tabBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
-          {TABS.map((t) => {
-            const active = tab === t.key;
+          {TAB_KEYS.map((tabItem) => {
+            const active = tab === tabItem.key;
             return (
               <Pressable
-                key={t.key}
+                key={tabItem.key}
                 onPress={() => {
-                  setTab(t.key);
+                  setTab(tabItem.key);
                   setOpenCat(null);
                 }}
                 style={({ pressed }) => [st.tab, { opacity: pressed ? 0.6 : 1 }]}>
-                <Text style={[st.tabIcon, !active && { opacity: 0.45 }]}>{t.icon}</Text>
+                <Text style={[st.tabIcon, !active && { opacity: 0.45 }]}>{tabItem.icon}</Text>
                 <Text style={[st.tabLabel, active && { color: C.text, fontWeight: '800' }]}>
-                  {t.label}
+                  {t(tabItem.labelKey)}
                 </Text>
               </Pressable>
             );
@@ -493,7 +489,7 @@ function Main() {
         <View style={st.overlay} pointerEvents="auto">
           <View style={st.overlayCard}>
             <ActivityIndicator color={C.pink} size="large" />
-            <Text style={st.overlayTxt}>Dosya okunuyor…</Text>
+            <Text style={st.overlayTxt}>{t('common.loadingFile')}</Text>
           </View>
         </View>
       ) : null}

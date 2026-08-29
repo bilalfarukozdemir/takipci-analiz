@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { openUrl } from '../lib/ig';
@@ -6,6 +7,7 @@ import { APP_VERSION, C, S, YAPIMCI_AD, YAPIMCI_URL } from '../theme';
 
 /** Uygulamanın altındaki yapımcı künyesi — dokununca siteyi açar. */
 export function Credit() {
+  const { t } = useTranslation();
   return (
     <Pressable
       onPress={() => openUrl(YAPIMCI_URL)}
@@ -14,7 +16,7 @@ export function Credit() {
         <Text style={{ fontSize: 19 }}>🛍️</Text>
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={st.label}>Yapımcı</Text>
+        <Text style={st.label}>{t('credit.label')}</Text>
         <Text style={st.site} numberOfLines={1}>
           {YAPIMCI_AD}
         </Text>
@@ -26,13 +28,11 @@ export function Credit() {
 
 /** Künye + sürüm + sorumluluk notu. Ekran altlarında kullanılır. */
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <View style={{ gap: 10 }}>
       <Credit />
-      <Text style={st.note}>
-        Takipçi Analiz v{APP_VERSION} · Bu uygulama Instagram veya Meta ile bağlantılı değildir.
-        Tüm veriler yalnızca cihazında saklanır.
-      </Text>
+      <Text style={st.note}>{t('credit.footerNote', { version: APP_VERSION })}</Text>
     </View>
   );
 }

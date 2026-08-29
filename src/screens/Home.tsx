@@ -1,5 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { CATEGORIES } from '../lib/analyze';
@@ -87,6 +88,7 @@ export function Home({
   onOpenCat,
   onHelp,
 }: Props) {
+  const { t } = useTranslation();
   const hasData = !!analysis && !!meta;
   const ana = CATEGORIES.filter((c) =>
     ['lostFollowers', 'notFollowingBack', 'fans', 'newFollowers', 'mutual'].includes(c.key)
@@ -102,17 +104,19 @@ export function Home({
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[st.hero, { paddingTop: topInset + 26 }]}>
-        <Text style={st.heroTitle}>Takipçi Analiz</Text>
-        <Text style={st.heroSub}>
-          Takipçi hareketlerini çıkarır. Şifren uygulamaya girilmez, verilerin telefonundan çıkmaz.
-        </Text>
+        <Text style={st.heroTitle}>{t('home.title')}</Text>
+        <Text style={st.heroSub}>{t('home.subtitle')}</Text>
 
         {hasData ? (
           <View style={st.statRow}>
-            <Stat label="Takipçi" value={analysis.followers.length} color="#fff" />
-            <Stat label="Takip" value={analysis.following.length} color="#fff" />
-            <Stat label="Karşılıklı" value={analysis.mutual.length} color="#fff" />
-            <Stat label="Geri takip etmeyen" value={analysis.notFollowingBack.length} color="#fff" />
+            <Stat label={t('home.stats.followers')} value={analysis.followers.length} color="#fff" />
+            <Stat label={t('home.stats.following')} value={analysis.following.length} color="#fff" />
+            <Stat label={t('home.stats.mutual')} value={analysis.mutual.length} color="#fff" />
+            <Stat
+              label={t('home.stats.notFollowingBack')}
+              value={analysis.notFollowingBack.length}
+              color="#fff"
+            />
           </View>
         ) : null}
       </LinearGradient>
@@ -120,25 +124,32 @@ export function Home({
       <View style={{ padding: S.pad, gap: S.gap }}>
         {!hasData ? (
           <Card>
-            <Text style={st.cardTitle}>Başlamak için listeni al</Text>
+            <Text style={st.cardTitle}>{t('home.noData.title')}</Text>
             <Text style={st.cardText}>
-              <Text style={st.bold}>Hızlı yol:</Text> Instagram’a bağlan, listeler doğrudan çekilsin.
+              <Text style={st.bold}>{t('home.noData.fastLabel')}</Text>
+              {t('home.noData.fastText')}
               {'\n'}
-              <Text style={st.bold}>Güvenli yol:</Text> Instagram’dan “Takipçiler ve takip edilenler”
-              verisini JSON olarak indirip .zip dosyasını burada seç.
+              <Text style={st.bold}>{t('home.noData.safeLabel')}</Text>
+              {t('home.noData.safeText')}
             </Text>
             <View style={{ height: 14 }} />
-            <Btn label="Instagram’a bağlan" icon="⚡" onPress={onConnect} />
+            <Btn label={t('common.connectInstagram')} icon="⚡" onPress={onConnect} />
             <View style={{ height: 8 }} />
-            <Btn label="Veri arşivi dosyası seç" icon="📂" kind="ghost" onPress={onImport} busy={busy} />
+            <Btn
+              label={t('common.pickArchiveFile')}
+              icon="📂"
+              kind="ghost"
+              onPress={onImport}
+              busy={busy}
+            />
             <View style={{ height: 8 }} />
-            <Btn label="Aradaki fark ne?" icon="❓" kind="ghost" onPress={onHelp} />
+            <Btn label={t('home.noData.whatsTheDifference')} icon="❓" kind="ghost" onPress={onHelp} />
           </Card>
         ) : (
           <Card>
             <Row style={{ justifyContent: 'space-between' }}>
               <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={st.metaTitle}>Son analiz</Text>
+                <Text style={st.metaTitle}>{t('home.lastAnalysis')}</Text>
                 <Text style={st.metaLine}>{tarihSaat(meta.createdAt)}</Text>
                 <Text style={st.metaFile} numberOfLines={1}>
                   {meta.source}
@@ -151,31 +162,39 @@ export function Home({
             <View style={st.sep} />
             {prevMeta ? (
               <Text style={st.compareTxt}>
-                🔁 Karşılaştırma: <Text style={st.bold}>{tarihSaat(prevMeta.createdAt)}</Text>{' '}
-                tarihli yükleme
+                {t('home.compareWith')}
+                <Text style={st.bold}>{tarihSaat(prevMeta.createdAt)}</Text>
+                {t('home.compareWithSuffix')}
               </Text>
             ) : (
               <Text style={st.compareTxt}>
-                ⚠️ Takipten çıkanları görmek için <Text style={st.bold}>ikinci bir veri</Text>{' '}
-                yüklemen gerekiyor. Bir süre sonra Instagram’dan yeni arşiv indirip tekrar yükle.
+                {t('home.needSecondUploadPre')}
+                <Text style={st.bold}>{t('home.needSecondUploadBold')}</Text>
+                {t('home.needSecondUploadPost')}
               </Text>
             )}
             <View style={{ height: 14 }} />
-            <Btn label="Instagram’a bağlan" icon="⚡" onPress={onConnect} />
+            <Btn label={t('common.connectInstagram')} icon="⚡" onPress={onConnect} />
             <View style={{ height: 8 }} />
-            <Btn label="Veri arşivi dosyası seç" icon="📂" kind="ghost" onPress={onImport} busy={busy} />
+            <Btn
+              label={t('common.pickArchiveFile')}
+              icon="📂"
+              kind="ghost"
+              onPress={onImport}
+              busy={busy}
+            />
           </Card>
         )}
 
         {hasData ? (
           <>
-            <Text style={st.sectionTitle}>Öne çıkanlar</Text>
+            <Text style={st.sectionTitle}>{t('home.highlights')}</Text>
             {ana.map((c) => (
               <CatCard
                 key={c.key}
                 icon={c.icon}
-                title={c.title}
-                desc={c.desc}
+                title={t(c.titleKey)}
+                desc={t(c.descKey)}
                 color={c.color}
                 count={analysis[c.key].length}
                 locked={!!c.needsDiff && !prevMeta}
@@ -183,15 +202,15 @@ export function Home({
               />
             ))}
 
-            <Text style={st.sectionTitle}>Diğer listeler</Text>
+            <Text style={st.sectionTitle}>{t('home.otherLists')}</Text>
             {digerler
               .filter((c) => analysis[c.key].length > 0 || (!!c.needsDiff && !!prevMeta))
               .map((c) => (
                 <CatCard
                   key={c.key}
                   icon={c.icon}
-                  title={c.title}
-                  desc={c.desc}
+                  title={t(c.titleKey)}
+                  desc={t(c.descKey)}
                   color={c.color}
                   count={analysis[c.key].length}
                   onPress={() => onOpenCat(c.key)}

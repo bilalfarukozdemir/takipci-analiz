@@ -1,5 +1,6 @@
 import * as Haptics from 'expo-haptics';
 import React, { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { CATEGORY_BY_KEY } from '../lib/analyze';
@@ -35,6 +36,7 @@ export function ListScreen({
   bottomInset,
   showAvatars,
 }: Props) {
+  const { t } = useTranslation();
   const cat = CATEGORY_BY_KEY[catKey];
   const [q, setQ] = useState('');
   const [sort, setSort] = useState<Sort>('az');
@@ -80,9 +82,9 @@ export function ListScreen({
     async (u: string) => {
       await copyUsernames([u]);
       if (Platform.OS !== 'web') Haptics.selectionAsync().catch(() => undefined);
-      onToast(`@${u} kopyalandı`);
+      onToast(t('list.usernameCopied', { username: u }));
     },
-    [onToast]
+    [onToast, t]
   );
 
   const handleMark = useCallback(
@@ -101,9 +103,9 @@ export function ListScreen({
   return (
     <View style={{ flex: 1 }}>
       <Header
-        title={cat.title}
-        subtitle={`${sayi(data.length)} hesap${
-          markedCount && hideMarked ? ` · ${markedCount} gizli` : ''
+        title={t(cat.titleKey)}
+        subtitle={`${t('list.accountCount', { count: sayi(data.length) })}${
+          markedCount && hideMarked ? t('list.hiddenSuffix', { count: markedCount }) : ''
         }`}
         onBack={onBack}
       />
@@ -112,7 +114,7 @@ export function ListScreen({
         <TextInput
           value={q}
           onChangeText={setQ}
-          placeholder="Kullanıcı adı ara…"
+          placeholder={t('list.searchPlaceholder')}
           placeholderTextColor={C.dim}
           style={st.search}
           autoCapitalize="none"
@@ -120,12 +122,20 @@ export function ListScreen({
           returnKeyType="search"
         />
         <View style={st.pillRow}>
-          <Pill label="A → Z" active={sort === 'az'} onPress={() => setSort('az')} />
-          <Pill label="Z → A" active={sort === 'za'} onPress={() => setSort('za')} />
+          <Pill label={t('list.sort.az')} active={sort === 'az'} onPress={() => setSort('az')} />
+          <Pill label={t('list.sort.za')} active={sort === 'za'} onPress={() => setSort('za')} />
           {hasTimestamps ? (
             <>
-              <Pill label="En yeni" active={sort === 'yeni'} onPress={() => setSort('yeni')} />
-              <Pill label="En eski" active={sort === 'eski'} onPress={() => setSort('eski')} />
+              <Pill
+                label={t('list.sort.newest')}
+                active={sort === 'yeni'}
+                onPress={() => setSort('yeni')}
+              />
+              <Pill
+                label={t('list.sort.oldest')}
+                active={sort === 'eski'}
+                onPress={() => setSort('eski')}
+              />
             </>
           ) : null}
         </View>
@@ -133,7 +143,7 @@ export function ListScreen({
           <View style={[st.checkBox, hideMarked && { backgroundColor: C.pink, borderColor: C.pink }]}>
             {hideMarked ? <Text style={st.checkTick}>✓</Text> : null}
           </View>
-          <Text style={st.checkTxt}>İşaretlediklerimi gizle</Text>
+          <Text style={st.checkTxt}>{t('list.hideMarked')}</Text>
         </Pressable>
       </View>
 
@@ -143,7 +153,7 @@ export function ListScreen({
         renderItem={({ item }) => (
           <UserRow
             username={item.u}
-            sub={item.t && cat.tsLabel ? `${cat.tsLabel}: ${tarih(item.t)}` : item.n}
+            sub={item.t && cat.tsLabelKey ? `${t(cat.tsLabelKey)}: ${tarih(item.t)}` : item.n}
             pic={item.p}
             showAvatars={showAvatars}
             marked={marked.has(item.u.toLowerCase())}
@@ -169,8 +179,8 @@ export function ListScreen({
         ListEmptyComponent={
           <Empty
             icon={q ? '🔍' : '✨'}
-            title={q ? 'Eşleşme yok' : 'Bu listede kimse yok'}
-            desc={q ? 'Farklı bir kullanıcı adı dene.' : cat.desc}
+            title={q ? t('list.empty.noMatch') : t('list.empty.noOne')}
+            desc={q ? t('list.empty.tryDifferent') : t(cat.descKey)}
           />
         }
       />
@@ -181,15 +191,15 @@ export function ListScreen({
             style={({ pressed }) => [st.barBtn, { opacity: pressed ? 0.7 : 1 }]}
             onPress={async () => {
               await copyUsernames(data.map((d) => d.u));
-              onToast(`${data.length} kullanıcı adı kopyalandı`);
+              onToast(t('list.usernamesCopied', { count: data.length }));
             }}>
-            <Text style={st.barTxt}>📋  Kopyala</Text>
+            <Text style={st.barTxt}>{t('common.copy')}</Text>
           </Pressable>
           <View style={st.barSep} />
           <Pressable
             style={({ pressed }) => [st.barBtn, { opacity: pressed ? 0.7 : 1 }]}
-            onPress={() => shareUsernames(cat.title, data.map((d) => d.u))}>
-            <Text style={st.barTxt}>📤  Paylaş</Text>
+            onPress={() => shareUsernames(t(cat.titleKey), data.map((d) => d.u))}>
+            <Text style={st.barTxt}>{t('common.share')}</Text>
           </Pressable>
         </View>
       ) : null}

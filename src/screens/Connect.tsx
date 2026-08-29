@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 
@@ -25,33 +26,11 @@ type Props = {
   onFinish: (followers: IgUser[], following: IgUser[]) => void;
 };
 
-const HATA_METNI: Record<string, { baslik: string; metin: string }> = {
-  session: {
-    baslik: 'Oturum kapandı',
-    metin: 'Instagram oturumu düştü. Tekrar giriş yapman gerekiyor.',
-  },
-  limit: {
-    baslik: 'Instagram hız sınırı koydu',
-    metin:
-      'Çok fazla istek gitti ve Instagram geçici olarak durdurdu. 15–30 dakika bekleyip tekrar dene. Hesabında bir sorun yok, engel kendiliğinden kalkar.',
-  },
-  http: {
-    baslik: 'Instagram beklenmedik cevap verdi',
-    metin:
-      'Instagram arayüzü değişmiş olabilir. Biraz sonra tekrar dene; sorun sürerse dosya yükleme yöntemini kullan.',
-  },
-  timeout: {
-    baslik: 'Yanıt gelmedi',
-    metin: 'Instagram uzun süre cevap vermedi. Bağlantını kontrol edip tekrar dene.',
-  },
-  cancel: { baslik: 'Durduruldu', metin: 'İşlemi sen durdurdun.' },
-  unknown: {
-    baslik: 'Bir şeyler ters gitti',
-    metin: 'İşlem tamamlanamadı. Tekrar dene ya da dosya yükleme yöntemini kullan.',
-  },
-};
+/** connect.errors.<kod>.title / .message anahtarlarına karşılık gelir (src/i18n/{tr,en}.json). */
+const HATA_KODLARI = ['session', 'limit', 'http', 'timeout', 'cancel', 'unknown'] as const;
 
 export function Connect({ onBack, onFinish }: Props) {
+  const { t } = useTranslation();
   const web = useRef<WebView>(null);
   const followers = useRef(new Map<string, IgUser>());
   const following = useRef(new Map<string, IgUser>());
@@ -143,16 +122,17 @@ export function Connect({ onBack, onFinish }: Props) {
   );
 
   const toplam = ilerleme?.kind === 'followers' ? totals.followers : totals.following;
+  const hataKodu = (HATA_KODLARI as readonly string[]).includes(hata) ? hata : 'unknown';
 
   return (
     <View style={{ flex: 1 }}>
       <Header
-        title="Instagram'a bağlan"
+        title={t('connect.headerTitle')}
         subtitle={
           phase === 'login'
-            ? 'Instagram’ın kendi giriş sayfası'
+            ? t('connect.subtitleLogin')
             : phase === 'working'
-              ? 'Listeler çekiliyor'
+              ? t('connect.subtitleWorking')
               : undefined
         }
         onBack={onBack}
@@ -181,50 +161,49 @@ export function Connect({ onBack, onFinish }: Props) {
           <View style={st.overlay}>
             {phase === 'ready' ? (
               <Card>
-                <Text style={st.h}>Giriş yapıldı ✓</Text>
-                <Text style={st.p}>
-                  Takipçi ve takip listen Instagram’dan sayfa sayfa çekilecek. Hesap engeli riskini
-                  düşürmek için istekler arasında 1–2 saniye bekleniyor; büyük hesaplarda birkaç
-                  dakika sürebilir.
-                </Text>
+                <Text style={st.h}>{t('connect.ready.title')}</Text>
+                <Text style={st.p}>{t('connect.ready.text')}</Text>
                 <Text style={[st.p, { color: C.yellow, marginTop: 10 }]}>
-                  Bu yöntem Instagram’ın kullanım şartlarına aykırıdır. Çok sık tekrarlarsan
-                  hesabına geçici işlem engeli gelebilir. Günde bir kereden fazla çekmeni önermem.
+                  {t('connect.ready.warning')}
                 </Text>
                 <View style={{ height: 16 }} />
-                <Btn label="Listeleri çek" icon="⬇️" onPress={basla} />
+                <Btn label={t('connect.ready.fetchButton')} icon="⬇️" onPress={basla} />
               </Card>
             ) : phase === 'working' ? (
               <Card>
                 <View style={{ alignItems: 'center', gap: 14 }}>
                   <ActivityIndicator color={C.pink} size="large" />
                   <Text style={st.h}>
-                    {ilerleme?.kind === 'following' ? 'Takip ettiklerin' : 'Takipçilerin'} çekiliyor
+                    {ilerleme?.kind === 'following'
+                      ? t('connect.working.fetchingFollowing')
+                      : t('connect.working.fetchingFollowers')}
                   </Text>
                   <Text style={st.big}>
                     {sayi(ilerleme?.count ?? 0)}
                     {toplam ? <Text style={st.p}> / {sayi(toplam)}</Text> : null}
                   </Text>
                   <Text style={[st.p, { textAlign: 'center' }]}>
-                    Uygulamayı arka plana alma, işlem durur.
+                    {t('connect.working.backgroundWarning')}
                   </Text>
                 </View>
                 <View style={{ height: 16 }} />
-                <Btn label="Durdur" kind="ghost" onPress={durdur} />
+                <Btn label={t('connect.working.stopButton')} kind="ghost" onPress={durdur} />
               </Card>
             ) : (
               <Card>
-                <Text style={st.h}>{(HATA_METNI[hata] ?? HATA_METNI.unknown).baslik}</Text>
-                <Text style={st.p}>{(HATA_METNI[hata] ?? HATA_METNI.unknown).metin}</Text>
+                <Text style={st.h}>{t(`connect.errors.${hataKodu}.title`)}</Text>
+                <Text style={st.p}>{t(`connect.errors.${hataKodu}.message`)}</Text>
                 {followers.current.size ? (
                   <Text style={[st.p, { marginTop: 10, color: C.sub }]}>
-                    O ana kadar {sayi(followers.current.size)} takipçi,{' '}
-                    {sayi(following.current.size)} takip çekilmişti. Eksik veri kaydedilmez.
+                    {t('connect.error.partialData', {
+                      f: sayi(followers.current.size),
+                      g: sayi(following.current.size),
+                    })}
                   </Text>
                 ) : null}
                 <View style={{ height: 16 }} />
                 <Btn
-                  label="Tekrar dene"
+                  label={t('connect.error.retryButton')}
                   onPress={() => {
                     if (hata === 'session') {
                       setPhase('login');
@@ -235,7 +214,7 @@ export function Connect({ onBack, onFinish }: Props) {
                   }}
                 />
                 <View style={{ height: 8 }} />
-                <Btn label="Geri dön" kind="ghost" onPress={onBack} />
+                <Btn label={t('connect.error.backButton')} kind="ghost" onPress={onBack} />
               </Card>
             )}
           </View>
@@ -244,10 +223,7 @@ export function Connect({ onBack, onFinish }: Props) {
 
       {phase === 'login' ? (
         <View style={st.note}>
-          <Text style={st.noteTxt}>
-            🔒 Bu, Instagram’ın kendi giriş sayfası. Şifren uygulamaya girilmiyor, kaydedilmiyor ve
-            hiçbir yere gönderilmiyor.
-          </Text>
+          <Text style={st.noteTxt}>{t('connect.loginNote')}</Text>
         </View>
       ) : null}
     </View>
