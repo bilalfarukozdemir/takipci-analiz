@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/icon.png" alt="Takipçi Analiz" width="120" />
+<img src="assets/icon.png" alt="Follower Analyzer" width="120" />
 
-# Takipçi Analiz
+# Follower Analyzer
 
 **An Android app that shows who unfollowed you on Instagram and who doesn't follow you back.**
 No server, no account, no ads — everything stays on your phone.
@@ -35,12 +35,13 @@ No server, no account, no ads — everything stays on your phone.
 </tr>
 </table>
 
-<sub>The interface is in Turkish.</sub>
+<sub>Screenshots show the Turkish interface; the app is also available in English.</sub>
 
 </div>
 
-> The app's interface is in **Turkish**. This document is for developers who want to
-> read or contribute to the code.
+> The app's interface is in **English and Turkish** — it follows the phone's language
+> and falls back to English. This document is for developers who want to read or
+> contribute to the code.
 
 ---
 

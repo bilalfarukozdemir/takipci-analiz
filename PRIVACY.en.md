@@ -2,7 +2,8 @@
 
 **Effective date: 2026-08-29**
 
-This document is prepared for publishing Takipçi Analiz on Google Play.
+This document is prepared for publishing Follower Analyzer (Turkish name:
+Takipçi Analiz) on Google Play.
 [Türkçe sürüm](PRIVACY.md).
 
 Short version: **no server, no account, no ads, no analytics.** The app is

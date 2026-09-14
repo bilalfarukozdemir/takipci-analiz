@@ -225,7 +225,7 @@ src/
   theme.ts                    renkler, ölçüler, sürüm ve künye sabitleri
   types.ts                    veri tipleri
 plugins/                      Expo prebuild config plugin'leri
-  withTurkishAppName.js         ekranda görünen Türkçe uygulama adı
+  withLocalizedAppName.js       ana ekrandaki uygulama adı (yedek İngilizce, Türkçe telefonda Türkçe)
   withInstagramQuery.js         instagram:// için Android paket görünürlüğü
   withBuildTuning.js            sadece ARM mimarileri (APK ~30 MB küçülür)
   withReleaseSigning.js         release imzalama yapılandırması

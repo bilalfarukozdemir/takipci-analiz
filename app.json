@@ -2,7 +2,7 @@
   "expo": {
     "name": "Takipci Analiz",
     "slug": "takipci-analiz",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "takipcianaliz",
@@ -15,7 +15,7 @@
     },
     "android": {
       "package": "com.bilal.takipcianaliz",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "backgroundColor": "#0A0A0F",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -45,7 +45,7 @@
       ],
       "expo-localization",
       "expo-iap",
-      "./plugins/withTurkishAppName",
+      "./plugins/withLocalizedAppName",
       "./plugins/withInstagramQuery",
       "./plugins/withBuildTuning",
       "./plugins/withReleaseSigning"

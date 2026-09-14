@@ -21,9 +21,11 @@ Bunlar bilinçli tercihler, "eksik" değil:
   kart/kimlik bilgisi uygulamaya hiç ulaşmaz.
 - **Uygulama içinde şifre isteyen giriş formu yok.** Giriş her zaman WebView
   içinde Instagram'ın kendi sayfasında yapılır; kod şifreyi hiç görmez.
-- **Varsayılan dil Türkçe; uygulama Türkçe ve İngilizce'yi destekler (i18n).**
-  Yeni kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a eklenir, koda
-  hardcoded yazılmaz.
+- **Yedek dil İngilizce; uygulama Türkçe ve İngilizce'yi destekler (i18n).**
+  Telefonun dili Türkçe değilse hem arayüz hem ana ekrandaki uygulama adı
+  İngilizcedir ("Follower Analyzer"); Türkçe telefonda "Takipçi Analiz". Yeni
+  kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a eklenir, koda hardcoded
+  yazılmaz.
 
 ## Yapı
 
@@ -42,7 +44,7 @@ config plugin yaz. Mevcut olanlar:
 
 | Plugin | İş |
 | --- | --- |
-| `withTurkishAppName.js` | `strings.xml`'de Türkçe uygulama adı (Gradle proje adı ASCII kalsın diye) |
+| `withLocalizedAppName.js` | Ana ekrandaki uygulama adı: `values/strings.xml` İngilizce (yedek), `values-tr/strings.xml` Türkçe (Gradle proje adı ASCII kalsın diye `app.json`'dan ayrı) |
 | `withInstagramQuery.js` | `instagram://` için `<queries>` paket görünürlüğü |
 | `withBuildTuning.js` | `reactNativeArchitectures` sadece ARM |
 | `withReleaseSigning.js` | `credentials/` klasöründen release imzalama |

@@ -38,9 +38,10 @@ npm test
 
 - **TypeScript**, `strict` açık. `any` kullanman gerekiyorsa nedenini yorumla.
 - Değişken ve fonksiyon adları **Türkçe ya da İngilizce olabilir** ama bir dosya
-  içinde tutarlı olsun. Varsayılan dil Türkçe; uygulama Türkçe ve İngilizce'yi
-  destekler (i18n). Yeni kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a
-  eklenir, koda hardcoded yazılmaz.
+  içinde tutarlı olsun. Yedek dil İngilizce; uygulama Türkçe ve İngilizce'yi
+  destekler (i18n), telefonun dili Türkçe değilse İngilizce açılır. Yeni
+  kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a eklenir, koda hardcoded
+  yazılmaz.
 - Yorumlar **neden** olduğunu anlatsın, ne yaptığını değil. Kod zaten ne yaptığını
   söylüyor.
 - Yeni bağımlılık eklemeden önce iki kez düşün; uygulama bilerek yalın tutuluyor.

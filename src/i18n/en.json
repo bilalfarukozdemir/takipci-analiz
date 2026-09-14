@@ -77,7 +77,7 @@
     }
   },
   "home": {
-    "title": "Takipçi Analiz",
+    "title": "Follower Analyzer",
     "subtitle": "Extracts follower changes. Your password is never entered into the app, and your data never leaves your phone.",
     "stats": {
       "followers": "Followers",
@@ -315,7 +315,7 @@
   },
   "credit": {
     "label": "Made by",
-    "footerNote": "Takipçi Analiz v{{version}} · This app is not affiliated with Instagram or Meta. All data is stored only on your device."
+    "footerNote": "Follower Analyzer v{{version}} · This app is not affiliated with Instagram or Meta. All data is stored only on your device."
   },
   "categories": {
     "lostFollowers": {

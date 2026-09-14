@@ -6,6 +6,18 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.1] – 2026-09-14
+
+### Düzeltildi
+- **İngilizce arayüzde uygulamanın adı Türkçe kalıyordu.** Ana ekranın başlığı
+  ve ekranların altındaki not, uygulama İngilizce açıldığında da "Takipçi
+  Analiz" yazıyordu; artık "Follower Analyzer".
+- **Telefonun ana ekranındaki uygulama adı her dilde Türkçeydi.** Artık Türkçe
+  telefonda "Takipçi Analiz", diğer bütün dillerde "Follower Analyzer".
+  Android'in yedek dili İngilizce (`values/`), Türkçe ad `values-tr/` altında.
+
+## [1.3.0] – 2026-08-29
+
 ### Eklendi
 - **İngilizce dil desteği.** Arayüz artık Türkçe ve İngilizce; varsayılan
   cihazın sistem diline göre otomatik seçilir, Geçmiş sekmesindeki dil
