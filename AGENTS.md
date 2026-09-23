@@ -14,11 +14,15 @@ eski `readAsStringAsync` tarzı çağrılar `expo-file-system/legacy` altındad�
 Bunlar bilinçli tercihler, "eksik" değil:
 
 - **Toplu takipten çıkarma/takip etme yok.** Hesap engeli yemenin en hızlı yolu.
-- **Sunucu, hesap sistemi, analitik, reklam yok.** Veri cihazdan çıkmaz.
-  İstisna: isteğe bağlı "Geliştiriciyi destekle" bağışı Google Play Billing
-  (`expo-iap`) üzerinden çalışır — analitik/reklam/takip değildir, hiçbir
-  kullanım verisi toplamaz; sadece Play'in kendi ödeme akışını tetikler ve
-  kart/kimlik bilgisi uygulamaya hiç ulaşmaz.
+- **Sunucu ve hesap sistemi yok.** Takipçi verileri cihazda kalır. Geçmiş
+  sekmesinde isteğe bağlı Google Mobile Ads banner'ı gösterilebilir; Google'ın
+  SDK'sı reklam sunumu için cihaz/ağ tanımlayıcıları ve reklam etkileşimi gibi
+  verileri işleyebilir. Başarılı analiz ve geri takip etmeyenler ekranına
+  geçişte, AdMob sıklık sınırına uyan tam sayfa reklam da gösterilebilir.
+  `remove_ads` tek seferlik Play satın alımı banner ve tam sayfa reklamları
+  kalıcı olarak kaldırır. Gerçek AdMob kimlikleri yapılandırılmış Android
+  build'inde reklam istenir; geliştirme build'i Google'ın test reklamlarını
+  kullanır. Play Billing uygulamada yalnızca reklam kaldırma satın alımı içindir.
 - **Uygulama içinde şifre isteyen giriş formu yok.** Giriş her zaman WebView
   içinde Instagram'ın kendi sayfasında yapılır; kod şifreyi hiç görmez.
 - **Yedek dil İngilizce; uygulama Türkçe ve İngilizce'yi destekler (i18n).**

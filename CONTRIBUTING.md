@@ -96,13 +96,11 @@ ekleyeceksen kullanıcı adlarını `kullanici1`, `kullanici2` gibi değiştir.
 Bunlar bilinçli kararlar; PR açmadan önce bilmen zaman kazandırır:
 
 - **Toplu takipten çıkarma / takip etme.** Hesap engeli yemenin en hızlı yolu.
-- **Sunucu, hesap sistemi, bulut yedekleme.** Uygulamanın tek gerçek güvencesi
-  verinin cihazdan çıkmaması.
-- **Analitik, reklam, takip kodu.** İstisna: isteğe bağlı "Geliştiriciyi
-  destekle" bağışı Google Play Billing (`expo-iap`) üzerinden çalışır. Bu
-  analitik/reklam/takip değildir — hiçbir kullanım verisi toplamaz, uygulamayı
-  Google'a hesap açmaya zorlamaz; sadece Play'in kendi ödeme akışını tetikler
-  ve kart/kimlik bilgisi uygulamaya hiç ulaşmaz.
+- **Sunucu, hesap sistemi, bulut yedekleme.** Takipçi verileri cihazda kalır.
+- **Ek analitik ve takip kodu.** Uygulamada Google Mobile Ads kullanılabilir;
+  reklam gösterimi UMP izin akışına ve `remove_ads` satın alımına bağlıdır.
+  Play Billing (`expo-iap`) yalnızca bu satın alımı yönetir. Kart/kimlik
+  bilgileri uygulamaya ulaşmaz.
 - **Şifreyi uygulama içinde isteyen giriş formu.** Giriş her zaman Instagram'ın
   kendi sayfasında yapılır.
 

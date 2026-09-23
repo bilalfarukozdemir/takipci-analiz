@@ -78,7 +78,7 @@
   },
   "home": {
     "title": "Follower Analyzer",
-    "subtitle": "Extracts follower changes. Your password is never entered into the app, and your data never leaves your phone.",
+    "subtitle": "Follower lists and analyses are stored on-device; Android settings may back up eligible data. Google Mobile Ads may process ad data in ad-enabled builds.",
     "stats": {
       "followers": "Followers",
       "following": "Following",
@@ -150,28 +150,28 @@
       "english": "English"
     }
   },
-  "destek": {
-    "title": "Support the developer",
-    "desc": "The app will stay free and ad-free. If it's been useful, you can leave an optional donation — payment runs entirely through Google Play, and card details never reach the app.",
-    "tiers": {
-      "destek_kahve": "☕ Buy me a coffee",
-      "destek_ogun": "🍔 Buy me a meal",
-      "destek_comert": "💖 Generous support"
+  "ads": {
+    "title": "Ads",
+    "desc": "A one-time purchase removes banner and full-screen ads from this app.",
+    "loading": "Loading Google Play product…",
+    "retryButton": "Try again",
+    "productUnavailable": "The ad-removal purchase isn't currently available on Google Play.",
+    "storeUnavailable": {
+      "title": "Couldn't load store information",
+      "desc": "Couldn't connect to Google Play. Check your connection and try again."
     },
-    "loading": "Loading donation options…",
-    "unavailable": {
-      "title": "Donations aren't available right now",
-      "desc": "Couldn't connect through Google Play on this device. The Play Store app needs to be up to date and signed in."
+    "purchaseError": {
+      "title": "Purchase couldn't be completed",
+      "desc": "Check your Google Play connection and try again."
     },
-    "error": {
-      "title": "Something went wrong",
-      "desc": "The purchase couldn't be completed.",
-      "retryButton": "Try again"
-    },
-    "thanks": {
-      "title": "Thank you! 💛",
-      "desc": "Your donation went through. You can support again anytime.",
-      "backButton": "OK"
+    "label": "Sponsored",
+    "removeButton": "Remove ads",
+    "removeDesc": "This one-time purchase removes banner and full-screen ads.",
+    "removed": "All ads have been removed from this app.",
+    "privacyButton": "Ad privacy options",
+    "privacyUnavailable": {
+      "title": "No options right now",
+      "desc": "Google doesn't currently have an ad privacy form for you to change."
     }
   },
   "help": {
@@ -237,7 +237,7 @@
       },
       {
         "q": "Is my data sent anywhere?",
-        "a": "No. Everything happens on your phone. If you delete the app, the records are deleted too."
+        "a": "Your follower lists and analysis results are not sent to the developer's server; the app processes them on your device. In Android builds with ads, Google Mobile Ads may process IP address, device identifiers, ad interactions, and diagnostics to serve and measure ads. Depending on your Android backup settings, app data may be backed up to your Google account."
       },
       {
         "q": "Can I unfollow accounts from the app?",
@@ -292,7 +292,15 @@
       "retryButton": "Try again",
       "backButton": "Go back"
     },
-    "loginNote": "🔒 This is Instagram's own login page. Your password is never entered into the app, saved, or sent anywhere."
+    "disclosure": {
+      "accessibilityLabel": "Open-source and privacy disclosure",
+      "openSource": "The source code is open; ",
+      "githubLink": "review it on GitHub.",
+      "login": "Login takes place on Instagram’s own page.",
+      "localData": "During live fetch, your followers and following lists are processed and stored on this device; they are not sent to the developer’s server and cannot be viewed remotely by the developer.",
+      "liveFetchRisk": "Live fetch does not use Instagram’s official API; it may violate Instagram’s Terms of Use and carries a risk of temporary account restrictions.",
+      "archive": "You can instead upload an Instagram data archive and analyze it without logging in."
+    }
   },
   "list": {
     "searchPlaceholder": "Search username…",
@@ -315,7 +323,7 @@
   },
   "credit": {
     "label": "Made by",
-    "footerNote": "Follower Analyzer v{{version}} · This app is not affiliated with Instagram or Meta. All data is stored only on your device."
+    "footerNote": "Follower Analyzer v{{version}} · Not affiliated with Instagram or Meta. Lists are stored on-device; eligible data may be included in Android backup."
   },
   "categories": {
     "lostFollowers": {

@@ -17,7 +17,13 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 import { initI18n } from './src/i18n';
 import { analyze, timestampIndex } from './src/lib/analyze';
 import { clearAvatarCache, loadAvatarIndex } from './src/lib/avatars';
+import { useDestek } from './src/hooks/useDestek';
 import { BUYUK_DOSYA, pickFiles } from './src/lib/importer';
+import {
+  reklamKullaniciEtkilesimiKaydet,
+  tamSayfaReklamiGoster,
+  tamSayfaReklamiHazirla,
+} from './src/lib/ads';
 import { dedupe, parseFiles, ZipContentError } from './src/lib/parse';
 import {
   clearEverything,
@@ -88,6 +94,10 @@ function sorTur(t: T, name: string): Promise<'followers' | 'following' | null> {
 function Main() {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
+  const destek = useDestek();
+  const interstitialReklamiGosterilebilir =
+    destek.reklamDurumuKontrolEdildi && !destek.reklamsiz;
+  const notFollowingBackAcmaBekliyor = useRef(false);
 
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -111,6 +121,10 @@ function Main() {
     if (toastTimer.current) clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(null), 2400);
   }, []);
+
+  useEffect(() => {
+    if (interstitialReklamiGosterilebilir) tamSayfaReklamiHazirla();
+  }, [interstitialReklamiGosterilebilir]);
 
   // ---- ilk yükleme ----
   useEffect(() => {
@@ -212,8 +226,9 @@ function Main() {
       setOpenCat(null);
       setConnectOpen(false);
       showToast(mesaj);
+      void tamSayfaReklamiGoster(interstitialReklamiGosterilebilir);
     },
-    [showToast]
+    [interstitialReklamiGosterilebilir, showToast]
   );
 
   // ---- Instagram'dan canlı çekim ----
@@ -224,6 +239,9 @@ function Main() {
         Alert.alert(t('app.alerts.emptyLive.title'), t('app.alerts.emptyLive.message'));
         return;
       }
+      // Connect içindeki WebView etkileşimleri ana görünümün dokunma
+      // sayacına ulaşmadığından başarılı dış akışı bir kullanıcı adımı say.
+      reklamKullaniciEtkilesimiKaydet();
       await kaydet(
         { ...EMPTY_DATA(), followers, following },
         t('app.source.live'),
@@ -244,7 +262,8 @@ function Main() {
       return;
     }
     if (!files || !files.length) return;
-
+    // Sistem dosya seçicisindeki seçim ana görünümden ayrı bir etkileşimdir.
+    reklamKullaniciEtkilesimiKaydet();
     const toplam = files.reduce((a, f) => a + f.size, 0);
     if (toplam > BUYUK_DOSYA) {
       const devam = await onay(
@@ -397,6 +416,24 @@ function Main() {
     showToast(t('app.messages.allDataCleared'));
   }, [showToast, t]);
 
+  const kategoriyiAc = useCallback(
+    (key: CatKey) => {
+      if (key !== 'notFollowingBack') {
+        setOpenCat(key);
+        return;
+      }
+      if (notFollowingBackAcmaBekliyor.current) return;
+      notFollowingBackAcmaBekliyor.current = true;
+      void tamSayfaReklamiGoster(interstitialReklamiGosterilebilir)
+        .catch(() => false)
+        .then(() => {
+          setOpenCat(key);
+          notFollowingBackAcmaBekliyor.current = false;
+        });
+    },
+    [interstitialReklamiGosterilebilir]
+  );
+
   if (!ready) {
     return (
       <View style={[st.root, st.center]}>
@@ -408,7 +445,7 @@ function Main() {
   const tabBarVisible = !openCat && !connectOpen;
 
   return (
-    <View style={st.root}>
+    <View style={st.root} onTouchEndCapture={reklamKullaniciEtkilesimiKaydet}>
       {connectOpen ? (
         <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
           <Connect onBack={() => setConnectOpen(false)} onFinish={canliBitti} />
@@ -436,7 +473,7 @@ function Main() {
           busy={busy}
           onImport={doImport}
           onConnect={() => setConnectOpen(true)}
-          onOpenCat={(k) => setOpenCat(k)}
+          onOpenCat={kategoriyiAc}
           onHelp={() => setTab('help')}
         />
       ) : tab === 'history' ? (
@@ -455,6 +492,7 @@ function Main() {
             busy={busy}
             avatarsOn={settings.avatars}
             onToggleAvatars={avatarlariAyarla}
+            destek={destek}
           />
         </View>
       ) : (

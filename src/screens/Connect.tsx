@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 
 import { sayi } from '../lib/fmt';
@@ -18,6 +18,7 @@ import { Btn, Card, Header } from '../ui/kit';
 
 /** İlerleme durmuşsa bu süre sonunda hata gösterilir. */
 const WATCHDOG_MS = 75000;
+const GITHUB_URL = 'https://github.com/bilalfarukozdemir/takipci-analiz';
 
 type Phase = 'login' | 'ready' | 'working' | 'error';
 
@@ -223,7 +224,32 @@ export function Connect({ onBack, onFinish }: Props) {
 
       {phase === 'login' ? (
         <View style={st.note}>
-          <Text style={st.noteTxt}>{t('connect.loginNote')}</Text>
+          <ScrollView
+            style={st.noteScroll}
+            contentContainerStyle={st.noteContent}
+            accessibilityLabel={t('connect.disclosure.accessibilityLabel')}
+          >
+            <Text style={st.noteTxt}>
+              {t('connect.disclosure.openSource')}
+              <Text
+                style={st.noteLink}
+                accessibilityRole="link"
+                onPress={() => {
+                  void Linking.openURL(GITHUB_URL).catch(() => undefined);
+                }}
+              >
+                {t('connect.disclosure.githubLink')}
+              </Text>
+              {'\n'}
+              {t('connect.disclosure.login')}
+              {'\n'}
+              {t('connect.disclosure.localData')}
+              {'\n'}
+              {t('connect.disclosure.liveFetchRisk')}
+              {'\n'}
+              {t('connect.disclosure.archive')}
+            </Text>
+          </ScrollView>
         </View>
       ) : null}
     </View>
@@ -248,7 +274,10 @@ const st = StyleSheet.create({
     backgroundColor: C.card,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: C.border,
-    padding: 12,
+    maxHeight: 205,
   },
-  noteTxt: { color: C.sub, fontSize: 11.5, lineHeight: 17, textAlign: 'center' },
+  noteScroll: { flexGrow: 0 },
+  noteContent: { padding: 12 },
+  noteTxt: { color: C.sub, fontSize: 11.5, lineHeight: 16, textAlign: 'left' },
+  noteLink: { color: C.pink, textDecorationLine: 'underline', fontWeight: '700' },
 });

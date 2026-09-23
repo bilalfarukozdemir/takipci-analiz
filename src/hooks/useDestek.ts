@@ -10,13 +10,13 @@ import {
   satinAlmaGuncellendiDinle,
   satinAlmaHatasiDinle,
   satinAlmayiBaslat,
-  tamamlaVeTuket,
+  satinAlmayiTamamla,
+  satinAlmalariGetir,
   urunleriGetir,
 } from '../lib/iap';
 
-/** Play Console'daki INAPP ürünleriyle birebir aynı ID'ler (PDF Kutusu ile ortak isimlendirme). */
-export const DESTEK_URUN_IDLERI = ['destek_kahve', 'destek_ogun', 'destek_comert'] as const;
-export type DestekUrunId = (typeof DESTEK_URUN_IDLERI)[number];
+/** Play Console'daki tek seferlik, tüketilmeyen reklam kaldırma ürünü. */
+export const REKLAMLARI_KALDIR_URUN_ID = 'remove_ads';
 
 export type DestekDurumu =
   | 'yukleniyor'
@@ -27,16 +27,44 @@ export type DestekDurumu =
   | 'magaza-yok';
 
 /**
- * Bağış kartının durum makinesi. Mağaza bağlantısını açar, 3 sabit ürünün
- * fiyatını çeker ve satın alma akışını yönetir. Tüketilebilir (consumable)
- * ürünler olduğu için her satın alma sonrası otomatik tüketilir — bağış
- * dilendiği kadar tekrarlanabilir.
+ * Reklam kaldırma ürününü yükler ve satın alımı yönetir. Satın alma tek
+ * seferliktir; tüketilmez ve sonraki açılışlarda sahipliği yeniden sorgulanır.
  */
 export function useDestek() {
   const [durum, setDurum] = useState<DestekDurumu>('yukleniyor');
   const [urunler, setUrunler] = useState<Product[]>([]);
   const [aktifUrunId, setAktifUrunId] = useState<string | null>(null);
+  const [reklamsiz, setReklamsiz] = useState(false);
+  const [satinAlmalarKontrolEdildi, setSatinAlmalarKontrolEdildi] = useState(false);
   const iptalRef = useRef(false);
+
+  const urunleriYukle = useCallback(async () => {
+    setDurum('yukleniyor');
+    setSatinAlmalarKontrolEdildi(false);
+    try {
+      const baglantiAcik = await baglan();
+      if (!baglantiAcik) {
+        if (!iptalRef.current) setDurum('magaza-yok');
+        return;
+      }
+
+      const [sonuc, satinAlmalar] = await Promise.all([
+        urunleriGetir([REKLAMLARI_KALDIR_URUN_ID]),
+        satinAlmalariGetir(),
+      ]);
+      if (iptalRef.current) return;
+
+      const reklamKaldirmaAlinmis = satinAlmalar.some(
+        (satinAlma) => satinAlma.productId === REKLAMLARI_KALDIR_URUN_ID,
+      );
+      setReklamsiz(reklamKaldirmaAlinmis);
+      setSatinAlmalarKontrolEdildi(true);
+      setUrunler(sonuc);
+      setDurum('hazir');
+    } catch {
+      if (!iptalRef.current) setDurum('magaza-yok');
+    }
+  }, []);
 
   useEffect(() => {
     // Google Play Billing yalnızca Android'de çalışır.
@@ -47,27 +75,22 @@ export function useDestek() {
 
     iptalRef.current = false;
 
-    (async () => {
-      try {
-        await baglan();
-        const sonuc = await urunleriGetir([...DESTEK_URUN_IDLERI]);
-        if (iptalRef.current) return;
-        if (sonuc.length === 0) {
-          setDurum('magaza-yok');
-          return;
-        }
-        setUrunler(sonuc);
-        setDurum('hazir');
-      } catch {
-        if (!iptalRef.current) setDurum('magaza-yok');
-      }
-    })();
+    void urunleriYukle();
 
     const guncellemeAbonesi = satinAlmaGuncellendiDinle((purchase: Purchase) => {
       (async () => {
         try {
-          await tamamlaVeTuket(purchase);
+          if (purchase.purchaseState !== 'purchased') {
+            if (!iptalRef.current) {
+              setAktifUrunId(null);
+              setDurum('hazir');
+            }
+            return;
+          }
+          const productId = purchase.productId ?? '';
+          await satinAlmayiTamamla(purchase, false);
           if (!iptalRef.current) {
+            if (productId === REKLAMLARI_KALDIR_URUN_ID) setReklamsiz(true);
             setAktifUrunId(null);
             setDurum('tesekkur');
           }
@@ -92,7 +115,7 @@ export function useDestek() {
       guncellemeAbonesi.remove();
       hataAbonesi.remove();
     };
-  }, []);
+  }, [urunleriYukle]);
 
   const satinAl = useCallback(async (urunId: string) => {
     setAktifUrunId(urunId);
@@ -105,10 +128,22 @@ export function useDestek() {
     }
   }, []);
 
-  /** Hata ekranından "tekrar dene" — ürün listesi zaten elde varsa doğrudan hazır'a döner. */
+  /** Mağaza ürünlerini ve önceki reklam kaldırma satın alımını yeniden sorgular. */
   const tekrarDene = useCallback(() => {
-    setDurum(urunler.length > 0 ? 'hazir' : 'yukleniyor');
-  }, [urunler.length]);
+    iptalRef.current = false;
+    void urunleriYukle();
+  }, [urunleriYukle]);
 
-  return { durum, urunler, aktifUrunId, satinAl, tekrarDene };
+  return {
+    durum,
+    urunler,
+    aktifUrunId,
+    reklamKaldirmaUrunu: urunler.find((urun) => urun.id === REKLAMLARI_KALDIR_URUN_ID),
+    reklamsiz,
+    reklamDurumuKontrolEdildi: satinAlmalarKontrolEdildi,
+    satinAl,
+    tekrarDene,
+  };
 }
+
+export type DestekModel = ReturnType<typeof useDestek>;

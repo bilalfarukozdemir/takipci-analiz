@@ -6,6 +6,13 @@ izler.
 
 ## [Yayınlanmamış]
 
+### Değişti
+- Reklam kaldırma satın alımı artık banner ve tam sayfa reklamları kapsıyor.
+- Google Play Billing üzerinden doğrudan, dijital fayda sunmayan bağış seçeneği
+  kaldırıldı; destek ödeme yolu politikaya uygun seçenek netleşene kadar bekliyor.
+- Tam sayfa reklamlar başarılı analiz ve "Geri takip etmeyenler" listesine
+  geçişte, sıklık sınırı uygulanarak gösterilebiliyor.
+
 ## [1.3.1] – 2026-09-14
 
 ### Düzeltildi

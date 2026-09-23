@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 
+import type { DestekModel } from '../hooks/useDestek';
 import {
   changeLanguagePreference,
   getLanguagePreference,
@@ -28,6 +29,7 @@ type Props = {
   busy: boolean;
   avatarsOn: boolean;
   onToggleAvatars: (v: boolean) => void;
+  destek: DestekModel;
 };
 
 function RoleBtn({
@@ -71,6 +73,7 @@ export function History({
   busy,
   avatarsOn,
   onToggleAvatars,
+  destek,
 }: Props) {
   const { t } = useTranslation();
   const [cacheMb, setCacheMb] = useState(0);
@@ -234,7 +237,7 @@ export function History({
           />
         </Card>
 
-        <DestekKarti />
+        <DestekKarti destek={destek} />
 
         <Btn
           label={t('history.clearAll.button')}

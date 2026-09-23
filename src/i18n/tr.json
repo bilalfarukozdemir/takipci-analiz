@@ -78,7 +78,7 @@
   },
   "home": {
     "title": "Takipçi Analiz",
-    "subtitle": "Takipçi hareketlerini çıkarır. Şifren uygulamaya girilmez, verilerin telefonundan çıkmaz.",
+    "subtitle": "Takipçi listelerin ve analizlerin cihazında saklanır; Android ayarlarına göre yedeklenebilir. Reklamlı sürümde Google Mobile Ads reklam verilerini işleyebilir.",
     "stats": {
       "followers": "Takipçi",
       "following": "Takip",
@@ -150,28 +150,28 @@
       "english": "English"
     }
   },
-  "destek": {
-    "title": "Geliştiriciyi destekle",
-    "desc": "Uygulama ücretsiz ve reklamsız kalacak. İşine yaradıysa isteğe bağlı bir bağış bırakabilirsin — ödeme tamamen Google Play üzerinden yürür, kart bilgisi uygulamaya hiç ulaşmaz.",
-    "tiers": {
-      "destek_kahve": "☕ Bir kahve ısmarla",
-      "destek_ogun": "🍔 Bir öğün ısmarla",
-      "destek_comert": "💖 Cömert destek"
+  "ads": {
+    "title": "Reklamlar",
+    "desc": "Tek seferlik satın alımla bu uygulamadaki banner ve tam sayfa reklamları kaldırabilirsin.",
+    "loading": "Google Play ürün bilgisi yükleniyor…",
+    "retryButton": "Tekrar dene",
+    "productUnavailable": "Reklam kaldırma satın alımı şu anda Google Play'de sunulmuyor.",
+    "storeUnavailable": {
+      "title": "Mağaza bilgisi alınamadı",
+      "desc": "Google Play'e bağlanılamadı. Bağlantını kontrol edip yeniden deneyebilirsin."
     },
-    "loading": "Bağış seçenekleri yükleniyor…",
-    "unavailable": {
-      "title": "Bağış şu an kullanılamıyor",
-      "desc": "Bu cihazda Google Play üzerinden bağlanılamadı. Play Store uygulaması güncel ve oturum açık olmalı."
+    "purchaseError": {
+      "title": "Satın alma tamamlanamadı",
+      "desc": "Google Play bağlantısını kontrol edip yeniden deneyebilirsin."
     },
-    "error": {
-      "title": "Bir şeyler ters gitti",
-      "desc": "Satın alma tamamlanamadı.",
-      "retryButton": "Tekrar dene"
-    },
-    "thanks": {
-      "title": "Teşekkürler! 💛",
-      "desc": "Bağışın alındı. Dilediğin zaman tekrar destek olabilirsin.",
-      "backButton": "Tamam"
+    "label": "Sponsorlu",
+    "removeButton": "Reklamları kaldır",
+    "removeDesc": "Bu tek seferlik satın alım banner ve tam sayfa reklamlarını kaldırır.",
+    "removed": "Bu uygulamadaki tüm reklamlar kaldırıldı.",
+    "privacyButton": "Reklam gizliliği seçenekleri",
+    "privacyUnavailable": {
+      "title": "Şu an seçenek yok",
+      "desc": "Google şu anda değiştirebileceğiniz bir reklam gizliliği formu sunmuyor."
     }
   },
   "help": {
@@ -237,7 +237,7 @@
       },
       {
         "q": "Verilerim bir yere gönderiliyor mu?",
-        "a": "Hayır. Tüm işlem telefonunda yapılır. Uygulamayı silersen kayıtlar da silinir."
+        "a": "Takipçi listelerin ve analiz sonuçların geliştiricinin sunucusuna gönderilmez; uygulama bunları cihazında işler. Reklamlı Android sürümünde Google Mobile Ads reklam sunumu ve ölçümü için IP adresi, cihaz tanımlayıcıları, reklam etkileşimi ve tanılama verilerini işleyebilir. Android yedekleme ayarların uygulama verilerinin Google hesabına yedeklenmesini sağlayabilir."
       },
       {
         "q": "Uygulamadan takipten çıkabilir miyim?",
@@ -292,7 +292,15 @@
       "retryButton": "Tekrar dene",
       "backButton": "Geri dön"
     },
-    "loginNote": "🔒 Bu, Instagram’ın kendi giriş sayfası. Şifren uygulamaya girilmiyor, kaydedilmiyor ve hiçbir yere gönderilmiyor."
+    "disclosure": {
+      "accessibilityLabel": "Açık kaynak ve gizlilik açıklaması",
+      "openSource": "Kaynak kodu açık; ",
+      "githubLink": "GitHub’da inceleyebilirsin.",
+      "login": "Giriş Instagram’ın kendi sayfasında yapılır.",
+      "localData": "Canlı çekimde takipçi ve takip listelerin bu cihazda işlenip saklanır; geliştiricinin sunucusuna gönderilmez ve geliştirici tarafından uzaktan görülemez.",
+      "liveFetchRisk": "Canlı çekim Instagram’ın resmi API’sini kullanmaz; kullanım şartlarına aykırı olabilir ve geçici hesap kısıtlaması riski taşıyabilir.",
+      "archive": "İstersen Instagram veri arşivini yükleyerek giriş yapmadan analiz edebilirsin."
+    }
   },
   "list": {
     "searchPlaceholder": "Kullanıcı adı ara…",
@@ -315,7 +323,7 @@
   },
   "credit": {
     "label": "Yapımcı",
-    "footerNote": "Takipçi Analiz v{{version}} · Bu uygulama Instagram veya Meta ile bağlantılı değildir. Tüm veriler yalnızca cihazında saklanır."
+    "footerNote": "Takipçi Analiz v{{version}} · Instagram veya Meta ile bağlantılı değildir. Listeler cihazda saklanır; uygun veriler Android yedeklemesine girebilir."
   },
   "categories": {
     "lostFollowers": {

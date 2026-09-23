@@ -1,87 +1,99 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
 
-import { DESTEK_URUN_IDLERI, useDestek } from '../hooks/useDestek';
+import {
+  REKLAMLARI_KALDIR_URUN_ID,
+  type DestekModel,
+} from '../hooks/useDestek';
+import { reklamlarAcik, reklamGizliligiSecenekleriniAc } from '../lib/ads';
 import { C } from '../theme';
 import { Btn, Card } from './kit';
+import { ReklamBandi } from './ReklamBandi';
 
-/**
- * "Geliştiriciyi destekle" bağış kartı — Google Play Billing üzerinden
- * tüketilebilir (tekrarlanabilir) bağış. Fiyatlar mağazadan çekilir,
- * kodda hardcoded değildir; Play kullanıcının yerel para birimini gösterir.
- */
-export function DestekKarti() {
+/** Reklamları kaldıran tek seferlik Google Play satın alımı ve reklam gizliliği. */
+export function DestekKarti({ destek }: { destek: DestekModel }) {
   const { t } = useTranslation();
-  const { durum, urunler, aktifUrunId, satinAl, tekrarDene } = useDestek();
+  const {
+    durum,
+    aktifUrunId,
+    reklamKaldirmaUrunu,
+    reklamsiz,
+    reklamDurumuKontrolEdildi,
+    satinAl,
+    tekrarDene,
+  } = destek;
 
-  if (durum === 'magaza-yok') {
-    return (
-      <Card>
-        <Text style={st.title}>{t('destek.title')}</Text>
-        <Text style={st.desc}>{t('destek.unavailable.title')}</Text>
-        <Text style={st.sub}>{t('destek.unavailable.desc')}</Text>
-      </Card>
-    );
-  }
+  const gizlilikSecenekleriniAc = async () => {
+    const acildi = await reklamGizliligiSecenekleriniAc();
+    if (!acildi) Alert.alert(t('ads.privacyUnavailable.title'), t('ads.privacyUnavailable.desc'));
+  };
 
-  if (durum === 'yukleniyor') {
-    return (
-      <Card>
-        <Text style={st.title}>{t('destek.title')}</Text>
-        <View style={st.loadingRow}>
-          <ActivityIndicator color={C.pink} size="small" />
-          <Text style={st.sub}>{t('destek.loading')}</Text>
-        </View>
-      </Card>
-    );
-  }
-
-  if (durum === 'hata') {
-    return (
-      <Card>
-        <Text style={st.title}>{t('destek.title')}</Text>
-        <Text style={st.desc}>{t('destek.error.title')}</Text>
-        <Text style={st.sub}>{t('destek.error.desc')}</Text>
-        <View style={{ height: 12 }} />
-        <Btn label={t('destek.error.retryButton')} kind="ghost" onPress={tekrarDene} />
-      </Card>
-    );
-  }
-
-  if (durum === 'tesekkur') {
-    return (
-      <Card>
-        <Text style={st.title}>{t('destek.thanks.title')}</Text>
-        <Text style={st.desc}>{t('destek.thanks.desc')}</Text>
-        <View style={{ height: 12 }} />
-        <Btn label={t('destek.thanks.backButton')} kind="ghost" onPress={tekrarDene} />
-      </Card>
-    );
-  }
-
-  // durum === 'hazir' | 'satin-aliniyor'
   return (
     <Card>
-      <Text style={st.title}>{t('destek.title')}</Text>
-      <Text style={st.desc}>{t('destek.desc')}</Text>
-      <View style={st.tierList}>
-        {DESTEK_URUN_IDLERI.map((urunId) => {
-          const urun = urunler.find((u) => u.id === urunId);
-          const etiket = t(`destek.tiers.${urunId}`);
-          const fiyat = urun?.displayPrice;
-          return (
-            <Btn
-              key={urunId}
-              label={fiyat ? `${etiket} · ${fiyat}` : etiket}
-              kind="ghost"
-              busy={aktifUrunId === urunId && durum === 'satin-aliniyor'}
-              disabled={!urun || (durum === 'satin-aliniyor' && aktifUrunId !== urunId)}
-              onPress={() => satinAl(urunId)}
-            />
-          );
-        })}
-      </View>
+      <Text style={st.title}>{t('ads.title')}</Text>
+
+      {durum === 'yukleniyor' && (
+        <View style={st.loadingRow}>
+          <ActivityIndicator color={C.pink} size="small" />
+          <Text style={st.sub}>{t('ads.loading')}</Text>
+        </View>
+      )}
+
+      {durum === 'magaza-yok' && (
+        <>
+          <Text style={st.desc}>{t('ads.storeUnavailable.title')}</Text>
+          <Text style={st.sub}>{t('ads.storeUnavailable.desc')}</Text>
+          <View style={st.actionGap} />
+          <Btn label={t('ads.retryButton')} kind="ghost" onPress={tekrarDene} />
+        </>
+      )}
+
+      {durum === 'hata' && (
+        <>
+          <Text style={st.desc}>{t('ads.purchaseError.title')}</Text>
+          <Text style={st.sub}>{t('ads.purchaseError.desc')}</Text>
+          <View style={st.actionGap} />
+          <Btn label={t('ads.retryButton')} kind="ghost" onPress={tekrarDene} />
+        </>
+      )}
+
+      {durum === 'tesekkur' && (
+        <Text style={st.desc}>{t('ads.removed')}</Text>
+      )}
+
+      {(durum === 'hazir' || durum === 'satin-aliniyor') && (
+        <>
+          <Text style={st.desc}>{t('ads.desc')}</Text>
+          <View style={st.tierList}>
+            {reklamsiz ? (
+              <Text style={st.sub}>{t('ads.removed')}</Text>
+            ) : reklamKaldirmaUrunu && reklamlarAcik() ? (
+              <>
+                <Btn
+                  label={`${t('ads.removeButton')} · ${reklamKaldirmaUrunu.displayPrice}`}
+                  kind="primary"
+                  busy={aktifUrunId === REKLAMLARI_KALDIR_URUN_ID && durum === 'satin-aliniyor'}
+                  disabled={durum === 'satin-aliniyor'}
+                  onPress={() => satinAl(REKLAMLARI_KALDIR_URUN_ID)}
+                />
+                <Text style={st.sub}>{t('ads.removeDesc')}</Text>
+              </>
+            ) : (
+              <Text style={st.sub}>{t('ads.productUnavailable')}</Text>
+            )}
+          </View>
+        </>
+      )}
+
+      {!reklamsiz && reklamDurumuKontrolEdildi && reklamlarAcik() && (
+        <>
+          <View style={st.actionGap} />
+          <Btn label={t('ads.privacyButton')} kind="ghost" onPress={() => { void gizlilikSecenekleriniAc(); }} />
+          <View style={st.actionGap} />
+          <ReklamBandi gizle={false} />
+        </>
+      )}
     </Card>
   );
 }
@@ -92,4 +104,5 @@ const st = StyleSheet.create({
   sub: { color: C.sub, fontSize: 12.5, lineHeight: 19, marginTop: 4 },
   loadingRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 },
   tierList: { marginTop: 12, gap: 10 },
+  actionGap: { height: 12 },
 });

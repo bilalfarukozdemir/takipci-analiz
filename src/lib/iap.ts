@@ -4,6 +4,7 @@ import {
   type Purchase,
   finishTransaction as expoFinishTransaction,
   fetchProducts,
+  getAvailablePurchases as expoGetAvailablePurchases,
   initConnection,
   purchaseErrorListener,
   purchaseUpdatedListener,
@@ -23,8 +24,8 @@ export { ErrorCode };
 export type PurchaseError = Parameters<Parameters<typeof purchaseErrorListener>[0]>[0];
 
 /**
- * expo-iap sarmalayıcısı. Sadece Google Play Billing (Android) ile
- * tüketilebilir (consumable) bağış ürünleriyle çalışır — abonelik yok.
+ * expo-iap sarmalayıcısı. Google Play Billing üzerinden Android'deki
+ * tek seferlik reklam kaldırma ürününü yönetir; abonelik yoktur.
  */
 
 /** Mağaza bağlantısını açar. Başka bir IAP çağrısından önce bir kez çağrılmalı. */
@@ -36,6 +37,11 @@ export async function baglan(): Promise<boolean> {
 export async function urunleriGetir(idListesi: string[]): Promise<Product[]> {
   const sonuc = await fetchProducts({ skus: idListesi, type: 'in-app' });
   return Array.isArray(sonuc) ? (sonuc as Product[]) : [];
+}
+
+/** Kullanıcının sahip olduğu tüketilmeyen ürünleri (ör. reklamları kaldır) sorgular. */
+export async function satinAlmalariGetir(): Promise<Purchase[]> {
+  return expoGetAvailablePurchases();
 }
 
 /**
@@ -51,11 +57,11 @@ export async function satinAlmayiBaslat(urunId: string): Promise<void> {
 }
 
 /**
- * Satın almayı tamamlar ve tüketir (consume) — bağış tekrar tekrar
- * yapılabilsin diye her zaman `isConsumable: true`.
+ * Satın almayı tamamlar. Reklam kaldırma gibi tek seferlik haklar
+ * tüketilmeden Play'de sahipli kalır.
  */
-export async function tamamlaVeTuket(purchase: Purchase): Promise<void> {
-  await expoFinishTransaction({ purchase, isConsumable: true });
+export async function satinAlmayiTamamla(purchase: Purchase, tuketilebilir: boolean): Promise<void> {
+  await expoFinishTransaction({ purchase, isConsumable: tuketilebilir });
 }
 
 export function satinAlmaGuncellendiDinle(dinleyici: (purchase: Purchase) => void) {
