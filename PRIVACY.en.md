@@ -1,12 +1,15 @@
 # Privacy Policy
 
-**Effective date: 2026-08-29**
+**Effective date: 2026-09-24**
 
 This document is prepared for publishing Follower Analyzer (Turkish name:
 Takipçi Analiz) on Google Play.
 [Türkçe sürüm](PRIVACY.md).
 
-Short version: **no server, no account, no ads, no analytics.** The app is
+Short version: **no app server or account.** Android builds configured for ads
+may show a banner on the History tab and full-screen ads after a successful
+analysis or when opening a specific list; a one-time purchase removes all ads. There is
+no separate usage-analytics service. The app is
 an independent project, not affiliated with Instagram, Meta Platforms Inc.,
 or any of its subsidiaries.
 
@@ -73,16 +76,32 @@ instead.
 - Profile pictures are downloaded to the device's file system and kept
   there, since Instagram's signed image URLs expire within days
   (`src/lib/avatars.ts`).
-- No data is uploaded to a server, backed up, or shared with the developer
-  or anyone else — because the app has no server to do that with.
+- Follower lists, analysis results, and app records are not uploaded to the
+  developer's server or shared with the developer. Android system backup is
+  enabled; depending on the device's backup settings, eligible app data may be
+  backed up to the user's Google account. The developer cannot access those
+  backups. Google Mobile Ads data is described separately below.
 
-## Analytics, ads, third-party tracking
+## Google ads and ad privacy
 
-The app contains **no** analytics SDK, crash-reporting service, ad network,
-or other third-party tracking code. This was verified by checking the
-dependency list in `package.json` and searching the codebase for such an
-SDK — the only network traffic is the live-fetch requests going directly to
-Instagram's own servers.
+An Android build configured with real AdMob IDs can show banner ads on the
+History tab and full-screen ads after a successful analysis or when opening
+the "Not following back" list through the Google Mobile Ads SDK. At least two
+user interactions occur between full-screen ads. Development builds use
+Google's test ads. For ad serving, measurement, fraud prevention, and privacy choices,
+the SDK may automatically collect or process IP address, ad-view/interaction
+information, diagnostics, and identifiers such as the Android Advertising ID
+or App Set ID. Google handles this data; the app does not pass follower lists,
+Instagram session cookies, or analysis results to the ads SDK.
+
+When Google's consent system requires it, the app shows the Google UMP consent
+form before requesting an ad. The in-app **Ad privacy options** button opens
+Google's additional preference form when available. See Google's
+[Mobile Ads data disclosure](https://developers.google.com/admob/android/privacy/play-data-disclosure)
+and [Privacy Policy](https://policies.google.com/privacy) for details.
+
+The app has no separate usage-analytics or crash-reporting service. Google
+Mobile Ads is the only ad network used in the app.
 
 ## No account required
 
@@ -90,17 +109,12 @@ The app does not run its own account system and does not ask for an email
 address or credentials. The only "login" used for live fetch is the
 Instagram account you already have.
 
-## Donations (Google Play Billing)
+## Removing ads (Google Play Billing)
 
-The app has an optional "Support the Developer" donation feature. It works
-through **Google Play's own purchase system (Google Play Billing)**:
-
-- Payment is handled entirely by Google Play; card numbers, billing
-  addresses, or identity information never reach the app.
-- The donation is entirely optional and does not lock or unlock any
-  feature — a user who doesn't donate gets full functionality identically.
-- Google Play Billing's own data handling is governed by Google's privacy
-  policy; this section only describes how the app uses that system.
+The one-time, non-consumable `remove_ads` Play purchase removes the app's
+banner and full-screen ads. The app checks ownership through Google Play
+Billing; if that status cannot be confirmed, ads remain hidden. Payment
+details do not reach the app.
 
 ## Deleting your data
 

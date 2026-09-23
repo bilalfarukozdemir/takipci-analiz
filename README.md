@@ -5,7 +5,7 @@
 # Takipçi Analiz
 
 **Instagram'da seni takipten çıkanları ve geri takip etmeyenleri gösteren Android uygulaması.**
-Sunucu yok, hesap yok, reklam yok — her şey telefonunda kalır.
+Sunucu ve uygulama hesabı yok. Takipçi listeleri ve analizler cihazda işlenir; uygun uygulama verileri Android yedekleme ayarlarına göre Google hesabına yedeklenebilir. Reklamlı Android sürümünde Google Mobile Ads reklam verilerini işleyebilir. Geçmiş sekmesinde banner, analiz sonrası veya liste geçişlerinde tam sayfa reklam gösterilebilir; tek seferlik Play satın alımı tüm reklamları kaldırır.
 
 [![CI](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml/badge.svg)](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml)
 [![Sürüm](https://img.shields.io/github/v/release/bilalfarukozdemir/takipci-analiz?label=s%C3%BCr%C3%BCm)](https://github.com/bilalfarukozdemir/takipci-analiz/releases/latest)
@@ -137,11 +137,15 @@ Kabaca 1000 hesap ≈ 8 MB.
 
 ## Gizlilik
 
-- Sunucu yok, analitik yok, reklam yok, hesap oluşturma yok.
-- Tüm veriler cihazın içinde (SQLite + dosya sistemi) saklanır.
-- İnternete çıkan tek trafik: Instagram'ın kendisi (canlı çekim + profil
-  fotoğrafları) ve senin açtığın bağlantılar.
-- Uygulamayı silersen tüm kayıtlar da silinir.
+- Sunucu ve uygulama hesabı yok; takipçi listeleri ve analizler cihazında kalır.
+- Reklam kimlikleri yapılandırılmış Android sürümünde Geçmiş sekmesinde Google
+  Mobile Ads banner'ı, başarılı analizden veya "Geri takip etmeyenler" listesine
+  geçişte tam sayfa reklam gösterilebilir. Google'ın reklam SDK'sı reklam sunumu
+  ve ölçümü için bazı cihaz, ağ ve reklam etkileşimi verilerini işleyebilir.
+- İnternet trafiği canlı Instagram çekimi/profil fotoğrafları, senin açtığın
+  bağlantılar ve reklamları etkin sürümlerde Google Mobile Ads ile sınırlıdır.
+- `remove_ads` tek seferlik Play satın alımı tüm reklamları kaldırır.
+- Uygulamayı silersen yerel kayıtların da silinir.
 
 Play Store yayını için hazırlanan ayrıntılı gizlilik politikası:
 [PRIVACY.md](PRIVACY.md).
@@ -282,13 +286,12 @@ Yapımcı: [**vitrincim.com**](https://vitrincim.com)
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/bilalfarukozdemir?label=sponsor&logo=githubsponsors&color=ea4aaa)](https://github.com/sponsors/bilalfarukozdemir)
 
-Bu proje ücretsiz ve ücretsiz kalacak. İşine yaradıysa iki yol var:
+Temel özellikler ücretsiz. Projeye destek olmak istersen:
 
 - **GitHub Sponsors** — [sponsor olabilirsin](https://github.com/sponsors/bilalfarukozdemir),
   aylık ya da tek seferlik.
-- **Uygulama içinden** — Play Store sürümünde "Geliştiriciyi Destekle"
-  bölümünden tek seferlik bağış. Ödeme tamamen Google Play üzerinden yürür,
-  kart bilgisi uygulamaya hiç ulaşmaz.
+- **Reklamları kaldırma** — Play Store sürümünde sunulduğunda, `remove_ads`
+  tek seferlik satın alımı uygulamadaki tüm reklamları kaldırır.
 
 Bir yıldız ya da iyi bir hata bildirimi de en az onlar kadar kıymetli.
 
@@ -299,7 +302,7 @@ Bir yıldız ya da iyi bir hata bildirimi de en az onlar kadar kıymetli.
 | | |
 |---|---|
 | Bakım | Tek geliştirici, boş zamanlarında — [@bilalfarukozdemir](https://github.com/bilalfarukozdemir) |
-| Finansman | Reklam ve telemetri yok; ücretli sürüm yok. Gelir kalemleri: [GitHub Sponsors](https://github.com/sponsors/bilalfarukozdemir) ve Play Store sürümünde isteğe bağlı, hiçbir özelliği kilitlemeyen uygulama içi bağış |
+| Finansman | İsteğe bağlı reklamlar (`remove_ads` tek seferlik satın alımıyla kaldırılır) ve [GitHub Sponsors](https://github.com/sponsors/bilalfarukozdemir) |
 | Durum | Aktif geliştiriliyor |
 | Lisans | MIT |
 | Destek | Hata bildirimleri okunur ve ele alınır. Yanıt süresi taahhüdü ve garanti yoktur |

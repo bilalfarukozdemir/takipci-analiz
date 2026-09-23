@@ -1,11 +1,14 @@
 # Gizlilik Politikası
 
-**Yürürlük tarihi: 2026-08-29**
+**Yürürlük tarihi: 2026-09-24**
 
 Bu belge Takipçi Analiz uygulamasının Google Play üzerinde yayınlanması için
 hazırlanmıştır. [English version](PRIVACY.en.md).
 
-Kısa özet: **sunucu yok, hesap yok, reklam yok, analitik yok.** Uygulama
+Kısa özet: **uygulama sunucusu ve hesap yok.** Reklam kimlikleri yapılandırılmış Android sürümünde
+Geçmiş sekmesinde banner, başarılı analizden sonra veya belirli listeye geçişte tam sayfa reklam
+gösterilebilir; tek seferlik satın alımla tümü kaldırılabilir. Ayrı bir
+analitik hizmeti kurulu değildir. Uygulama
 Instagram, Meta Platforms Inc. veya bağlı kuruluşlarıyla hiçbir ilişkisi
 olmayan, bağımsız bir çalışmadır.
 
@@ -70,17 +73,35 @@ kullanabilir.
   ile saklanır (`src/lib/storage.ts`).
 - Profil fotoğrafları, adresleri birkaç gün içinde geçersiz olduğu için
   cihazın dosya sistemine indirilip saklanır (`src/lib/avatars.ts`).
-- Hiçbir veri bir sunucuya yüklenmez, yedeklenmez ya da geliştiriciyle ya da
-  başka biriyle paylaşılmaz — çünkü uygulamanın buna hizmet eden bir sunucusu
-  yoktur.
+- Takipçi listeleri, analiz sonuçları ve uygulama kayıtları geliştiricinin
+  sunucusuna yüklenmez ya da geliştiriciyle paylaşılmaz. Android sistem
+  yedeklemesi açıktır; cihazın yedekleme ayarlarına bağlı olarak uygun uygulama
+  verileri Google hesabına yedeklenebilir. Geliştirici bu yedeklere erişemez.
+  Google Mobile Ads'in reklam için işleyebileceği cihaz/ağ verileri yukarıdaki
+  ayrı bölümde anlatılır.
 
-## Analitik, reklam, üçüncü taraf takip
+## Google reklamları ve reklam gizliliği
 
-Uygulamada analitik SDK'sı, çökme raporlama servisi, reklam ağı ya da başka
-bir üçüncü taraf takip kodu **yoktur**. Bu iddia `package.json`'daki
-bağımlılık listesine ve kod tabanında böyle bir SDK aranarak doğrulandı —
-tek ağ trafiği canlı çekim sırasında Instagram'ın kendi sunucularına giden
-isteklerdir.
+Gerçek AdMob kimlikleriyle yapılandırılmış Android sürümü, Geçmiş sekmesinde
+Google Mobile Ads SDK aracılığıyla banner reklamı; başarılı analizden sonra ve
+"Geri takip etmeyenler" listesine geçerken tam sayfa reklam gösterebilir.
+Tam sayfa reklamlar arasında en az iki kullanıcı etkileşimi olur. Geliştirme
+sürümü Google'ın test reklamlarını kullanır. Reklam SDK'sı reklam sunumu,
+ölçümü, kötüye kullanımı önleme ve ilgili gizlilik tercihleri için IP adresi,
+reklam görüntüleme/etkileşim bilgileri, tanılama verileri ve Android reklam
+kimliği ya da App Set ID gibi tanımlayıcıları otomatik olarak toplayabilir veya
+işleyebilir. Bu verileri Google yönetir; reklam SDK'sına takipçi listeleri,
+Instagram oturum çerezleri veya analiz sonuçları uygulama kodu tarafından
+aktarılmaz.
+
+Google'ın izin sistemi gerekli olduğunda uygulama reklamı istemeden önce
+Google UMP onay formunu gösterir. Uygulama içindeki **Reklam gizliliği
+seçenekleri** düğmesi Google'ın sunduğu ek tercih formunu açar. Bu SDK'nın veri
+işlemesi hakkında ayrıntı için [Google Mobile Ads veri açıklamasına](https://developers.google.com/admob/android/privacy/play-data-disclosure)
+ve [Google Gizlilik Politikası'na](https://policies.google.com/privacy) bakın.
+
+Uygulamanın kendi kullanım analitiği veya çökme raporlama servisi yoktur.
+Uygulama içindeki reklamlar Google Mobile Ads ile sınırlıdır.
 
 ## Hesap gerekmiyor
 
@@ -88,19 +109,12 @@ Uygulama kendi hesap sistemi kurmaz, e-posta ya da kimlik bilgisi istemez.
 Canlı çekim için kullanılan tek "giriş" senin zaten sahip olduğun Instagram
 hesabıdır.
 
-## Bağış (Google Play Billing)
+## Reklamları kaldırma (Google Play Billing)
 
-Uygulamada isteğe bağlı bir "Geliştiriciyi Destekle" bağış özelliği var.
-Bu özellik **Google Play'in kendi satın alma sistemi (Google Play
-Billing)** üzerinden çalışır:
-
-- Ödeme tamamen Google Play tarafından yürütülür; kart numarası, fatura
-  adresi ya da kimlik bilgisi uygulamaya hiçbir zaman ulaşmaz.
-- Bağış tamamen isteğe bağlıdır ve hiçbir özelliği kilitlemez ya da açmaz —
-  bağış yapmayan kullanıcı uygulamanın tüm işlevlerine aynı şekilde erişir.
-- Google Play Billing'in kendi veri işleme kuralları Google'ın gizlilik
-  politikasına tabidir; bu bölüm sadece uygulamanın bu sistemi nasıl
-  kullandığını anlatır.
+`remove_ads` adlı tek seferlik, tüketilmeyen Play satın alımı uygulama
+banner ve tam sayfa reklamlarını kaldırır. Uygulama açılışında Play Billing
+üzerinden bu satın alımın durumu sorgulanır; mağaza durumu doğrulanamazsa reklam
+gösterilmez. Ödeme bilgileri uygulamaya ulaşmaz.
 
 ## Verini silme
 
