@@ -7,8 +7,9 @@ Takipçi Analiz) on Google Play.
 [Türkçe sürüm](PRIVACY.md).
 
 Short version: **no app server or account.** Android builds configured for ads
-may show a banner on the History tab and full-screen ads after a successful
-analysis or when opening a specific list; a one-time purchase removes all ads. There is
+may show a banner at the bottom of app screens when ad consent and availability
+allow it, and full-screen ads after a successful analysis or when opening a
+specific list; a one-time purchase removes all ads. There is
 no separate usage-analytics service. The app is
 an independent project, not affiliated with Instagram, Meta Platforms Inc.,
 or any of its subsidiaries.
@@ -84,10 +85,11 @@ instead.
 
 ## Google ads and ad privacy
 
-An Android build configured with real AdMob IDs can show banner ads on the
-History tab and full-screen ads after a successful analysis or when opening
-the "Not following back" list through the Google Mobile Ads SDK. At least two
-user interactions occur between full-screen ads. Development builds use
+An Android build configured with real AdMob IDs can show banner ads at the
+bottom of app screens when ad consent and availability allow it. It can also
+show full-screen ads after a successful analysis or when opening the "Not
+following back" list through the Google Mobile Ads SDK. At least two user
+interactions occur between full-screen ads. Development builds use
 Google's test ads. For ad serving, measurement, fraud prevention, and privacy choices,
 the SDK may automatically collect or process IP address, ad-view/interaction
 information, diagnostics, and identifiers such as the Android Advertising ID

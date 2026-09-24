@@ -5,7 +5,7 @@
 # Takipçi Analiz
 
 **Instagram'da seni takipten çıkanları ve geri takip etmeyenleri gösteren Android uygulaması.**
-Sunucu ve uygulama hesabı yok. Takipçi listeleri ve analizler cihazda işlenir; uygun uygulama verileri Android yedekleme ayarlarına göre Google hesabına yedeklenebilir. Reklamlı Android sürümünde Google Mobile Ads reklam verilerini işleyebilir. Geçmiş sekmesinde banner, analiz sonrası veya liste geçişlerinde tam sayfa reklam gösterilebilir; tek seferlik Play satın alımı tüm reklamları kaldırır.
+Sunucu ve uygulama hesabı yok. Takipçi listeleri ve analizler cihazda işlenir; uygun uygulama verileri Android yedekleme ayarlarına göre Google hesabına yedeklenebilir. Reklamlı Android sürümünde Google Mobile Ads reklam verilerini işleyebilir. Reklam koşulları uygunsa uygulama ekranlarının altında sabit banner, analiz sonrası veya liste geçişlerinde tam sayfa reklam gösterilebilir; tek seferlik Play satın alımı tüm reklamları kaldırır.
 
 [![CI](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml/badge.svg)](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml)
 [![Sürüm](https://img.shields.io/github/v/release/bilalfarukozdemir/takipci-analiz?label=s%C3%BCr%C3%BCm)](https://github.com/bilalfarukozdemir/takipci-analiz/releases/latest)
@@ -138,10 +138,11 @@ Kabaca 1000 hesap ≈ 8 MB.
 ## Gizlilik
 
 - Sunucu ve uygulama hesabı yok; takipçi listeleri ve analizler cihazında kalır.
-- Reklam kimlikleri yapılandırılmış Android sürümünde Geçmiş sekmesinde Google
-  Mobile Ads banner'ı, başarılı analizden veya "Geri takip etmeyenler" listesine
-  geçişte tam sayfa reklam gösterilebilir. Google'ın reklam SDK'sı reklam sunumu
-  ve ölçümü için bazı cihaz, ağ ve reklam etkileşimi verilerini işleyebilir.
+- Reklam kimlikleri yapılandırılmış Android sürümünde reklam koşulları uygunsa
+  uygulama ekranlarının altında Google Mobile Ads banner'ı gösterebilir. Ayrıca
+  başarılı analizden veya "Geri takip etmeyenler" listesine geçişte tam sayfa
+  reklam gösterilebilir. Google'ın reklam SDK'sı reklam sunumu ve ölçümü için
+  bazı cihaz, ağ ve reklam etkileşimi verilerini işleyebilir.
 - İnternet trafiği canlı Instagram çekimi/profil fotoğrafları, senin açtığın
   bağlantılar ve reklamları etkin sürümlerde Google Mobile Ads ile sınırlıdır.
 - `remove_ads` tek seferlik Play satın alımı tüm reklamları kaldırır.

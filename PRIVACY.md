@@ -6,8 +6,9 @@ Bu belge Takipçi Analiz uygulamasının Google Play üzerinde yayınlanması i�
 hazırlanmıştır. [English version](PRIVACY.en.md).
 
 Kısa özet: **uygulama sunucusu ve hesap yok.** Reklam kimlikleri yapılandırılmış Android sürümünde
-Geçmiş sekmesinde banner, başarılı analizden sonra veya belirli listeye geçişte tam sayfa reklam
-gösterilebilir; tek seferlik satın alımla tümü kaldırılabilir. Ayrı bir
+reklam izinleri uygunsa uygulama ekranlarının altında banner, başarılı analizden
+sonra veya belirli listeye geçişte tam sayfa reklam gösterilebilir; tek seferlik
+satın alımla tümü kaldırılabilir. Ayrı bir
 analitik hizmeti kurulu değildir. Uygulama
 Instagram, Meta Platforms Inc. veya bağlı kuruluşlarıyla hiçbir ilişkisi
 olmayan, bağımsız bir çalışmadır.
@@ -82,9 +83,10 @@ kullanabilir.
 
 ## Google reklamları ve reklam gizliliği
 
-Gerçek AdMob kimlikleriyle yapılandırılmış Android sürümü, Geçmiş sekmesinde
-Google Mobile Ads SDK aracılığıyla banner reklamı; başarılı analizden sonra ve
-"Geri takip etmeyenler" listesine geçerken tam sayfa reklam gösterebilir.
+Gerçek AdMob kimlikleriyle yapılandırılmış Android sürümü, reklam izinleri
+uygunsa uygulama ekranlarının altında Google Mobile Ads SDK aracılığıyla banner
+reklamı gösterebilir. Ayrıca başarılı analizden sonra ve "Geri takip etmeyenler"
+listesine geçerken tam sayfa reklam gösterebilir.
 Tam sayfa reklamlar arasında en az iki kullanıcı etkileşimi olur. Geliştirme
 sürümü Google'ın test reklamlarını kullanır. Reklam SDK'sı reklam sunumu,
 ölçümü, kötüye kullanımı önleme ve ilgili gizlilik tercihleri için IP adresi,

@@ -5,7 +5,7 @@
 # Follower Analyzer
 
 **An Android app that shows who unfollowed you on Instagram and who doesn't follow you back.**
-No app server or account. Follower lists and analyses are processed on-device; eligible app data may be backed up to your Google account according to Android backup settings. Google Mobile Ads may process ad data in Android builds configured for ads. Banner ads may appear on the History tab and full-screen ads after analysis or list transitions. A one-time Play purchase removes all ads.
+No app server or account. Follower lists and analyses are processed on-device; eligible app data may be backed up to your Google account according to Android backup settings. Google Mobile Ads may process ad data in Android builds configured for ads. When ad conditions allow it, a persistent banner may appear at the bottom of app screens, with full-screen ads after analysis or list transitions. A one-time Play purchase removes all ads.
 
 [![CI](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml/badge.svg)](https://github.com/bilalfarukozdemir/takipci-analiz/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/bilalfarukozdemir/takipci-analiz)](https://github.com/bilalfarukozdemir/takipci-analiz/releases/latest)
@@ -183,9 +183,10 @@ Expo SDK 56 · React Native 0.85 · React 19 · TypeScript ·
 
 ## Privacy
 
-The Android build can show Google Mobile Ads banners on the History tab and
-full-screen ads after a successful analysis or when opening the "Not following
-back" list when real AdMob IDs are configured. Google's ads SDK may process
+The Android build can show Google Mobile Ads banners at the bottom of app
+screens when ad consent and availability allow it. It can also show full-screen
+ads after a successful analysis or when opening the "Not following back" list
+when real AdMob IDs are configured. Google's ads SDK may process
 device, network, and ad-interaction data to serve and measure ads. A one-time
 `remove_ads` purchase removes all ads. Follower lists and analysis remain on-device.
 

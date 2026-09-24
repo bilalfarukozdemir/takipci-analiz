@@ -21,6 +21,7 @@ import { useDestek } from './src/hooks/useDestek';
 import { BUYUK_DOSYA, pickFiles } from './src/lib/importer';
 import {
   reklamKullaniciEtkilesimiKaydet,
+  reklamlarAcik,
   tamSayfaReklamiGoster,
   tamSayfaReklamiHazirla,
 } from './src/lib/ads';
@@ -44,6 +45,7 @@ import { History } from './src/screens/History';
 import { Home } from './src/screens/Home';
 import { ListScreen } from './src/screens/ListScreen';
 import { C } from './src/theme';
+import { ReklamBandi } from './src/ui/ReklamBandi';
 import {
   type CatKey,
   EMPTY_DATA,
@@ -95,6 +97,8 @@ function Main() {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const destek = useDestek();
+  const bannerReklamiAcik =
+    destek.reklamDurumuKontrolEdildi && !destek.reklamsiz && reklamlarAcik();
   const interstitialReklamiGosterilebilir =
     destek.reklamDurumuKontrolEdildi && !destek.reklamsiz;
   const notFollowingBackAcmaBekliyor = useRef(false);
@@ -447,7 +451,12 @@ function Main() {
   return (
     <View style={st.root} onTouchEndCapture={reklamKullaniciEtkilesimiKaydet}>
       {connectOpen ? (
-        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: insets.top,
+            paddingBottom: bannerReklamiAcik ? 0 : insets.bottom,
+          }}>
           <Connect onBack={() => setConnectOpen(false)} onFinish={canliBitti} />
         </View>
       ) : openCat && analysis ? (
@@ -460,7 +469,7 @@ function Main() {
             onToggleMark={toggleMark}
             onBack={() => setOpenCat(null)}
             onToast={showToast}
-            bottomInset={insets.bottom}
+            bottomInset={bannerReklamiAcik ? 0 : insets.bottom}
             showAvatars={settings.avatars}
           />
         </View>
@@ -502,7 +511,11 @@ function Main() {
       )}
 
       {tabBarVisible ? (
-        <View style={[st.tabBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+        <View
+          style={[
+            st.tabBar,
+            { paddingBottom: bannerReklamiAcik ? 8 : Math.max(insets.bottom, 8) },
+          ]}>
           {TAB_KEYS.map((tabItem) => {
             const active = tab === tabItem.key;
             return (
@@ -520,6 +533,12 @@ function Main() {
               </Pressable>
             );
           })}
+        </View>
+      ) : null}
+
+      {bannerReklamiAcik ? (
+        <View style={[st.bannerDock, { paddingBottom: insets.bottom }]}>
+          <ReklamBandi gizle={false} />
         </View>
       ) : null}
 
@@ -562,6 +581,7 @@ const st = StyleSheet.create({
     borderTopColor: C.border,
     paddingTop: 8,
   },
+  bannerDock: { backgroundColor: C.bg },
   tab: { flex: 1, alignItems: 'center', gap: 3 },
   tabIcon: { fontSize: 19 },
   tabLabel: { color: C.dim, fontSize: 11, fontWeight: '600' },

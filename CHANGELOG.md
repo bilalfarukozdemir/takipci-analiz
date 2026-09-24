@@ -13,6 +13,12 @@ izler.
 - Tam sayfa reklamlar başarılı analiz ve "Geri takip etmeyenler" listesine
   geçişte, sıklık sınırı uygulanarak gösterilebiliyor.
 
+## [1.3.3] – 2026-09-24
+
+### Değişti
+- Reklam banner'ı Geçmiş kartından çıkarılıp uygulama ekranlarının altına
+  sabitlendi; alt menü ve sistem güvenli alanı için yer ayrıldı.
+
 ## [1.3.1] – 2026-09-14
 
 ### Düzeltildi

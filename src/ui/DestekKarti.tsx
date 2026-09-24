@@ -9,7 +9,6 @@ import {
 import { reklamlarAcik, reklamGizliligiSecenekleriniAc } from '../lib/ads';
 import { C } from '../theme';
 import { Btn, Card } from './kit';
-import { ReklamBandi } from './ReklamBandi';
 
 /** Reklamları kaldıran tek seferlik Google Play satın alımı ve reklam gizliliği. */
 export function DestekKarti({ destek }: { destek: DestekModel }) {
@@ -90,8 +89,6 @@ export function DestekKarti({ destek }: { destek: DestekModel }) {
         <>
           <View style={st.actionGap} />
           <Btn label={t('ads.privacyButton')} kind="ghost" onPress={() => { void gizlilikSecenekleriniAc(); }} />
-          <View style={st.actionGap} />
-          <ReklamBandi gizle={false} />
         </>
       )}
     </Card>
