@@ -170,6 +170,31 @@ test('200 login_required and mismatched account are not accepted as valid sessio
   }
 });
 
+test('unexpected answer from the login check does not block a valid cookie session', async () => {
+  for (const reply of [
+    response(400, { status: 'fail', message: 'useragent mismatch' }),
+    response(200, { status: 'ok' }),
+    response(500, null, { json: async () => { throw new Error('html'); } }),
+  ]) {
+    const b = browser(PROBE_JS, [reply]);
+    await settle();
+    assert.deepEqual(b.messages, [{ t: 'state', logged: true, uid: '42' }]);
+    for (let i = 0; i < 5; i++) b.intervals[0]();
+    await settle();
+    assert.equal(b.requests.length, 1);
+  }
+});
+
+test('list fetch error carries status and Instagram message for diagnosis', async () => {
+  const b = browser(HARVEST_JS, [
+    response(200, { user: { follower_count: 1, following_count: 1 } }),
+    response(400, { status: 'fail', message: 'useragent mismatch' }),
+  ]);
+  await settle(); await settle(); await settle();
+  const err = b.messages.find(m => m.t === 'error');
+  assert.deepEqual(err, { t: 'error', code: 'http', detail: 'http-400 useragent mismatch' });
+});
+
 test('late validation response for a previous account is ignored', async () => {
   const b = browser(PROBE_JS, [response(200, { user: { pk: 42 } })]);
   b.document.cookie = 'ds_user_id=99';

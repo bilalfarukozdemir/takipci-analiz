@@ -52,7 +52,7 @@ const REQUEST_JS = `
         }
         if (res.status === 401 || /login_required|not logged in/i.test(message)) throw new Error('session');
         if (res.status === 403) throw new Error('challenge');
-        if (!res.ok || j && j.status === 'fail') throw new Error('http-' + res.status);
+        if (!res.ok || j && j.status === 'fail') throw new Error('http-' + res.status + (message ? ' ' + message.slice(0, 80) : ''));
         return j;
       });
     });
@@ -97,15 +97,24 @@ export const PROBE_JS = `
     checked = uid;
     pending = true;
     headers['x-csrftoken'] = ck('csrftoken');
-    jget('/api/v1/accounts/current_user/?edit=true').then(function(j){
-      if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
-      if (!j || !j.user || String(j.user.pk) !== uid) throw new Error('session');
+    var accept = function(){
       last = '1:' + uid;
       post({ t: 'state', logged: true, uid: uid });
+    };
+    jget('/api/v1/accounts/current_user/?edit=true').then(function(j){
+      if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
+      if (j && j.user && String(j.user.pk) !== uid) throw new Error('session');
+      accept();
     }).catch(function(e){
-      if (uid !== ck('ds_user_id')) return;
+      if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
       var code = String((e && e.message) || e);
-      post({ t: 'error', code: code === 'session' || code === 'challenge' || code === 'limit' ? code : 'http' });
+      if (code === 'session' || code === 'challenge' || code === 'limit') {
+        post({ t: 'error', code: code });
+        return;
+      }
+      // This check is only a guard against stale cookies. If Instagram answers it in an
+      // unexpected way, do not block login; the list fetch reports its own real error.
+      accept();
     }).then(function(){ pending = false; });
   };
   tick();

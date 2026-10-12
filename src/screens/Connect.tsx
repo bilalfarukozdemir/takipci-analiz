@@ -42,6 +42,7 @@ export function Connect({ onBack, onFinish }: Props) {
 
   const [phase, setPhase] = useState<Phase>('login');
   const [hata, setHata] = useState<string>('unknown');
+  const [hataDetay, setHataDetay] = useState('');
   const [totals, setTotals] = useState<{ followers: number | null; following: number | null }>({
     followers: null,
     following: null,
@@ -147,6 +148,7 @@ export function Connect({ onBack, onFinish }: Props) {
           web.current?.injectJavaScript(STOP_JS);
           if (m.code === 'session' || m.code === 'challenge') sessionInvalid.current = true;
           setHata(m.code);
+          setHataDetay(m.detail ?? '');
           changePhase('error');
           break;
       }
@@ -224,6 +226,9 @@ export function Connect({ onBack, onFinish }: Props) {
               <Card>
                 <Text style={st.h}>{t(`connect.errors.${hataKodu}.title`)}</Text>
                 <Text style={st.p}>{t(`connect.errors.${hataKodu}.message`)}</Text>
+                {hataDetay && (hata === 'http' || hata === 'unknown') ? (
+                  <Text style={[st.p, { marginTop: 6, color: C.sub, fontSize: 12 }]}>{hataDetay}</Text>
+                ) : null}
                 {followers.current.size ? (
                   <Text style={[st.p, { marginTop: 10, color: C.sub }]}>
                     {t('connect.error.partialData', {

@@ -6,6 +6,19 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.5] – 2026-10-13
+
+### Düzeltildi
+- Instagram'a giriş yapıldıktan hemen sonra "Instagram arayüzü değişmiş olabilir"
+  hatası çıkıp listelerin hiç çekilememesi düzeltildi. 1.3.4'te eklenen oturum
+  kontrolü, Instagram'dan beklenmedik bir cevap gelince girişi engelliyordu; artık
+  yalnız gerçek oturum, güvenlik doğrulaması ve hız sınırı cevaplarında duruyor.
+- Liste çekimi beklenmedik bir hatayla durursa hata ekranında küçük bir teknik
+  satır (durum kodu ve Instagram'ın mesajı) gösteriliyor; sorun tahmin edilmeden
+  anlaşılabiliyor.
+
+## [1.3.4] – 2026-10-04
+
 ### Düzeltildi
 - Instagram'ın kapattığı oturumun eski `ds_user_id` çerezi yüzünden giriş yapılmış
   sayılması ve tekrar girişin aynı hesaba dönmesi düzeltildi. Sunucu doğrulaması,
