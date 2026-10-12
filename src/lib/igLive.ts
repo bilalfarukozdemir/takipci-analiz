@@ -26,7 +26,38 @@ export type LiveMessage =
   | { t: 'chunk'; kind: LiveKind; users: { u: string; n?: string; p?: string }[] }
   | { t: 'progress'; kind: LiveKind; count: number; total: number | null }
   | { t: 'done' }
-  | { t: 'error'; code: 'session' | 'limit' | 'http' | 'cancel' | 'unknown'; detail?: string };
+  | { t: 'error'; code: 'session' | 'challenge' | 'limit' | 'http' | 'cancel' | 'unknown'; detail?: string };
+
+// Both scripts must interpret Instagram's authentication responses identically.
+const REQUEST_JS = `
+  var authPath = function(url){
+    var path = String(url || '').split('?')[0];
+    if (/\\/(challenge|checkpoint)(\\/|$)/i.test(path)) return 'challenge';
+    if (/\\/accounts\\/login(\\/|$)/i.test(path)) return 'session';
+    return '';
+  };
+  var jget = function(url){
+    return fetch(url, { headers: headers, credentials: 'include' }).then(function(res){
+      var redirectedAuth = res.redirected && authPath(res.url);
+      if (redirectedAuth) throw new Error(redirectedAuth);
+      if (res.status === 429) throw new Error('limit');
+      return res.json().catch(function(){
+        if (res.status === 401) throw new Error('session');
+        if (res.status === 403) throw new Error('challenge');
+        throw new Error('http-' + res.status);
+      }).then(function(j){
+        var message = String((j && j.message) || '');
+        if (j && (j.challenge || j.checkpoint_url) || /challenge_required|checkpoint_required|consent_required/i.test(message)) {
+          throw new Error('challenge');
+        }
+        if (res.status === 401 || /login_required|not logged in/i.test(message)) throw new Error('session');
+        if (res.status === 403) throw new Error('challenge');
+        if (!res.ok || j && j.status === 'fail') throw new Error('http-' + res.status);
+        return j;
+      });
+    });
+  };
+`;
 
 /**
  * Her sayfa yüklendiğinde çalışır: oturum durumunu bildirir.
@@ -44,10 +75,38 @@ export const PROBE_JS = `
     try { window.ReactNativeWebView.postMessage(JSON.stringify(m)); } catch (e) {}
   };
   var last = null;
+  var checked = null;
+  var pending = false;
+  var headers = { 'x-ig-app-id': '${APP_ID}', 'x-requested-with': 'XMLHttpRequest' };
+  ${REQUEST_JS}
   var tick = function(){
     var uid = ck('ds_user_id');
-    var key = uid ? '1:' + uid : '0';
-    if (key !== last) { last = key; post({ t: 'state', logged: !!uid, uid: uid }); }
+    var pathError = authPath(window.location.pathname);
+    if (pathError === 'challenge') {
+      if (last !== 'challenge') { last = 'challenge'; post({ t: 'error', code: 'challenge' }); }
+      return;
+    }
+    if (!uid || pathError === 'session') {
+      checked = null;
+      if (last !== '0') { last = '0'; post({ t: 'state', logged: false, uid: '' }); }
+      return;
+    }
+    // A stale ds_user_id is not proof of authentication. Check once per account/page,
+    // never repeatedly poll the API while a security check or login is required.
+    if (pending || checked === uid) return;
+    checked = uid;
+    pending = true;
+    headers['x-csrftoken'] = ck('csrftoken');
+    jget('/api/v1/accounts/current_user/?edit=true').then(function(j){
+      if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
+      if (!j || !j.user || String(j.user.pk) !== uid) throw new Error('session');
+      last = '1:' + uid;
+      post({ t: 'state', logged: true, uid: uid });
+    }).catch(function(e){
+      if (uid !== ck('ds_user_id')) return;
+      var code = String((e && e.message) || e);
+      post({ t: 'error', code: code === 'session' || code === 'challenge' || code === 'limit' ? code : 'http' });
+    }).then(function(){ pending = false; });
   };
   tick();
   setInterval(tick, 1000);
@@ -85,14 +144,7 @@ export const HARVEST_JS = `
     'x-requested-with': 'XMLHttpRequest'
   };
 
-  var jget = function(url){
-    return fetch(url, { headers: headers, credentials: 'include' }).then(function(res){
-      if (res.status === 401 || res.status === 403) { throw new Error('session'); }
-      if (res.status === 429) { throw new Error('limit'); }
-      if (!res.ok) { throw new Error('http-' + res.status); }
-      return res.json();
-    });
-  };
+  ${REQUEST_JS}
 
   var totals = function(){
     return jget('/api/v1/users/' + uid + '/info/').then(function(j){
@@ -101,7 +153,10 @@ export const HARVEST_JS = `
         followers: typeof u.follower_count === 'number' ? u.follower_count : null,
         following: typeof u.following_count === 'number' ? u.following_count : null
       };
-    }).catch(function(){ return { followers: null, following: null }; });
+    }).catch(function(e){
+      if (e.message === 'session' || e.message === 'challenge' || e.message === 'limit') throw e;
+      return { followers: null, following: null };
+    });
   };
 
   var harvest = function(kind, total){
@@ -151,6 +206,7 @@ export const HARVEST_JS = `
     var m = String((e && e.message) || e);
     var code = 'unknown';
     if (m === 'session') { code = 'session'; }
+    else if (m === 'challenge') { code = 'challenge'; }
     else if (m === 'limit') { code = 'limit'; }
     else if (m === 'cancel') { code = 'cancel'; }
     else if (m.indexOf('http-') === 0) { code = 'http'; }

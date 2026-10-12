@@ -6,7 +6,18 @@ izler.
 
 ## [Yayınlanmamış]
 
+### Düzeltildi
+- Instagram'ın kapattığı oturumun eski `ds_user_id` çerezi yüzünden giriş yapılmış
+  sayılması ve tekrar girişin aynı hesaba dönmesi düzeltildi. Sunucu doğrulaması,
+  geçici WebView ve yeniden girişte yeni pencere kullanılıyor.
+- Oturum ve güvenlik doğrulaması hataları artık liste çekimini durduruyor;
+  güvenlik kontrolü ayrı açıklanıyor. Kısmi sonuçlar başarı olarak kaydedilmiyor.
+
 ### Değişti
+
+- Banner üzerindeki Sponsorlu satırı, ekstra boşluk ve üst çizgi kaldırıldı; alan yalnız reklamın kendi boyutu kadar yer kaplar.
+- Banner önceki küçük 320×50 boyuta geri döndü; ekranın altında fazla yer kaplamıyor.
+- Dil, fotoğraf önbelleği, reklam gizliliği ve veri temizleme ayrı Ayarlar sekmesine taşındı. Geçmiş yalnız kayıtlara ayrıldı; header Premium düğmesi reklam kaldırma ve satın alımı geri yükleme ekranını açıyor.
 - Reklam kaldırma satın alımı artık banner ve tam sayfa reklamları kapsıyor.
 - Google Play Billing üzerinden doğrudan, dijital fayda sunmayan bağış seçeneği
   kaldırıldı; destek ödeme yolu politikaya uygun seçenek netleşene kadar bekliyor.

@@ -17,7 +17,8 @@
   "tabs": {
     "home": "Analysis",
     "history": "History",
-    "help": "Help"
+    "help": "Help",
+    "settings": "Settings"
   },
   "app": {
     "fileType": {
@@ -233,7 +234,7 @@
       },
       {
         "q": "Where do the profile photos come from?",
-        "a": "During a live fetch, Instagram also provides photo addresses, but these addresses are signed and short-lived — they expire after a few days. That's why a photo is downloaded to the phone the first time it appears in a list; after that it's shown even without internet and doesn't disappear from older records. Only what you scroll through gets downloaded, not everything at once. You can turn this off from the History tab, or delete what's already downloaded."
+        "a": "During a live fetch, Instagram also provides photo addresses, but these addresses are signed and short-lived — they expire after a few days. That's why a photo is downloaded to the phone the first time it appears in a list; after that it's shown even without internet and doesn't disappear from older records. Only what you scroll through gets downloaded, not everything at once. You can turn this off from the Settings tab, or delete what's already downloaded."
       },
       {
         "q": "Is my data sent anywhere?",
@@ -253,6 +254,10 @@
       "session": {
         "title": "Session ended",
         "message": "Your Instagram session was dropped. You need to log in again."
+      },
+      "challenge": {
+        "title": "Instagram requires verification",
+        "message": "Open the Instagram app or website and complete the security check. Then sign in again here. Lists will not be fetched again automatically."
       },
       "limit": {
         "title": "Instagram applied a rate limit",
@@ -290,6 +295,7 @@
     "error": {
       "partialData": "{{f}} followers and {{g}} following had already been fetched. Incomplete data isn't saved.",
       "retryButton": "Try again",
+      "loginAgainButton": "Sign in again",
       "backButton": "Go back"
     },
     "disclosure": {
@@ -390,12 +396,43 @@
     }
   },
   "fmt": {
-    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
     "justNow": "just now",
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
     "daysAgo": "{{count}}d ago",
     "monthsAgo": "{{count}}mo ago",
     "yearsAgo": "{{count}}y ago"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Language, photos and on-device data",
+    "privacyTitle": "Ad privacy",
+    "privacyDesc": "Manage the ad consent choices provided by Google here."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: remove ads",
+    "activeLabel": "Premium active: purchase details",
+    "title": "Premium",
+    "headline": "Ad-free analysis",
+    "desc": "Permanently remove banner and full-screen ads with a one-time purchase.",
+    "note": "All analysis features stay free. No subscription.",
+    "restore": "Restore purchase",
+    "restoreDesc": "If you already purchased ad removal, check again using the same Google Play account."
   }
 }

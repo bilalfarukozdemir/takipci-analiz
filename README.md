@@ -90,8 +90,12 @@ GET /api/v1/friendships/{uid}/following/?count=50&max_id=…
 
 Çerezler WebView'in dışına hiç çıkmaz. Engel riskini azaltmak için istekler
 arasında **1,2–2,3 sn** (her 8 sayfada bir ek **3–5,5 sn**) rastgele gecikme
-vardır. `401/403` → oturum düştü, `429` → hız sınırı olarak ayrı ele alınır;
+vardır. `401/login_required` → oturum düştü, güvenlik doğrulaması/`403` →
+Instagram'da kontrolü tamamla, `429` → hız sınırı olarak ayrı ele alınır;
 75 sn yanıt gelmezse zaman aşımı devreye girer.
+Giriş, eski hesap çerezine değil Instagram'ın mevcut hesap yanıtına göre doğrulanır.
+Giriş penceresi geçicidir; yeniden girişte eski oturum temizlenir. Oturum veya
+güvenlik hatasında otomatik liste çekimi durur; kayıtlı analiz geçmişi korunur.
 
 > [!WARNING]
 > Canlı çekim Instagram'ın kullanım şartlarına aykırıdır. Sık kullanırsan hesabına
@@ -132,7 +136,7 @@ indirilip kalıcı olarak saklanır. Sonrasında internet olmadan da görünür 
 kayıtlarda kaybolmaz.
 
 Sadece kaydırdığın kadarı iner (aynı anda en fazla 4 indirme, en son görünen satır
-öncelikli). Geçmiş sekmesinden kapatabilir veya indirilenleri silebilirsin.
+öncelikli). Ayarlar sekmesinden kapatabilir veya indirilenleri silebilirsin.
 Kabaca 1000 hesap ≈ 8 MB.
 
 ## Gizlilik
@@ -224,7 +228,9 @@ src/
     Home.tsx                  özet, kategori kartları
     ListScreen.tsx            arama + sıralama + liste
     Connect.tsx               Instagram girişi ve çekim ilerlemesi
-    History.tsx               çekim geçmişi, karşılaştırma seçimi, ayarlar
+    History.tsx               çekim geçmişi, karşılaştırma seçimi
+    Settings.tsx              dil, fotoğraflar, gizlilik ve veri yönetimi
+    Premium.tsx               reklam kaldırma ve satın alımı geri yükleme
     Help.tsx                  rehber ve SSS
   ui/                         ortak bileşenler (kit, UserRow, Credit)
   theme.ts                    renkler, ölçüler, sürüm ve künye sabitleri
@@ -307,3 +313,5 @@ Bir yıldız ya da iyi bir hata bildirimi de en az onlar kadar kıymetli.
 | Durum | Aktif geliştiriliyor |
 | Lisans | MIT |
 | Destek | Hata bildirimleri okunur ve ele alınır. Yanıt süresi taahhüdü ve garanti yoktur |
+
+Ayarlar sekmesi dil, profil fotoğrafları, reklam gizliliği ve veri temizleme kontrollerini içerir. Header’daki Premium düğmesi tek seferlik reklam kaldırma ve satın alımı geri yükleme ekranını açar; analiz özellikleri ücretsizdir.

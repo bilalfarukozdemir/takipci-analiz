@@ -1,16 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import {
   REKLAMLARI_KALDIR_URUN_ID,
   type DestekModel,
 } from '../hooks/useDestek';
-import { reklamlarAcik, reklamGizliligiSecenekleriniAc } from '../lib/ads';
+import { reklamlarAcik } from '../lib/ads';
 import { C } from '../theme';
 import { Btn, Card } from './kit';
 
-/** Reklamları kaldıran tek seferlik Google Play satın alımı ve reklam gizliliği. */
+/** Reklamları kaldıran tek seferlik Google Play satın alımı. */
 export function DestekKarti({ destek }: { destek: DestekModel }) {
   const { t } = useTranslation();
   const {
@@ -18,15 +18,9 @@ export function DestekKarti({ destek }: { destek: DestekModel }) {
     aktifUrunId,
     reklamKaldirmaUrunu,
     reklamsiz,
-    reklamDurumuKontrolEdildi,
     satinAl,
     tekrarDene,
   } = destek;
-
-  const gizlilikSecenekleriniAc = async () => {
-    const acildi = await reklamGizliligiSecenekleriniAc();
-    if (!acildi) Alert.alert(t('ads.privacyUnavailable.title'), t('ads.privacyUnavailable.desc'));
-  };
 
   return (
     <Card>
@@ -85,12 +79,6 @@ export function DestekKarti({ destek }: { destek: DestekModel }) {
         </>
       )}
 
-      {!reklamsiz && reklamDurumuKontrolEdildi && reklamlarAcik() && (
-        <>
-          <View style={st.actionGap} />
-          <Btn label={t('ads.privacyButton')} kind="ghost" onPress={() => { void gizlilikSecenekleriniAc(); }} />
-        </>
-      )}
     </Card>
   );
 }

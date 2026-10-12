@@ -4,20 +4,22 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { openUrl } from '../lib/ig';
 import { C, S } from '../theme';
+import { PremiumButton } from '../ui/PremiumButton';
 import { Footer } from '../ui/Credit';
 import { Btn, Card, Header } from '../ui/kit';
 
 type Adim = { title: string; desc: string };
 type Faq = { q: string; a: string };
 
-export function Help({ onImport, onConnect }: { onImport: () => void; onConnect: () => void }) {
+export function Help({ onImport, onConnect, onPremium, premiumActive }: { onImport: () => void; onConnect: () => void; onPremium: () => void; premiumActive: boolean }) {
   const { t } = useTranslation();
   const adimlar = t('help.steps', { returnObjects: true }) as Adim[];
   const sss = t('help.faq', { returnObjects: true }) as Faq[];
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title={t('help.title')} subtitle={t('help.subtitle')} />
+      <Header title={t('help.title')} subtitle={t('help.subtitle')}
+        right={<PremiumButton onPress={onPremium} active={premiumActive} />} />
       <ScrollView contentContainerStyle={{ padding: S.pad, paddingBottom: 40, gap: S.gap }}>
         <Card>
           <Text style={st.h}>{t('help.connect.title')}</Text>

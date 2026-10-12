@@ -17,7 +17,8 @@
   "tabs": {
     "home": "Analiz",
     "history": "Geçmiş",
-    "help": "Yardım"
+    "help": "Yardım",
+    "settings": "Ayarlar"
   },
   "app": {
     "fileType": {
@@ -233,7 +234,7 @@
       },
       {
         "q": "Profil fotoğrafları nereden geliyor?",
-        "a": "Canlı çekimde Instagram fotoğraf adreslerini de veriyor ama bu adresler imzalı ve kısa ömürlü — birkaç gün sonra ölüyorlar. Bu yüzden fotoğraf listede ilk göründüğünde telefona indirilip saklanıyor; sonrasında internet olmadan da görünüyor ve eski kayıtlarda kaybolmuyor. Sadece kaydırdığın kadarı iniyor, hepsi birden değil. Geçmiş sekmesinden kapatabilir ya da indirilenleri silebilirsin."
+        "a": "Canlı çekimde Instagram fotoğraf adreslerini de veriyor ama bu adresler imzalı ve kısa ömürlü — birkaç gün sonra ölüyorlar. Bu yüzden fotoğraf listede ilk göründüğünde telefona indirilip saklanıyor; sonrasında internet olmadan da görünüyor ve eski kayıtlarda kaybolmuyor. Sadece kaydırdığın kadarı iniyor, hepsi birden değil. Ayarlar sekmesinden kapatabilir ya da indirilenleri silebilirsin."
       },
       {
         "q": "Verilerim bir yere gönderiliyor mu?",
@@ -253,6 +254,10 @@
       "session": {
         "title": "Oturum kapandı",
         "message": "Instagram oturumu düştü. Tekrar giriş yapman gerekiyor."
+      },
+      "challenge": {
+        "title": "Instagram doğrulama istiyor",
+        "message": "Instagram uygulamasını veya sitesini açıp güvenlik uyarısını tamamla. Sonra buradan yeniden giriş yap. Listeler otomatik olarak tekrar çekilmez."
       },
       "limit": {
         "title": "Instagram hız sınırı koydu",
@@ -290,6 +295,7 @@
     "error": {
       "partialData": "O ana kadar {{f}} takipçi, {{g}} takip çekilmişti. Eksik veri kaydedilmez.",
       "retryButton": "Tekrar dene",
+      "loginAgainButton": "Yeniden giriş yap",
       "backButton": "Geri dön"
     },
     "disclosure": {
@@ -390,12 +396,43 @@
     }
   },
   "fmt": {
-    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "months": [
+      "Oca",
+      "Şub",
+      "Mar",
+      "Nis",
+      "May",
+      "Haz",
+      "Tem",
+      "Ağu",
+      "Eyl",
+      "Eki",
+      "Kas",
+      "Ara"
+    ],
     "justNow": "az önce",
     "minutesAgo": "{{count}} dakika önce",
     "hoursAgo": "{{count}} saat önce",
     "daysAgo": "{{count}} gün önce",
     "monthsAgo": "{{count}} ay önce",
     "yearsAgo": "{{count}} yıl önce"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Dil, fotoğraflar ve cihazdaki veriler",
+    "privacyTitle": "Reklam gizliliği",
+    "privacyDesc": "Google’ın sunduğu reklam rızası seçeneklerini burada yönetebilirsin."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: reklamları kaldır",
+    "activeLabel": "Premium etkin: satın alma bilgileri",
+    "title": "Premium",
+    "headline": "Reklamsız analiz",
+    "desc": "Tek seferlik satın alımla banner ve tam sayfa reklamları kalıcı olarak kaldır.",
+    "note": "Tüm analiz özellikleri ücretsiz kalır. Abonelik yok.",
+    "restore": "Satın alımı geri yükle",
+    "restoreDesc": "Reklam kaldırmayı daha önce aldıysan aynı Google Play hesabıyla tekrar kontrol edebilirsin."
   }
 }

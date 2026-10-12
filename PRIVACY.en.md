@@ -62,6 +62,10 @@ After login, a JavaScript script runs **inside** the page
 - The session cookie itself stays in the browser engine's own cookie store
   (the Android system WebView); the app's own code (`src/lib/storage.ts`)
   never reads or saves it.
+- The login window uses temporary (incognito) mode. Each new login window clears
+  the app's WebView cookies; sessions in the external browser or Instagram app are
+  not changed. Login status is checked against Instagram's current-account endpoint.
+  Saved follower lists are not deleted by this reset.
 
 This method uses the endpoints Instagram's own web interface calls, not a
 formally documented developer API. Frequent use can lead to a temporary

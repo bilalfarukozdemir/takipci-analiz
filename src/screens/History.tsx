@@ -1,35 +1,24 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import type { DestekModel } from '../hooks/useDestek';
-import {
-  changeLanguagePreference,
-  getLanguagePreference,
-  type LanguagePreference,
-} from '../i18n';
-import { avatarCacheSize, clearAvatarCache } from '../lib/avatars';
 import { goreceli, sayi, tarihSaat } from '../lib/fmt';
 import { C, S } from '../theme';
 import type { SnapshotMeta } from '../types';
-import { DestekKarti } from '../ui/DestekKarti';
+import { PremiumButton } from '../ui/PremiumButton';
 import { Btn, Card, Empty, Header, Row } from '../ui/kit';
 
 type Props = {
   snapshots: SnapshotMeta[];
   currentId: string | null;
   prevId: string | null;
-  markedCount: number;
   onSelect: (role: 'current' | 'prev', id: string) => void;
   onDelete: (id: string) => void;
-  onClearMarks: () => void;
-  onClearAll: () => void;
   onImport: () => void;
   onConnect: () => void;
   busy: boolean;
-  avatarsOn: boolean;
-  onToggleAvatars: (v: boolean) => void;
-  destek: DestekModel;
+  onPremium: () => void;
+  premiumActive: boolean;
 };
 
 function RoleBtn({
@@ -63,33 +52,20 @@ export function History({
   snapshots,
   currentId,
   prevId,
-  markedCount,
   onSelect,
   onDelete,
-  onClearMarks,
-  onClearAll,
   onImport,
   onConnect,
   busy,
-  avatarsOn,
-  onToggleAvatars,
-  destek,
+  onPremium,
+  premiumActive,
 }: Props) {
   const { t } = useTranslation();
-  const [cacheMb, setCacheMb] = useState(0);
-
-  const olcCache = useCallback(() => {
-    setCacheMb(Math.round((avatarCacheSize() / (1024 * 1024)) * 10) / 10);
-  }, []);
-
-  useEffect(olcCache, [olcCache]);
-
   return (
     <View style={{ flex: 1 }}>
-      <Header title={t('history.title')} subtitle={t('history.recordCount', { count: snapshots.length })} />
+      <Header title={t('history.title')} subtitle={t('history.recordCount', { count: snapshots.length })}
+        right={<PremiumButton onPress={onPremium} active={premiumActive} />} />
       <ScrollView contentContainerStyle={{ padding: S.pad, paddingBottom: 40, gap: S.gap }}>
-        <LanguageCard />
-
         {snapshots.length === 0 ? (
           <Empty icon="🗂️" title={t('history.empty.title')} desc={t('history.empty.desc')} />
         ) : (
@@ -178,123 +154,8 @@ export function History({
         <Btn label={t('common.connectInstagram')} icon="⚡" onPress={onConnect} />
         <Btn label={t('common.pickArchiveFile')} icon="📂" kind="ghost" onPress={onImport} busy={busy} />
 
-        <Card>
-          <Row style={{ justifyContent: 'space-between', gap: 12 }}>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={st.infoTitle}>{t('history.photos.title')}</Text>
-              <Text style={st.infoTxt}>{t('history.photos.desc')}</Text>
-            </View>
-            <Switch
-              value={avatarsOn}
-              onValueChange={onToggleAvatars}
-              trackColor={{ false: C.border, true: C.pink }}
-              thumbColor="#fff"
-            />
-          </Row>
-          <View style={{ height: 12 }} />
-          <Btn
-            label={
-              cacheMb > 0
-                ? t('history.photos.clearButton', { mb: cacheMb })
-                : t('history.photos.emptyCache')
-            }
-            kind="ghost"
-            disabled={cacheMb === 0}
-            onPress={() =>
-              Alert.alert(
-                t('history.photos.confirmTitle'),
-                t('history.photos.confirmMessage'),
-                [
-                  { text: t('common.cancel'), style: 'cancel' },
-                  {
-                    text: t('common.delete'),
-                    style: 'destructive',
-                    onPress: () => {
-                      clearAvatarCache();
-                      olcCache();
-                    },
-                  },
-                ]
-              )
-            }
-          />
-        </Card>
-
-        <Card>
-          <Text style={st.infoTitle}>{t('history.marked.title')}</Text>
-          <Text style={st.infoTxt}>{t('history.marked.desc', { count: sayi(markedCount) })}</Text>
-          <View style={{ height: 12 }} />
-          <Btn
-            label={t('history.marked.clearButton')}
-            kind="ghost"
-            onPress={() =>
-              Alert.alert(t('history.marked.confirmTitle'), t('history.marked.confirmMessage'), [
-                { text: t('common.cancel'), style: 'cancel' },
-                { text: t('common.clear'), style: 'destructive', onPress: onClearMarks },
-              ])
-            }
-            disabled={markedCount === 0}
-          />
-        </Card>
-
-        <DestekKarti destek={destek} />
-
-        <Btn
-          label={t('history.clearAll.button')}
-          kind="danger"
-          icon="⚠️"
-          onPress={() =>
-            Alert.alert(t('history.clearAll.confirmTitle'), t('history.clearAll.confirmMessage'), [
-              { text: t('common.cancel'), style: 'cancel' },
-              { text: t('history.clearAll.confirmButton'), style: 'destructive', onPress: onClearAll },
-            ])
-          }
-        />
       </ScrollView>
     </View>
-  );
-}
-
-/** Dil / Language: Sistem, Türkçe, English arasında seçim. Seçim src/lib/storage.ts'e kalıcı yazılır. */
-function LanguageCard() {
-  const { t } = useTranslation();
-  const [pref, setPref] = useState<LanguagePreference>('system');
-
-  useEffect(() => {
-    let alive = true;
-    getLanguagePreference().then((p) => {
-      if (alive) setPref(p);
-    });
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  const secenekler: { key: LanguagePreference; label: string }[] = [
-    { key: 'system', label: t('history.language.system') },
-    { key: 'tr', label: t('history.language.turkish') },
-    { key: 'en', label: t('history.language.english') },
-  ];
-
-  return (
-    <Card>
-      <Text style={st.infoTitle}>{t('history.language.title')}</Text>
-      <View style={{ height: 10 }} />
-      <Row style={{ gap: 8 }}>
-        {secenekler.map((s) => (
-          <RoleBtn
-            key={s.key}
-            label={s.label}
-            color={C.pink}
-            active={pref === s.key}
-            onPress={() => {
-              setPref(s.key);
-              changeLanguagePreference(s.key).catch(() => undefined);
-            }}
-          />
-        ))}
-      </Row>
-    </Card>
   );
 }
 

@@ -28,7 +28,7 @@ type Props = {
 };
 
 /** connect.errors.<kod>.title / .message anahtarlarına karşılık gelir (src/i18n/{tr,en}.json). */
-const HATA_KODLARI = ['session', 'limit', 'http', 'timeout', 'cancel', 'unknown'] as const;
+const HATA_KODLARI = ['session', 'challenge', 'limit', 'http', 'timeout', 'cancel', 'unknown'] as const;
 
 export function Connect({ onBack, onFinish }: Props) {
   const { t } = useTranslation();
@@ -36,6 +36,9 @@ export function Connect({ onBack, onFinish }: Props) {
   const followers = useRef(new Map<string, IgUser>());
   const following = useRef(new Map<string, IgUser>());
   const sonHareket = useRef(Date.now());
+  const [loginGeneration, setLoginGeneration] = useState(0);
+  const loginGenerationRef = useRef(0);
+  const sessionInvalid = useRef(false);
 
   const [phase, setPhase] = useState<Phase>('login');
   const [hata, setHata] = useState<string>('unknown');
@@ -48,43 +51,70 @@ export function Connect({ onBack, onFinish }: Props) {
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
 
+  const changePhase = useCallback((next: Phase) => {
+    phaseRef.current = next;
+    setPhase(next);
+  }, []);
+
+  const yenidenGiris = useCallback(() => {
+    web.current?.injectJavaScript(STOP_JS);
+    followers.current.clear();
+    following.current.clear();
+    setTotals({ followers: null, following: null });
+    setIlerleme(null);
+    sessionInvalid.current = false;
+    loginGenerationRef.current += 1;
+    setLoginGeneration(loginGenerationRef.current);
+    changePhase('login');
+  }, [changePhase]);
+
   // ilerleme durursa kullanıcıyı bekletme
   useEffect(() => {
     if (phase !== 'working') return;
     const id = setInterval(() => {
       if (Date.now() - sonHareket.current > WATCHDOG_MS) {
         setHata('timeout');
-        setPhase('error');
+        web.current?.injectJavaScript(STOP_JS);
+        changePhase('error');
       }
     }, 5000);
     return () => clearInterval(id);
-  }, [phase]);
+  }, [phase, changePhase]);
 
   const basla = useCallback(() => {
+    if (sessionInvalid.current) return;
     followers.current.clear();
     following.current.clear();
     setIlerleme(null);
     sonHareket.current = Date.now();
-    setPhase('working');
+    changePhase('working');
     web.current?.injectJavaScript(HARVEST_JS);
-  }, []);
+  }, [changePhase]);
 
   const durdur = useCallback(() => {
     web.current?.injectJavaScript(STOP_JS);
     setHata('cancel');
-    setPhase('error');
-  }, []);
+    changePhase('error');
+  }, [changePhase]);
 
   const onMessage = useCallback(
     (e: WebViewMessageEvent) => {
+      if (loginGeneration !== loginGenerationRef.current) return;
       const m = parseMessage(e.nativeEvent.data);
       if (!m) return;
+      if (sessionInvalid.current) return;
+      if (['chunk', 'totals', 'progress', 'done'].includes(m.t) && phaseRef.current !== 'working') return;
       sonHareket.current = Date.now();
 
       switch (m.t) {
         case 'state':
-          if (m.logged && phaseRef.current === 'login') setPhase('ready');
-          else if (!m.logged && phaseRef.current === 'ready') setPhase('login');
+          if (m.logged && phaseRef.current === 'login') changePhase('ready');
+          else if (!m.logged && (phaseRef.current === 'ready' || phaseRef.current === 'working')) {
+            sessionInvalid.current = true;
+            web.current?.injectJavaScript(STOP_JS);
+            setHata('session');
+            changePhase('error');
+          }
           break;
 
         case 'totals':
@@ -114,12 +144,14 @@ export function Connect({ onBack, onFinish }: Props) {
 
         case 'error':
           if (m.code === 'cancel') return; // durdurmayı zaten biz gösterdik
+          web.current?.injectJavaScript(STOP_JS);
+          if (m.code === 'session' || m.code === 'challenge') sessionInvalid.current = true;
           setHata(m.code);
-          setPhase('error');
+          changePhase('error');
           break;
       }
     },
-    [onFinish]
+    [onFinish, loginGeneration, changePhase]
   );
 
   const toplam = ilerleme?.kind === 'followers' ? totals.followers : totals.following;
@@ -141,17 +173,15 @@ export function Connect({ onBack, onFinish }: Props) {
 
       <View style={{ flex: 1 }}>
         <WebView
+          key={loginGeneration}
           ref={web}
           source={{ uri: LOGIN_URL }}
           onMessage={onMessage}
           injectedJavaScript={PROBE_JS}
-          onLoadEnd={() => {
-            // sayfa yenilenirse çekmeyi kaldığı yerden yeniden başlat
-            if (phaseRef.current === 'working') web.current?.injectJavaScript(HARVEST_JS);
-          }}
+          incognito
           javaScriptEnabled
           domStorageEnabled
-          sharedCookiesEnabled
+          sharedCookiesEnabled={false}
           thirdPartyCookiesEnabled
           originWhitelist={['https://*']}
           setSupportMultipleWindows={false}
@@ -204,15 +234,8 @@ export function Connect({ onBack, onFinish }: Props) {
                 ) : null}
                 <View style={{ height: 16 }} />
                 <Btn
-                  label={t('connect.error.retryButton')}
-                  onPress={() => {
-                    if (hata === 'session') {
-                      setPhase('login');
-                      web.current?.reload();
-                    } else {
-                      basla();
-                    }
-                  }}
+                  label={t(hata === 'session' || hata === 'challenge' ? 'connect.error.loginAgainButton' : 'connect.error.retryButton')}
+                  onPress={yenidenGiris}
                 />
                 <View style={{ height: 8 }} />
                 <Btn label={t('connect.error.backButton')} kind="ghost" onPress={onBack} />

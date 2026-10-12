@@ -42,6 +42,8 @@ import {
 import { Connect } from './src/screens/Connect';
 import { Help } from './src/screens/Help';
 import { History } from './src/screens/History';
+import { SettingsScreen } from './src/screens/Settings';
+import { PremiumScreen } from './src/screens/Premium';
 import { Home } from './src/screens/Home';
 import { ListScreen } from './src/screens/ListScreen';
 import { C } from './src/theme';
@@ -54,7 +56,7 @@ import {
   type SnapshotMeta,
 } from './src/types';
 
-type Tab = 'home' | 'history' | 'help';
+type Tab = 'home' | 'history' | 'help' | 'settings';
 
 type T = (key: string, opts?: Record<string, unknown>) => string;
 
@@ -62,6 +64,7 @@ const TAB_KEYS: { key: Tab; labelKey: string; icon: string }[] = [
   { key: 'home', labelKey: 'tabs.home', icon: '📊' },
   { key: 'history', labelKey: 'tabs.history', icon: '🗂️' },
   { key: 'help', labelKey: 'tabs.help', icon: '❓' },
+  { key: 'settings', labelKey: 'tabs.settings', icon: '⚙️' },
 ];
 
 function onay(t: T, title: string, message: string, okText?: string): Promise<boolean> {
@@ -108,6 +111,7 @@ function Main() {
   const [tab, setTab] = useState<Tab>('home');
   const [openCat, setOpenCat] = useState<CatKey | null>(null);
   const [connectOpen, setConnectOpen] = useState(false);
+  const [premiumOpen, setPremiumOpen] = useState(false);
 
   const [snapshots, setSnapshots] = useState<SnapshotMeta[]>([]);
   const [currentId, setCurrentId] = useState<string | null>(null);
@@ -185,6 +189,10 @@ function Main() {
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (premiumOpen) {
+        setPremiumOpen(false);
+        return true;
+      }
       if (connectOpen) {
         setConnectOpen(false);
         return true;
@@ -200,7 +208,7 @@ function Main() {
       return false;
     });
     return () => sub.remove();
-  }, [openCat, tab, connectOpen]);
+  }, [openCat, tab, connectOpen, premiumOpen]);
 
   const analysis = useMemo(
     () => (currentData ? analyze(currentData, prevData) : null),
@@ -446,11 +454,15 @@ function Main() {
     );
   }
 
-  const tabBarVisible = !openCat && !connectOpen;
+  const tabBarVisible = !openCat && !connectOpen && !premiumOpen;
 
   return (
     <View style={st.root} onTouchEndCapture={reklamKullaniciEtkilesimiKaydet}>
-      {connectOpen ? (
+      {premiumOpen ? (
+        <View style={{ flex: 1, paddingTop: insets.top }}>
+          <PremiumScreen destek={destek} onBack={() => setPremiumOpen(false)} />
+        </View>
+      ) : connectOpen ? (
         <View
           style={{
             flex: 1,
@@ -484,6 +496,8 @@ function Main() {
           onConnect={() => setConnectOpen(true)}
           onOpenCat={kategoriyiAc}
           onHelp={() => setTab('help')}
+          onPremium={() => setPremiumOpen(true)}
+          premiumActive={destek.reklamsiz}
         />
       ) : tab === 'history' ? (
         <View style={{ flex: 1, paddingTop: insets.top }}>
@@ -491,22 +505,25 @@ function Main() {
             snapshots={snapshots}
             currentId={currentId}
             prevId={prevId}
-            markedCount={marked.size}
             onSelect={selectRole}
             onDelete={removeSnapshot}
-            onClearMarks={clearMarks}
-            onClearAll={wipe}
             onImport={doImport}
             onConnect={() => setConnectOpen(true)}
             busy={busy}
-            avatarsOn={settings.avatars}
-            onToggleAvatars={avatarlariAyarla}
-            destek={destek}
+            onPremium={() => setPremiumOpen(true)}
+            premiumActive={destek.reklamsiz}
           />
+        </View>
+      ) : tab === 'settings' ? (
+        <View style={{ flex: 1, paddingTop: insets.top }}>
+          <SettingsScreen markedCount={marked.size} onClearMarks={clearMarks} onClearAll={wipe}
+            avatarsOn={settings.avatars} onToggleAvatars={avatarlariAyarla}
+            onPremium={() => setPremiumOpen(true)} premiumActive={destek.reklamsiz} />
         </View>
       ) : (
         <View style={{ flex: 1, paddingTop: insets.top }}>
-          <Help onImport={doImport} onConnect={() => setConnectOpen(true)} />
+          <Help onImport={doImport} onConnect={() => setConnectOpen(true)}
+            onPremium={() => setPremiumOpen(true)} premiumActive={destek.reklamsiz} />
         </View>
       )}
 

@@ -87,8 +87,12 @@ GET /api/v1/friendships/{uid}/following/?count=50&max_id=…
 
 Cookies never leave the WebView. Requests are spaced by a random **1.2–2.3 s**
 (plus an extra **3–5.5 s** every 8 pages) to reduce the chance of triggering
-Instagram's automation detection. `401/403` is handled as a lost session, `429` as
+Instagram's automation detection. `401/login_required` is handled as a lost session,
+security checks/`403` require verification in Instagram, `429` as
 a rate limit, and a 75 s stall as a timeout.
+Login is confirmed using Instagram's current-account response, not a stale account
+cookie. The login window is temporary; signing in again clears its previous session.
+Authentication and security errors stop automatic fetching; saved analysis history remains.
 
 > [!WARNING]
 > Live fetch violates Instagram's Terms of Service. Frequent use can get your
@@ -122,7 +126,7 @@ enough. A picture is downloaded to the device the first time its row becomes
 visible and kept permanently — it then works offline and never disappears from old
 snapshots. Only what you actually scroll past is downloaded (max 4 concurrent,
 most-recently-visible first). Roughly 8 MB per 1000 accounts; can be disabled or
-cleared from the History tab.
+cleared from the Settings tab.
 
 ## Development
 
@@ -213,3 +217,5 @@ software is provided under the MIT license **without any warranty**.
 Made by [**vitrincim.com**](https://vitrincim.com)
 
 </div>
+
+The Settings tab contains language, profile photo, ad privacy and data cleanup controls. The Premium button in the header opens one-time ad removal and purchase restoration; analysis features remain free.

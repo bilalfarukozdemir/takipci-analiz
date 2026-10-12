@@ -8,11 +8,14 @@ import type { Analysis } from '../lib/analyze';
 import { goreceli, sayi, tarihSaat } from '../lib/fmt';
 import { C, GRADIENT, S } from '../theme';
 import type { CatKey, SnapshotMeta } from '../types';
+import { PremiumButton } from '../ui/PremiumButton';
 import { Footer } from '../ui/Credit';
 import { Btn, Card, Row } from '../ui/kit';
 
 type Props = {
   topInset: number;
+  onPremium: () => void;
+  premiumActive: boolean;
   meta: SnapshotMeta | null;
   prevMeta: SnapshotMeta | null;
   analysis: Analysis | null;
@@ -79,6 +82,8 @@ function CatCard({
 
 export function Home({
   topInset,
+  onPremium,
+  premiumActive,
   meta,
   prevMeta,
   analysis,
@@ -104,7 +109,10 @@ export function Home({
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[st.hero, { paddingTop: topInset + 26 }]}>
-        <Text style={st.heroTitle}>{t('home.title')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <Text style={[st.heroTitle, { flex: 1 }]}>{t('home.title')}</Text>
+          <PremiumButton onPress={onPremium} active={premiumActive} />
+        </View>
         <Text style={st.heroSub}>{t('home.subtitle')}</Text>
 
         {hasData ? (
