@@ -6,6 +6,21 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.6] – 2026-10-14
+
+### Düzeltildi
+- "Listeleri çek"e basınca, hesapta gerçek bir engel yokken "Instagram hız sınırı
+  koydu" hatası çıkması düzeltildi. Takipçi/takip toplamlarını soran adres
+  Instagram tarafından tek başına sınırlanabiliyor; 1.3.4'ten beri bu durum tüm
+  çekimi durduruyordu. Artık toplamlar gelmezse listeler toplamsız çekiliyor.
+- Giriş kontrolünde hız sınırı cevabı gelirse giriş artık engellenmiyor.
+
+### Değişti
+- Hız sınırı, zaman aşımı veya durdurma sonrası "Tekrar dene" aynı oturumla
+  devam ediyor; yeniden giriş yalnız oturum ve güvenlik hatalarında isteniyor.
+- Hız sınırı ve beklenmedik hatalarda ekranda hangi Instagram adresinin hata
+  verdiği küçük bir teknik satırda gösteriliyor.
+
 ## [1.3.5] – 2026-10-13
 
 ### Düzeltildi

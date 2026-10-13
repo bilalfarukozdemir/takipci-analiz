@@ -192,7 +192,7 @@ test('list fetch error carries status and Instagram message for diagnosis', asyn
   ]);
   await settle(); await settle(); await settle();
   const err = b.messages.find(m => m.t === 'error');
-  assert.deepEqual(err, { t: 'error', code: 'http', detail: 'http-400 useragent mismatch' });
+  assert.deepEqual(err, { t: 'error', code: 'http', detail: 'http-400 useragent mismatch @ friendships/followers' });
 });
 
 test('late validation response for a previous account is ignored', async () => {
@@ -210,11 +210,10 @@ test('authentication failure in totals stops before requesting follower lists', 
   assert.equal(b.window.__igRunning, false);
 });
 
-test('security checks and limits in totals stop the fetch instead of being swallowed', async () => {
+test('security checks in totals stop the fetch instead of being swallowed', async () => {
   for (const [res, code] of [
     [response(403, { message: 'challenge_required', challenge: {} }), 'challenge'],
     [response(200, { status: 'fail', message: 'checkpoint_required' }), 'challenge'],
-    [response(429, {}), 'limit'],
   ]) {
     const b = browser(HARVEST_JS, [res]);
     await settle();
@@ -252,4 +251,72 @@ test('normal complete fetch still emits both lists and done', async () => {
   assert.equal(b.requests.length, 3);
   assert.deepEqual(b.messages.filter(m => m.t === 'chunk').map(m => m.kind), ['followers', 'following']);
   assert.equal(b.messages.at(-1).t, 'done');
+});
+
+test('rate limit on the totals endpoint alone does not stop the list fetch', async () => {
+  const b = browser(HARVEST_JS, [
+    response(429, {}),
+    response(200, { users: [{ username: 'follower' }] }),
+    response(200, { users: [{ username: 'following' }] }),
+  ]);
+  await settle();
+  assert.equal(b.requests.length, 3);
+  assert.deepEqual(b.messages.find(m => m.t === 'totals'), { t: 'totals', followers: null, following: null });
+  assert.equal(b.messages.at(-1).t, 'done');
+});
+
+test('rate limit on a list page stops the fetch and names the endpoint', async () => {
+  const b = browser(HARVEST_JS, [
+    response(200, { user: { follower_count: 1, following_count: 1 } }),
+    response(429, {}),
+  ]);
+  await settle();
+  assert.deepEqual(b.messages.at(-1), { t: 'error', code: 'limit', detail: 'limit @ friendships/followers' });
+  assert.ok(!b.messages.some(m => m.t === 'done'));
+  assert.equal(b.window.__igRunning, false);
+});
+
+test('rate limit on the login check does not block a valid cookie session', async () => {
+  const b = browser(PROBE_JS, [response(429, {})]);
+  await settle();
+  assert.deepEqual(b.messages, [{ t: 'state', logged: true, uid: '42' }]);
+});
+
+test('duplicate start is ignored while a run is active', async () => {
+  const b = browser(HARVEST_JS, [
+    response(200, { user: { follower_count: 0, following_count: 0 } }),
+    response(200, { users: [] }),
+    response(200, { users: [] }),
+  ]);
+  b.window.__igRunning = true;
+  b.window.__igStop = false;
+  vm.runInContext(HARVEST_JS, b.context);
+  await settle();
+  assert.equal(b.requests.length, 3);
+  assert.equal(b.messages.filter(m => m.t === 'done').length, 1);
+});
+
+test('rate limit retry keeps the same session instead of opening a new login', () => {
+  const screen = connectScreen();
+  screen.message(screen.web(), { t: 'state', logged: true, uid: '42' });
+  screen.render();
+  screen.button('connect.ready.fetchButton').props.onPress();
+  screen.render();
+  screen.message(screen.web(), { t: 'error', code: 'limit', detail: 'limit @ friendships/followers' });
+  screen.render();
+  assert.equal(screen.button('connect.error.loginAgainButton'), null);
+  screen.button('connect.error.retryButton').props.onPress();
+  screen.render();
+  assert.equal(screen.web().props.key, 0);
+  assert.ok(screen.button('connect.ready.fetchButton'));
+});
+
+test('start waits for a cancelled run and gives up visibly if it never ends', async () => {
+  const b = browser('true;', []);
+  b.window.__igRunning = true;
+  b.window.__igStop = true;
+  vm.runInContext(HARVEST_JS, b.context);
+  await settle();
+  assert.equal(b.requests.length, 0);
+  assert.deepEqual(b.messages.at(-1), { t: 'error', code: 'unknown', detail: 'busy' });
 });

@@ -36,23 +36,31 @@ const REQUEST_JS = `
     if (/\\/accounts\\/login(\\/|$)/i.test(path)) return 'session';
     return '';
   };
+  // Errors remember which endpoint failed so the screen can show it for diagnosis.
+  var fail = function(code, url){
+    var e = new Error(code);
+    e.where = String(url || '').split('?')[0].split('/').filter(function(x){
+      return x && x !== 'api' && x !== 'v1' && isNaN(+x);
+    }).join('/');
+    return e;
+  };
   var jget = function(url){
     return fetch(url, { headers: headers, credentials: 'include' }).then(function(res){
       var redirectedAuth = res.redirected && authPath(res.url);
-      if (redirectedAuth) throw new Error(redirectedAuth);
-      if (res.status === 429) throw new Error('limit');
+      if (redirectedAuth) throw fail(redirectedAuth, url);
+      if (res.status === 429) throw fail('limit', url);
       return res.json().catch(function(){
-        if (res.status === 401) throw new Error('session');
-        if (res.status === 403) throw new Error('challenge');
-        throw new Error('http-' + res.status);
+        if (res.status === 401) throw fail('session', url);
+        if (res.status === 403) throw fail('challenge', url);
+        throw fail('http-' + res.status, url);
       }).then(function(j){
         var message = String((j && j.message) || '');
         if (j && (j.challenge || j.checkpoint_url) || /challenge_required|checkpoint_required|consent_required/i.test(message)) {
-          throw new Error('challenge');
+          throw fail('challenge', url);
         }
-        if (res.status === 401 || /login_required|not logged in/i.test(message)) throw new Error('session');
-        if (res.status === 403) throw new Error('challenge');
-        if (!res.ok || j && j.status === 'fail') throw new Error('http-' + res.status + (message ? ' ' + message.slice(0, 80) : ''));
+        if (res.status === 401 || /login_required|not logged in/i.test(message)) throw fail('session', url);
+        if (res.status === 403) throw fail('challenge', url);
+        if (!res.ok || j && j.status === 'fail') throw fail('http-' + res.status + (message ? ' ' + message.slice(0, 80) : ''), url);
         return j;
       });
     });
@@ -108,12 +116,13 @@ export const PROBE_JS = `
     }).catch(function(e){
       if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
       var code = String((e && e.message) || e);
-      if (code === 'session' || code === 'challenge' || code === 'limit') {
+      if (code === 'session' || code === 'challenge') {
         post({ t: 'error', code: code });
         return;
       }
       // This check is only a guard against stale cookies. If Instagram answers it in an
-      // unexpected way, do not block login; the list fetch reports its own real error.
+      // unexpected way or rate-limits this single endpoint, do not block login; the list
+      // fetch reports its own real error.
       accept();
     }).then(function(){ pending = false; });
   };
@@ -126,13 +135,23 @@ true;
 /** Listeleri çeken asıl script. */
 export const HARVEST_JS = `
 (function(){
-  if (window.__igRunning) { return; }
-  window.__igRunning = true;
-  window.__igStop = false;
-
   var post = function(m){
     try { window.ReactNativeWebView.postMessage(JSON.stringify(m)); } catch (e) {}
   };
+  // A run that is still being cancelled (e.g. after a timeout) ends within a few seconds;
+  // retrying in the same session waits for it instead of being silently ignored.
+  // A duplicate start while a run is active is ignored.
+  var tries = 0;
+  var wait = function(){
+    if (!window.__igRunning) { begin(); return; }
+    if (!window.__igStop) { return; }
+    tries += 1;
+    if (tries > 60) { post({ t: 'error', code: 'unknown', detail: 'busy' }); return; }
+    setTimeout(wait, 500);
+  };
+  var begin = function(){
+  window.__igRunning = true;
+  window.__igStop = false;
   var ck = function(k){
     var m = document.cookie.match(new RegExp('(^|; )' + k + '=([^;]*)'));
     return m ? decodeURIComponent(m[2]) : '';
@@ -163,7 +182,9 @@ export const HARVEST_JS = `
         following: typeof u.following_count === 'number' ? u.following_count : null
       };
     }).catch(function(e){
-      if (e.message === 'session' || e.message === 'challenge' || e.message === 'limit') throw e;
+      // Totals are only shown as "x / total". Instagram often rate-limits this endpoint on
+      // its own; that must not stop the list fetch. Authentication problems still do.
+      if (e.message === 'session' || e.message === 'challenge') throw e;
       return { followers: null, following: null };
     });
   };
@@ -219,10 +240,12 @@ export const HARVEST_JS = `
     else if (m === 'limit') { code = 'limit'; }
     else if (m === 'cancel') { code = 'cancel'; }
     else if (m.indexOf('http-') === 0) { code = 'http'; }
-    post({ t: 'error', code: code, detail: m });
+    post({ t: 'error', code: code, detail: m + (e && e.where ? ' @ ' + e.where : '') });
   }).then(function(){
     window.__igRunning = false;
   });
+  };
+  wait();
 })();
 true;
 `;

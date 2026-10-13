@@ -82,11 +82,22 @@ export function Connect({ onBack, onFinish }: Props) {
     return () => clearInterval(id);
   }, [phase, changePhase]);
 
+  // Oturumla ilgisi olmayan hatalarda (hız sınırı, zaman aşımı, durdurma) aynı oturumla
+  // tekrar denenir; her denemede yeniden giriş istemek Instagram'ın şüphesini artırır.
+  const tekrarDene = useCallback(() => {
+    followers.current.clear();
+    following.current.clear();
+    setIlerleme(null);
+    setHataDetay('');
+    changePhase('ready');
+  }, [changePhase]);
+
   const basla = useCallback(() => {
     if (sessionInvalid.current) return;
     followers.current.clear();
     following.current.clear();
     setIlerleme(null);
+    setHataDetay('');
     sonHareket.current = Date.now();
     changePhase('working');
     web.current?.injectJavaScript(HARVEST_JS);
@@ -226,7 +237,7 @@ export function Connect({ onBack, onFinish }: Props) {
               <Card>
                 <Text style={st.h}>{t(`connect.errors.${hataKodu}.title`)}</Text>
                 <Text style={st.p}>{t(`connect.errors.${hataKodu}.message`)}</Text>
-                {hataDetay && (hata === 'http' || hata === 'unknown') ? (
+                {hataDetay && (hata === 'http' || hata === 'unknown' || hata === 'limit') ? (
                   <Text style={[st.p, { marginTop: 6, color: C.sub, fontSize: 12 }]}>{hataDetay}</Text>
                 ) : null}
                 {followers.current.size ? (
@@ -238,10 +249,11 @@ export function Connect({ onBack, onFinish }: Props) {
                   </Text>
                 ) : null}
                 <View style={{ height: 16 }} />
-                <Btn
-                  label={t(hata === 'session' || hata === 'challenge' ? 'connect.error.loginAgainButton' : 'connect.error.retryButton')}
-                  onPress={yenidenGiris}
-                />
+                {hata === 'session' || hata === 'challenge' ? (
+                  <Btn label={t('connect.error.loginAgainButton')} onPress={yenidenGiris} />
+                ) : (
+                  <Btn label={t('connect.error.retryButton')} onPress={tekrarDene} />
+                )}
                 <View style={{ height: 8 }} />
                 <Btn label={t('connect.error.backButton')} kind="ghost" onPress={onBack} />
               </Card>
