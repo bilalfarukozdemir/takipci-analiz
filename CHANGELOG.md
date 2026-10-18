@@ -6,6 +6,8 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.8] – 2026-10-18
+
 ### Değişti
 - Zorunlu tam sayfa (geçiş) reklamları kaldırıldı. Analiz bitince artık reklam
   çıkmıyor. Dolu bir liste sayfası (örneğin "Geri takip etmeyenler") ilk kez
