@@ -6,6 +6,13 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.7] – 2026-10-18
+
+### Değişti
+- Android sürümü artık R8 ile küçültülüp karartılarak derleniyor; kullanılmayan
+  kod ve kaynaklar pakete girmiyor. Uygulama daha az bellek kullanıyor ve Play
+  Console'un "DEX kodu optimizasyonu" uyarısı gideriliyor.
+
 ## [1.3.6] – 2026-10-14
 
 ### Düzeltildi
