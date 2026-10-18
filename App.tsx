@@ -20,10 +20,10 @@ import { clearAvatarCache, loadAvatarIndex } from './src/lib/avatars';
 import { useDestek } from './src/hooks/useDestek';
 import { BUYUK_DOSYA, pickFiles } from './src/lib/importer';
 import {
-  reklamKullaniciEtkilesimiKaydet,
+  odulluReklamAcik,
+  odulluReklamGoster,
+  odulluReklamiHazirla,
   reklamlarAcik,
-  tamSayfaReklamiGoster,
-  tamSayfaReklamiHazirla,
 } from './src/lib/ads';
 import { dedupe, parseFiles, ZipContentError } from './src/lib/parse';
 import {
@@ -102,9 +102,11 @@ function Main() {
   const destek = useDestek();
   const bannerReklamiAcik =
     destek.reklamDurumuKontrolEdildi && !destek.reklamsiz && reklamlarAcik();
-  const interstitialReklamiGosterilebilir =
+  const odulluReklamGosterilebilir =
     destek.reklamDurumuKontrolEdildi && !destek.reklamsiz;
-  const notFollowingBackAcmaBekliyor = useRef(false);
+  const listeAcmaBekliyor = useRef(false);
+  // Reklamı izlenerek açılan liste sayfaları; yeni analizde sıfırlanır.
+  const [acikListeler, setAcikListeler] = useState<Set<CatKey>>(new Set());
 
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -131,8 +133,8 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    if (interstitialReklamiGosterilebilir) tamSayfaReklamiHazirla();
-  }, [interstitialReklamiGosterilebilir]);
+    if (odulluReklamGosterilebilir) odulluReklamiHazirla();
+  }, [odulluReklamGosterilebilir]);
 
   // ---- ilk yükleme ----
   useEffect(() => {
@@ -237,10 +239,10 @@ function Main() {
       setTab('home');
       setOpenCat(null);
       setConnectOpen(false);
+      setAcikListeler(new Set());
       showToast(mesaj);
-      void tamSayfaReklamiGoster(interstitialReklamiGosterilebilir);
     },
-    [interstitialReklamiGosterilebilir, showToast]
+    [showToast]
   );
 
   // ---- Instagram'dan canlı çekim ----
@@ -251,9 +253,6 @@ function Main() {
         Alert.alert(t('app.alerts.emptyLive.title'), t('app.alerts.emptyLive.message'));
         return;
       }
-      // Connect içindeki WebView etkileşimleri ana görünümün dokunma
-      // sayacına ulaşmadığından başarılı dış akışı bir kullanıcı adımı say.
-      reklamKullaniciEtkilesimiKaydet();
       await kaydet(
         { ...EMPTY_DATA(), followers, following },
         t('app.source.live'),
@@ -274,8 +273,6 @@ function Main() {
       return;
     }
     if (!files || !files.length) return;
-    // Sistem dosya seçicisindeki seçim ana görünümden ayrı bir etkileşimdir.
-    reklamKullaniciEtkilesimiKaydet();
     const toplam = files.reduce((a, f) => a + f.size, 0);
     if (toplam > BUYUK_DOSYA) {
       const devam = await onay(
@@ -428,22 +425,35 @@ function Main() {
     showToast(t('app.messages.allDataCleared'));
   }, [showToast, t]);
 
+  /** Boş olmayan, henüz açılmamış liste reklamla açılır (Premium'da hiç reklam yok). */
+  const listeReklamli = useCallback(
+    (key: CatKey) =>
+      odulluReklamGosterilebilir &&
+      odulluReklamAcik() &&
+      !acikListeler.has(key) &&
+      (analysis?.[key].length ?? 0) > 0,
+    [odulluReklamGosterilebilir, acikListeler, analysis]
+  );
+
   const kategoriyiAc = useCallback(
     (key: CatKey) => {
-      if (key !== 'notFollowingBack') {
+      if (!listeReklamli(key)) {
         setOpenCat(key);
         return;
       }
-      if (notFollowingBackAcmaBekliyor.current) return;
-      notFollowingBackAcmaBekliyor.current = true;
-      void tamSayfaReklamiGoster(interstitialReklamiGosterilebilir)
-        .catch(() => false)
-        .then(() => {
+      if (listeAcmaBekliyor.current) return;
+      listeAcmaBekliyor.current = true;
+      void odulluReklamGoster()
+        .catch(() => 'yok' as const)
+        .then((sonuc) => {
+          listeAcmaBekliyor.current = false;
+          // Yarıda kapatılırsa sayfa açılmaz; reklam hiç gelmediyse kullanıcı cezalandırılmaz.
+          if (sonuc === 'iptal') return;
+          if (sonuc === 'odul') setAcikListeler((s) => new Set(s).add(key));
           setOpenCat(key);
-          notFollowingBackAcmaBekliyor.current = false;
         });
     },
-    [interstitialReklamiGosterilebilir]
+    [listeReklamli]
   );
 
   if (!ready) {
@@ -457,7 +467,7 @@ function Main() {
   const tabBarVisible = !openCat && !connectOpen && !premiumOpen;
 
   return (
-    <View style={st.root} onTouchEndCapture={reklamKullaniciEtkilesimiKaydet}>
+    <View style={st.root}>
       {premiumOpen ? (
         <View style={{ flex: 1, paddingTop: insets.top }}>
           <PremiumScreen destek={destek} onBack={() => setPremiumOpen(false)} />
@@ -495,6 +505,7 @@ function Main() {
           onImport={doImport}
           onConnect={() => setConnectOpen(true)}
           onOpenCat={kategoriyiAc}
+          listeReklamli={listeReklamli}
           onHelp={() => setTab('help')}
           onPremium={() => setPremiumOpen(true)}
           premiumActive={destek.reklamsiz}

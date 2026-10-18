@@ -78,6 +78,7 @@
     }
   },
   "home": {
+    "adBadge": "▶ Ad",
     "title": "Follower Analyzer",
     "subtitle": "Follower lists and analyses are stored on-device; Android settings may back up eligible data. Google Mobile Ads may process ad data in ad-enabled builds.",
     "stats": {

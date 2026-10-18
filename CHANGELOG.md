@@ -6,6 +6,14 @@ izler.
 
 ## [Yayınlanmamış]
 
+### Değişti
+- Zorunlu tam sayfa (geçiş) reklamları kaldırıldı. Analiz bitince artık reklam
+  çıkmıyor. Dolu bir liste sayfası (örneğin "Geri takip etmeyenler") ilk kez
+  açılırken ödüllü reklam gösteriliyor; kartta "▶ Reklam" işareti var. Reklam
+  sonuna kadar izlenirse o liste yeni analize kadar reklamsız açılıyor, yarıda
+  kapatılırsa açılmıyor. Reklam yüklenemezse liste yine açılıyor. Reklamları
+  kaldırma satın alımı olanlarda hiç reklam yok.
+
 ## [1.3.7] – 2026-10-18
 
 ### Değişti

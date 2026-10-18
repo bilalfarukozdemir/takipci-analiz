@@ -17,8 +17,9 @@ Bunlar bilinçli tercihler, "eksik" değil:
 - **Sunucu ve hesap sistemi yok.** Takipçi verileri cihazda kalır. Geçmiş
   sekmesinde isteğe bağlı Google Mobile Ads banner'ı gösterilebilir; Google'ın
   SDK'sı reklam sunumu için cihaz/ağ tanımlayıcıları ve reklam etkileşimi gibi
-  verileri işleyebilir. Başarılı analiz ve geri takip etmeyenler ekranına
-  geçişte, AdMob sıklık sınırına uyan tam sayfa reklam da gösterilebilir.
+  verileri işleyebilir. Dolu bir liste sayfası ilk kez açılırken
+  ödüllü reklam (rewarded) gösterilir; izlenirse liste o analiz boyunca açık
+  kalır, yarıda kapatılırsa açılmaz, reklam gelmezse liste yine açılır.
   `remove_ads` tek seferlik Play satın alımı banner ve tam sayfa reklamları
   kalıcı olarak kaldırır. Gerçek AdMob kimlikleri yapılandırılmış Android
   build'inde reklam istenir; geliştirme build'i Google'ın test reklamlarını

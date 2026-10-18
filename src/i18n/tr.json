@@ -78,6 +78,7 @@
     }
   },
   "home": {
+    "adBadge": "▶ Reklam",
     "title": "Takipçi Analiz",
     "subtitle": "Takipçi listelerin ve analizlerin cihazında saklanır; Android ayarlarına göre yedeklenebilir. Reklamlı sürümde Google Mobile Ads reklam verilerini işleyebilir.",
     "stats": {

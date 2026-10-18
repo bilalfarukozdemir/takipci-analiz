@@ -23,6 +23,8 @@ type Props = {
   onImport: () => void;
   onConnect: () => void;
   onOpenCat: (k: CatKey) => void;
+  /** Bu liste açılmadan önce ödüllü reklam gösterilecek mi (kartta işaret için). */
+  listeReklamli: (k: CatKey) => boolean;
   onHelp: () => void;
 };
 
@@ -45,6 +47,7 @@ function CatCard({
   color,
   onPress,
   locked,
+  reklamli,
 }: {
   icon: string;
   title: string;
@@ -53,7 +56,9 @@ function CatCard({
   color: string;
   onPress: () => void;
   locked?: boolean;
+  reklamli?: boolean;
 }) {
+  const { t } = useTranslation();
   return (
     <Pressable
       onPress={locked ? undefined : onPress}
@@ -73,6 +78,11 @@ function CatCard({
         </Text>
       </View>
       <View style={st.catRight}>
+        {reklamli && !locked ? (
+          <View style={st.adBadge}>
+            <Text style={st.adBadgeTxt}>{t('home.adBadge')}</Text>
+          </View>
+        ) : null}
         <Text style={[st.catCount, { color }]}>{locked ? '–' : sayi(count)}</Text>
         <Text style={st.chev}>›</Text>
       </View>
@@ -91,6 +101,7 @@ export function Home({
   onImport,
   onConnect,
   onOpenCat,
+  listeReklamli,
   onHelp,
 }: Props) {
   const { t } = useTranslation();
@@ -206,6 +217,7 @@ export function Home({
                 color={c.color}
                 count={analysis[c.key].length}
                 locked={!!c.needsDiff && !prevMeta}
+                reklamli={listeReklamli(c.key)}
                 onPress={() => onOpenCat(c.key)}
               />
             ))}
@@ -221,6 +233,7 @@ export function Home({
                   desc={t(c.descKey)}
                   color={c.color}
                   count={analysis[c.key].length}
+                  reklamli={listeReklamli(c.key)}
                   onPress={() => onOpenCat(c.key)}
                 />
               ))}
@@ -294,5 +307,13 @@ const st = StyleSheet.create({
   catDesc: { color: C.sub, fontSize: 11.5, marginTop: 3, lineHeight: 16 },
   catRight: { alignItems: 'center', flexDirection: 'row', gap: 4 },
   catCount: { fontSize: 17, fontWeight: '900' },
+  adBadge: {
+    backgroundColor: C.cardAlt,
+    borderRadius: 999,
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    marginRight: 4,
+  },
+  adBadgeTxt: { color: C.sub, fontSize: 10, fontWeight: '700' },
   chev: { color: C.dim, fontSize: 22, marginTop: -2 },
 });
