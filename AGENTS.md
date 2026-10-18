@@ -50,7 +50,7 @@ config plugin yaz. Mevcut olanlar:
 | --- | --- |
 | `withLocalizedAppName.js` | Ana ekrandaki uygulama adı: `values/strings.xml` İngilizce (yedek), `values-tr/strings.xml` Türkçe (Gradle proje adı ASCII kalsın diye `app.json`'dan ayrı) |
 | `withInstagramQuery.js` | `instagram://` için `<queries>` paket görünürlüğü |
-| `withBuildTuning.js` | `reactNativeArchitectures` sadece ARM |
+| `withBuildTuning.js` | `reactNativeArchitectures` sadece ARM; release'de R8 + kaynak küçültme açık (Play bellek/DEX uyarısı) |
 | `withReleaseSigning.js` | `credentials/` klasöründen release imzalama |
 
 ## Derleme
