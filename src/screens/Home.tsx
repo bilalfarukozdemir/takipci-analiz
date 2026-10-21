@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { CATEGORIES } from '../lib/analyze';
 import type { Analysis } from '../lib/analyze';
@@ -84,7 +84,7 @@ function CatCard({
           </View>
         ) : null}
         <Text style={[st.catCount, { color }]}>{locked ? '–' : sayi(count)}</Text>
-        <Text style={st.chev}>{I18nManager.isRTL ? '‹' : '›'}</Text>
+        <Text style={st.chev}>›</Text>
       </View>
     </Pressable>
   );

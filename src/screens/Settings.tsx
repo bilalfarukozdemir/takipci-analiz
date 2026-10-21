@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, I18nManager, Modal, ScrollView, StyleSheet, Switch, Text, View, Pressable } from 'react-native';
+import { Alert, Modal, ScrollView, StyleSheet, Switch, Text, View, Pressable } from 'react-native';
 import {
   changeLanguagePreference,
   getLanguagePreference,
@@ -165,7 +165,7 @@ function LanguageCard() {
         <Text style={st.langCurrent} numberOfLines={1}>
           {adi(pref)}
         </Text>
-        <Text style={st.chev}>{I18nManager.isRTL ? '‹' : '›'}</Text>
+        <Text style={st.chev}>›</Text>
       </Pressable>
 
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
