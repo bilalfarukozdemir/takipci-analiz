@@ -1,5 +1,6 @@
 import Storage from 'expo-sqlite/kv-store';
 
+import { isLangCode, type LangCode } from '../i18n/languages';
 import { EMPTY_DATA, type SnapshotData, type SnapshotMeta } from '../types';
 
 const K_INDEX = 'ig:index';
@@ -7,9 +8,11 @@ const K_SNAP = (id: string) => `ig:snap:${id}`;
 const K_WHITELIST = 'ig:whitelist';
 const K_SETTINGS = 'ig:settings';
 const K_LANGUAGE = 'ig:language';
+const K_REVIEW = 'ig:reviewAskedAt';
+const K_RTL_RELOAD = 'ig:rtlReloadAt';
 
-/** Dil tercihi: 'system' cihaz diline uyar, 'tr'/'en' manuel zorlamadır. */
-export type LanguagePreference = 'system' | 'tr' | 'en';
+/** Dil tercihi: 'system' cihaz diline uyar, dil kodu manuel zorlamadır. */
+export type LanguagePreference = 'system' | LangCode;
 
 export type Settings = {
   /** profil fotoğraflarını indir ve göster */
@@ -101,10 +104,30 @@ export async function saveSettings(s: Settings): Promise<void> {
 /** Kullanıcının manuel dil seçimi. Varsayılan 'system' (cihaz diline uy). */
 export async function getLanguagePreference(): Promise<LanguagePreference> {
   const raw = await Storage.getItem(K_LANGUAGE);
-  if (raw === 'tr' || raw === 'en' || raw === 'system') return raw;
+  if (raw === 'system' || isLangCode(raw)) return raw;
   return 'system';
 }
 
 export async function setLanguagePreference(pref: LanguagePreference): Promise<void> {
   await Storage.setItem(K_LANGUAGE, pref);
+}
+
+/** Play puan penceresinin en son istendiği zaman (ms); hiç istenmediyse 0. */
+export async function getReviewAskedAt(): Promise<number> {
+  const raw = Number(await Storage.getItem(K_REVIEW));
+  return Number.isFinite(raw) ? raw : 0;
+}
+
+export async function setReviewAskedAt(ms: number): Promise<void> {
+  await Storage.setItem(K_REVIEW, String(ms));
+}
+
+/** Yön değişimi için son yeniden yükleme zamanı (ms); döngüye girmemek için. */
+export async function getRtlReloadAt(): Promise<number> {
+  const raw = Number(await Storage.getItem(K_RTL_RELOAD));
+  return Number.isFinite(raw) ? raw : 0;
+}
+
+export async function setRtlReloadAt(ms: number): Promise<void> {
+  await Storage.setItem(K_RTL_RELOAD, String(ms));
 }

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Alert,
+  AppState,
   BackHandler,
   Platform,
   Pressable,
@@ -14,7 +15,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { initI18n } from './src/i18n';
+import { initI18n, syncSystemLanguage } from './src/i18n';
 import { analyze, timestampIndex } from './src/lib/analyze';
 import { clearAvatarCache, loadAvatarIndex } from './src/lib/avatars';
 import { useDestek } from './src/hooks/useDestek';
@@ -26,6 +27,7 @@ import {
   reklamlarAcik,
 } from './src/lib/ads';
 import { dedupe, parseFiles, ZipContentError } from './src/lib/parse';
+import { puanIsteginiPlanla } from './src/lib/review';
 import {
   clearEverything,
   DEFAULT_SETTINGS,
@@ -187,6 +189,14 @@ function Main() {
     };
   }, [prevId]);
 
+  // ---- telefonun dili / uygulamaya özel dil (Android 13+) değişmiş olabilir ----
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (durum) => {
+      if (durum === 'active') syncSystemLanguage().catch(() => undefined);
+    });
+    return () => sub.remove();
+  }, []);
+
   // ---- geri tuşu ----
   useEffect(() => {
     if (Platform.OS !== 'android') return;
@@ -241,6 +251,7 @@ function Main() {
       setConnectOpen(false);
       setAcikListeler(new Set());
       showToast(mesaj);
+      puanIsteginiPlanla();
     },
     [showToast]
   );

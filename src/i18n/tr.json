@@ -29,7 +29,8 @@
     },
     "source": {
       "live": "Instagram (canlı çekim)",
-      "multipleFiles": "{{count}} dosya"
+      "multipleFiles_one": "{{count}} dosya",
+      "multipleFiles_other": "{{count}} dosya"
     },
     "alerts": {
       "emptyLive": {
@@ -106,7 +107,8 @@
   },
   "history": {
     "title": "Geçmiş",
-    "recordCount": "{{count}} kayıtlı yükleme",
+    "recordCount_one": "{{count}} kayıtlı yükleme",
+    "recordCount_other": "{{count}} kayıtlı yükleme",
     "empty": {
       "title": "Henüz kayıt yok",
       "desc": "Instagram veri arşivini yükledikçe her yükleme burada saklanır ve aralarındaki farkı görürsün."
@@ -134,7 +136,8 @@
     },
     "marked": {
       "title": "İşaretlediklerin",
-      "desc": "Listelerde ✓ ile işaretlediğin {{count}} hesap var. İşaretlenenler varsayılan olarak listelerde gizlenir.",
+      "desc_one": "Listelerde ✓ ile işaretlediğin {{n}} hesap var. İşaretlenenler varsayılan olarak listelerde gizlenir.",
+      "desc_other": "Listelerde ✓ ile işaretlediğin {{n}} hesap var. İşaretlenenler varsayılan olarak listelerde gizlenir.",
       "clearButton": "İşaretleri temizle",
       "confirmTitle": "İşaretleri temizle",
       "confirmMessage": "Tüm ✓ işaretleri kaldırılsın mı?"
@@ -147,9 +150,7 @@
     },
     "language": {
       "title": "Dil / Language",
-      "system": "Sistem",
-      "turkish": "Türkçe",
-      "english": "English"
+      "system": "Sistem"
     }
   },
   "ads": {
@@ -318,10 +319,13 @@
       "oldest": "En eski"
     },
     "hideMarked": "İşaretlediklerimi gizle",
-    "accountCount": "{{count}} hesap",
-    "hiddenSuffix": " · {{count}} gizli",
+    "accountCount_one": "{{n}} hesap",
+    "accountCount_other": "{{n}} hesap",
+    "hiddenSuffix_one": " · {{count}} gizli",
+    "hiddenSuffix_other": " · {{count}} gizli",
     "usernameCopied": "@{{username}} kopyalandı",
-    "usernamesCopied": "{{count}} kullanıcı adı kopyalandı",
+    "usernamesCopied_one": "{{count}} kullanıcı adı kopyalandı",
+    "usernamesCopied_other": "{{count}} kullanıcı adı kopyalandı",
     "empty": {
       "noMatch": "Eşleşme yok",
       "noOne": "Bu listede kimse yok",
@@ -411,12 +415,19 @@
       "Kas",
       "Ara"
     ],
+    "date": "{{d}} {{m}} {{y}}",
+    "thousandsSep": ".",
     "justNow": "az önce",
-    "minutesAgo": "{{count}} dakika önce",
-    "hoursAgo": "{{count}} saat önce",
-    "daysAgo": "{{count}} gün önce",
-    "monthsAgo": "{{count}} ay önce",
-    "yearsAgo": "{{count}} yıl önce"
+    "minutesAgo_one": "{{count}} dakika önce",
+    "minutesAgo_other": "{{count}} dakika önce",
+    "hoursAgo_one": "{{count}} saat önce",
+    "hoursAgo_other": "{{count}} saat önce",
+    "daysAgo_one": "{{count}} gün önce",
+    "daysAgo_other": "{{count}} gün önce",
+    "monthsAgo_one": "{{count}} ay önce",
+    "monthsAgo_other": "{{count}} ay önce",
+    "yearsAgo_one": "{{count}} yıl önce",
+    "yearsAgo_other": "{{count}} yıl önce"
   },
   "settings": {
     "title": "Ayarlar",

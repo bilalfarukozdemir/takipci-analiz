@@ -223,7 +223,8 @@ src/
     avatars.ts                profil fotoğrafı önbelleği (tembel indirme + disk)
     storage.ts                anlık görüntüler ve ayarlar (expo-sqlite/kv-store)
     ig.ts                     profil açma, kopyalama, paylaşma
-    fmt.ts                    Türkçe tarih/sayı biçimleme
+    fmt.ts                    dile göre tarih/sayı biçimleme
+    review.ts                 başarılı analizden sonra Play puan penceresi
   screens/
     Home.tsx                  özet, kategori kartları
     ListScreen.tsx            arama + sıralama + liste
@@ -232,16 +233,19 @@ src/
     Settings.tsx              dil, fotoğraflar, gizlilik ve veri yönetimi
     Premium.tsx               reklam kaldırma ve satın alımı geri yükleme
     Help.tsx                  rehber ve SSS
+  i18n/                       14 dilin metinleri + dil listesi (languages.ts)
   ui/                         ortak bileşenler (kit, UserRow, Credit)
   theme.ts                    renkler, ölçüler, sürüm ve künye sabitleri
   types.ts                    veri tipleri
 plugins/                      Expo prebuild config plugin'leri
-  withLocalizedAppName.js       ana ekrandaki uygulama adı (yedek İngilizce, Türkçe telefonda Türkçe)
+  withLocalizedAppName.js       ana ekrandaki uygulama adı (yedek İngilizce, 13 dilde yerel ad)
   withInstagramQuery.js         instagram:// için Android paket görünürlüğü
   withBuildTuning.js            sadece ARM mimarileri (APK ~30 MB küçülür)
   withReleaseSigning.js         release imzalama yapılandırması
 scripts/build-apk.ps1         kısa yolda derleme + APK'yı geri kopyalama
 tests/parse.test.js           çözümleyici testleri
+tests/i18n.test.js            dil dosyaları tutarlılığı
+store/listings/               Play mağaza metinleri (dil başına)
 ```
 
 Veri akışı her iki kaynakta da aynı: `parse.ts` / `igLive.ts` → `SnapshotData` →

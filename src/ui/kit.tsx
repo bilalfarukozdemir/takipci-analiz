@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  I18nManager,
   Pressable,
   type StyleProp,
   StyleSheet,
@@ -101,7 +102,7 @@ export function Header({
     <View style={st.header}>
       {onBack ? (
         <Pressable onPress={onBack} hitSlop={12} style={st.backBtn}>
-          <Text style={st.backTxt}>‹</Text>
+          <Text style={st.backTxt}>{I18nManager.isRTL ? '›' : '‹'}</Text>
         </Pressable>
       ) : null}
       <View style={{ flex: 1, minWidth: 0 }}>

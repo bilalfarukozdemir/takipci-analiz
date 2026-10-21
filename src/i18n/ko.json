@@ -1,0 +1,439 @@
+{
+  "common": {
+    "cancel": "취소",
+    "continueBtn": "계속",
+    "skip": "건너뛰기",
+    "delete": "삭제",
+    "save": "저장",
+    "clear": "지우기",
+    "connectInstagram": "Instagram 연결",
+    "pickArchiveFile": "데이터 파일 선택",
+    "loadingFile": "파일 읽는 중…",
+    "followersLower": "팔로워",
+    "followingLower": "팔로잉",
+    "copy": "📋  복사",
+    "share": "📤  공유"
+  },
+  "tabs": {
+    "home": "분석",
+    "history": "기록",
+    "help": "도움말",
+    "settings": "설정"
+  },
+  "app": {
+    "fileType": {
+      "title": "어떤 파일인가요?",
+      "message": "\"{{name}}\"의 종류를 알 수 없습니다. 안에 있는 계정은 무엇인가요?",
+      "followers": "내 팔로워",
+      "following": "내가 팔로우하는 계정"
+    },
+    "source": {
+      "live": "Instagram (실시간 가져오기)",
+      "multipleFiles_other": "파일 {{count}}개"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "목록이 비어 있습니다",
+        "message": "Instagram에서 계정을 하나도 받지 못했습니다. 잠시 후 다시 시도하거나 데이터 파일 방식을 사용하세요."
+      },
+      "pickFailed": {
+        "title": "파일을 열 수 없습니다",
+        "message": "파일을 선택하는 중 문제가 생겼습니다. 다시 시도할까요?"
+      },
+      "tooLarge": {
+        "title": "파일이 매우 큽니다",
+        "message": "선택한 파일이 매우 큰 것 같습니다. Instagram 데이터 전체를 다운로드한 것 같아요. 앱이 멈출 수 있습니다.\n\n더 좋은 방법: Instagram에서 \"팔로워 및 팔로잉\" 데이터만 다운로드하세요.",
+        "confirm": "그래도 시도"
+      },
+      "noFollowerData": {
+        "title": "팔로워 데이터가 없습니다",
+        "message": "선택한 파일에 팔로워 / 팔로잉 목록이 없습니다.\n\nInstagram에서 \"팔로워 및 팔로잉\" 항목을 JSON 형식으로 다운로드한 뒤 만들어진 .zip 파일을 선택하세요. 자세한 방법은 도움말 탭에 있습니다."
+      },
+      "missingList": {
+        "title": "목록이 빠져 있습니다",
+        "message": "파일에서 {{missing}}을(를) 찾지 못했습니다. 비교 결과가 불완전합니다.\n\n그래도 저장할까요?"
+      },
+      "zipNoData": {
+        "title": "zip에 팔로워 데이터가 없습니다",
+        "message": "선택한 파일에 팔로워 / 팔로잉 파일이 없습니다.\n\nInstagram에서 다운로드할 때 \"팔로워 및 팔로잉\"을 꼭 선택하세요."
+      },
+      "fileUnreadable": {
+        "title": "파일을 읽을 수 없습니다",
+        "message": "파일이 손상되었거나 예상한 형식이 아닐 수 있습니다. zip을 열어 followers_1.json과 following.json 파일을 직접 선택하세요."
+      }
+    },
+    "list": {
+      "followerList": "팔로워 목록",
+      "followingList": "팔로잉 목록"
+    },
+    "messages": {
+      "liveSaved": "팔로워 {{f}}명, 팔로잉 {{g}}명을 가져왔습니다",
+      "importSaved": "팔로워 {{f}}명, 팔로잉 {{g}}명을 불러왔습니다",
+      "allDataCleared": "모든 데이터를 삭제했습니다",
+      "selectedAsNew": "새 기록으로 선택했습니다",
+      "sameRecordError": "같은 기록을 새 기록과 이전 기록으로 동시에 선택할 수 없습니다",
+      "oldMustBeEarlier": "이전 기록은 새 기록보다 앞선 날짜여야 합니다",
+      "selectedAsOld": "이전 기록으로 선택했습니다",
+      "recordDeleted": "기록을 삭제했습니다"
+    }
+  },
+  "home": {
+    "adBadge": "▶ 광고",
+    "title": "Follower Analyzer",
+    "subtitle": "팔로워 목록과 분석 결과는 기기에 저장되며, Android 설정에 따라 해당 데이터가 백업될 수 있습니다. 광고가 있는 빌드에서는 Google Mobile Ads가 광고 데이터를 처리할 수 있습니다.",
+    "stats": {
+      "followers": "팔로워",
+      "following": "팔로잉",
+      "mutual": "맞팔",
+      "notFollowingBack": "맞팔 안 함"
+    },
+    "noData": {
+      "title": "목록을 가져와서 시작하세요",
+      "fastLabel": "빠른 방법:",
+      "fastText": " Instagram에 연결하면 목록을 바로 가져옵니다.",
+      "safeLabel": "안전한 방법:",
+      "safeText": " Instagram에서 \"팔로워 및 팔로잉\" 데이터를 JSON으로 다운로드한 뒤 여기서 .zip 파일을 선택하세요.",
+      "whatsTheDifference": "무엇이 다른가요?"
+    },
+    "lastAnalysis": "최근 분석",
+    "compareWith": "🔁 비교 대상: ",
+    "compareWithSuffix": " 업로드",
+    "needSecondUploadPre": "⚠️ 나를 언팔한 사람을 보려면 ",
+    "needSecondUploadBold": "두 번째 데이터",
+    "needSecondUploadPost": "를 업로드해야 합니다. 시간이 좀 지난 뒤 Instagram에서 새 파일을 다운로드해 다시 업로드하세요.",
+    "highlights": "주요 결과",
+    "otherLists": "다른 목록"
+  },
+  "history": {
+    "title": "기록",
+    "recordCount_other": "저장된 업로드 {{count}}개",
+    "empty": {
+      "title": "아직 기록이 없습니다",
+      "desc": "Instagram 데이터 파일을 업로드할 때마다 여기에 저장되며, 업로드 간의 차이를 볼 수 있습니다."
+    },
+    "howItWorks": {
+      "title": "어떻게 작동하나요?",
+      "pre": "언팔로우는 두 업로드를 비교해서 찾습니다. ",
+      "mid": "(으)로 선택한 기록은 현재 상태를, ",
+      "post": "(으)로 선택한 기록은 이전 상태를 나타냅니다."
+    },
+    "roleNew": "새 기록",
+    "roleOld": "이전 기록",
+    "deleteRecord": {
+      "title": "기록 삭제",
+      "message": "이 업로드 기록을 삭제할까요?"
+    },
+    "vsPrevious": "이전 대비",
+    "photos": {
+      "title": "프로필 사진",
+      "desc": "실시간 가져오기의 사진은 목록에 처음 나타날 때 기기에 다운로드됩니다. Instagram 주소는 금방 만료되므로 다운로드하지 않으면 나중에 사라집니다.",
+      "clearButton": "사진 삭제 ({{mb}} MB)",
+      "emptyCache": "캐시가 비어 있습니다",
+      "confirmTitle": "프로필 사진 삭제",
+      "confirmMessage": "다운로드한 프로필 사진이 모두 삭제됩니다. 목록에는 대신 이니셜이 표시됩니다."
+    },
+    "marked": {
+      "title": "표시한 계정",
+      "desc_other": "목록에서 ✓ 표시한 계정이 {{n}}개 있습니다. 표시한 계정은 기본적으로 목록에서 숨겨집니다.",
+      "clearButton": "표시 지우기",
+      "confirmTitle": "표시 지우기",
+      "confirmMessage": "모든 ✓ 표시를 지울까요?"
+    },
+    "clearAll": {
+      "button": "모든 데이터 삭제",
+      "confirmTitle": "모든 데이터 삭제",
+      "confirmMessage": "저장된 업로드와 표시가 모두 삭제됩니다. 되돌릴 수 없습니다.",
+      "confirmButton": "모두 삭제"
+    },
+    "language": {
+      "title": "언어 / Language",
+      "system": "시스템"
+    }
+  },
+  "ads": {
+    "title": "광고",
+    "desc": "한 번 구매로 이 앱의 배너 광고와 전면 광고를 없앨 수 있습니다.",
+    "loading": "Google Play 상품 불러오는 중…",
+    "retryButton": "다시 시도",
+    "productUnavailable": "현재 Google Play에서 광고 제거 구매를 이용할 수 없습니다.",
+    "storeUnavailable": {
+      "title": "스토어 정보를 불러올 수 없습니다",
+      "desc": "Google Play에 연결할 수 없습니다. 연결 상태를 확인하고 다시 시도하세요."
+    },
+    "purchaseError": {
+      "title": "구매를 완료하지 못했습니다",
+      "desc": "Google Play 연결을 확인하고 다시 시도하세요."
+    },
+    "label": "스폰서",
+    "removeButton": "광고 제거",
+    "removeDesc": "한 번 구매로 배너 광고와 전면 광고가 제거됩니다.",
+    "removed": "이 앱의 모든 광고가 제거되었습니다.",
+    "privacyButton": "광고 개인정보 옵션",
+    "privacyUnavailable": {
+      "title": "지금은 옵션이 없습니다",
+      "desc": "현재 Google에서 변경할 수 있는 광고 개인정보 양식을 제공하지 않습니다."
+    }
+  },
+  "help": {
+    "title": "어떻게 작동하나요?",
+    "subtitle": "두 가지 방법, 같은 결과",
+    "connect": {
+      "title": "⚡ Instagram 연결 (빠름)",
+      "text": "Instagram 공식 로그인 페이지에서 로그인하면 몇 분 안에 목록을 가져옵니다. 결과가 바로 나오고, 이름과 프로필 사진도 함께 가져옵니다.",
+      "warning": "Instagram 이용약관에 어긋나는 방법이라 자주 사용하면 일시적으로 활동이 제한될 수 있습니다."
+    },
+    "archive": {
+      "title": "📂 데이터 파일 (약관 준수)",
+      "text": "Instagram이 직접 제공하는 파일을 읽습니다. 위험이 전혀 없고, 각 계정을 언제부터 팔로우했는지도 알 수 있습니다. 파일이 준비될 때까지 기다려야 합니다.",
+      "openDownloadPage": "다운로드 페이지 열기"
+    },
+    "steps": [
+      {
+        "title": "Instagram에서 계정 센터 열기",
+        "desc": "프로필 → 오른쪽 위 ☰ 메뉴 → \"설정 및 개인정보\" → 맨 위 \"계정 센터\"."
+      },
+      {
+        "title": "\"내 정보 다운로드\"로 이동",
+        "desc": "\"내 정보 및 권한\" → \"내 정보 다운로드\" → \"정보 다운로드\"."
+      },
+      {
+        "title": "팔로워 데이터만 선택",
+        "desc": "계정 선택 → \"일부 정보 선택\" → \"팔로워 및 팔로잉\"만 체크하세요. 전부 선택하면 파일 준비에 며칠이 걸리고 용량이 수백 MB가 됩니다."
+      },
+      {
+        "title": "형식을 JSON으로 설정",
+        "desc": "기간: \"전체 기간\". 형식: \"JSON\". 그다음 \"파일 만들기\". 팔로워 데이터만 선택하면 보통 몇 분 안에 준비됩니다."
+      },
+      {
+        "title": "여기서 zip 파일 업로드",
+        "desc": "다운로드한 .zip 파일을 \"데이터 파일 선택\"으로 여세요. 이미 압축을 풀었다면 followers_1.json과 following.json을 함께 선택해도 됩니다."
+      }
+    ],
+    "faqSectionTitle": "자주 묻는 질문",
+    "faq": [
+      {
+        "q": "처음에는 왜 나를 언팔한 사람이 안 보이나요?",
+        "a": "Instagram은 \"누가 나를 언팔했는지\"를 어떤 방법으로도 알려주지 않습니다. 데이터 파일에도, 앱 화면에도 그런 기록은 없습니다. 알아내는 유일한 방법은 서로 다른 두 시점의 팔로워 목록을 비교하는 것입니다. 첫 번째 가져오기가 기준점이 되고, 두 번째부터 언팔한 사람이 표시됩니다."
+      },
+      {
+        "q": "앱에 비밀번호가 저장되나요?",
+        "a": "아니요. \"Instagram 연결\"을 누르면 열리는 페이지는 Instagram 공식 로그인 페이지입니다. 비밀번호는 Instagram에 직접 입력하며, 앱은 그것을 보지도, 저장하지도, 어디로 보내지도 않습니다. 휴대폰에는 로그인 후 생긴 세션 쿠키만 남습니다."
+      },
+      {
+        "q": "실시간 가져오기가 계정에 위험한가요?",
+        "a": "이 방법은 Instagram 이용약관에 어긋납니다. 요청은 간격을 두고 천천히 보내지만, 너무 자주 반복하면 Instagram이 일시적인 \"활동 제한\"을 걸 수 있습니다(보통 몇 시간 안에 풀림). 하루 한 번 이상은 하지 마세요. 아주 큰 계정이라면 일주일에 한 번이면 충분합니다. 위험을 전혀 원하지 않으면 데이터 파일 방식을 사용하세요."
+      },
+      {
+        "q": "공개 계정인데 왜 로그인해야 하나요?",
+        "a": "로그인하지 않으면 공개 프로필에서도 팔로워 수만 보이고, 목록을 누르면 Instagram이 로그인을 요구합니다. 목록을 돌려주는 주소는 공개 계정이어도 세션 쿠키가 필요합니다. 앱이 아니라 Instagram 자체의 제한입니다."
+      },
+      {
+        "q": "두 방법은 무엇이 다른가요?",
+        "a": "실시간 가져오기는 결과가 바로 나오고 이름과 프로필 사진도 보이지만, 팔로우 시작 날짜가 없고 이용약관에 어긋납니다. 데이터 파일은 느리지만 약관을 완전히 지키며, 언제부터 팔로우했는지도 알 수 있습니다. 사진은 없습니다. 두 방법을 섞어 써도 되며, 기록은 같은 목록에 쌓입니다."
+      },
+      {
+        "q": "프로필 사진은 어디서 오나요?",
+        "a": "실시간 가져오기 중에 Instagram이 사진 주소도 보내주지만, 이 주소는 서명이 붙어 있고 며칠 뒤 만료됩니다. 그래서 사진은 목록에 처음 나타날 때 휴대폰에 다운로드되고, 이후에는 인터넷이 없어도 보이며 예전 기록에서도 사라지지 않습니다. 스크롤한 것만 다운로드됩니다. 설정 탭에서 끄거나 다운로드한 사진을 삭제할 수 있습니다."
+      },
+      {
+        "q": "내 데이터가 어딘가로 전송되나요?",
+        "a": "팔로워 목록과 분석 결과는 개발자 서버로 전송되지 않으며, 앱이 기기 안에서 처리합니다. 광고가 있는 Android 빌드에서는 광고 게재와 측정을 위해 Google Mobile Ads가 IP 주소, 기기 식별자, 광고 상호작용, 진단 정보를 처리할 수 있습니다. Android 백업 설정에 따라 앱 데이터가 Google 계정에 백업될 수 있습니다."
+      },
+      {
+        "q": "앱에서 바로 언팔할 수 있나요?",
+        "a": "아니요, 일부러 넣지 않았습니다. 한꺼번에 언팔하는 것은 계정이 차단되는 가장 빠른 길입니다. 목록에서 계정을 누르면 Instagram에서 그 프로필이 열리니 직접 언팔하면 됩니다. 처리한 계정은 ✓ 표시해서 목록에서 숨길 수 있습니다."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Instagram 연결",
+    "subtitleLogin": "Instagram 공식 로그인 페이지",
+    "subtitleWorking": "목록 가져오는 중",
+    "errors": {
+      "session": {
+        "title": "세션이 종료되었습니다",
+        "message": "Instagram 세션이 끊겼습니다. 다시 로그인해야 합니다."
+      },
+      "challenge": {
+        "title": "Instagram에서 확인을 요청합니다",
+        "message": "Instagram 앱이나 웹사이트를 열어 보안 확인을 완료한 뒤 여기서 다시 로그인하세요. 목록은 자동으로 다시 가져오지 않습니다."
+      },
+      "limit": {
+        "title": "Instagram이 요청을 제한했습니다",
+        "message": "요청이 너무 많아 Instagram이 잠시 멈췄습니다. 15~30분 기다린 뒤 다시 시도하세요. 계정에는 문제가 없으며 제한은 저절로 풀립니다."
+      },
+      "http": {
+        "title": "Instagram의 예상치 못한 응답",
+        "message": "Instagram 화면 구조가 바뀌었을 수 있습니다. 잠시 후 다시 시도하고, 문제가 계속되면 파일 업로드 방식을 사용하세요."
+      },
+      "timeout": {
+        "title": "응답 없음",
+        "message": "Instagram이 오랫동안 응답하지 않습니다. 연결 상태를 확인하고 다시 시도하세요."
+      },
+      "cancel": {
+        "title": "중지됨",
+        "message": "작업을 중지했습니다."
+      },
+      "unknown": {
+        "title": "문제가 발생했습니다",
+        "message": "작업을 완료하지 못했습니다. 다시 시도하거나 파일 업로드 방식을 사용하세요."
+      }
+    },
+    "ready": {
+      "title": "로그인됨 ✓",
+      "text": "팔로워와 팔로잉 목록을 Instagram에서 한 페이지씩 가져옵니다. 차단 위험을 줄이기 위해 요청 사이에 1~2초 간격을 두며, 큰 계정은 몇 분 걸릴 수 있습니다.",
+      "warning": "이 방법은 Instagram 이용약관에 어긋납니다. 너무 자주 반복하면 계정 활동이 일시적으로 제한될 수 있습니다. 하루 한 번 이하를 권장합니다.",
+      "fetchButton": "목록 가져오기"
+    },
+    "working": {
+      "fetchingFollowing": "내가 팔로우하는 계정 가져오는 중",
+      "fetchingFollowers": "내 팔로워 가져오는 중",
+      "backgroundWarning": "앱을 백그라운드로 보내지 마세요. 작업이 중단됩니다.",
+      "stopButton": "중지"
+    },
+    "error": {
+      "partialData": "팔로워 {{f}}명, 팔로잉 {{g}}명까지 가져온 상태였습니다. 불완전한 데이터는 저장되지 않습니다.",
+      "retryButton": "다시 시도",
+      "loginAgainButton": "다시 로그인",
+      "backButton": "돌아가기"
+    },
+    "disclosure": {
+      "accessibilityLabel": "오픈소스 및 개인정보 안내",
+      "openSource": "소스 코드는 공개되어 있습니다. ",
+      "githubLink": "GitHub에서 확인하세요.",
+      "login": "로그인은 Instagram 공식 페이지에서 이루어집니다.",
+      "localData": "실시간 가져오기 중 팔로워와 팔로잉 목록은 이 기기에서 처리·저장되며, 개발자 서버로 전송되지 않고 개발자가 원격으로 볼 수도 없습니다.",
+      "liveFetchRisk": "실시간 가져오기는 Instagram 공식 API를 사용하지 않으며, Instagram 이용약관을 위반할 수 있고 계정이 일시적으로 제한될 위험이 있습니다.",
+      "archive": "대신 Instagram 데이터 파일을 업로드해 로그인 없이 분석할 수도 있습니다."
+    }
+  },
+  "list": {
+    "searchPlaceholder": "사용자 이름 검색…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "최신순",
+      "oldest": "오래된순"
+    },
+    "hideMarked": "표시한 계정 숨기기",
+    "accountCount_other": "계정 {{n}}개",
+    "hiddenSuffix_other": " · {{count}}개 숨김",
+    "usernameCopied": "@{{username}} 복사됨",
+    "usernamesCopied_other": "사용자 이름 {{count}}개 복사됨",
+    "empty": {
+      "noMatch": "일치하는 결과 없음",
+      "noOne": "이 목록에 아무도 없습니다",
+      "tryDifferent": "다른 사용자 이름으로 검색해 보세요."
+    }
+  },
+  "credit": {
+    "label": "제작",
+    "footerNote": "Follower Analyzer v{{version}} · Instagram 및 Meta와 관련이 없습니다. 목록은 기기에 저장되며, 해당 데이터는 Android 백업에 포함될 수 있습니다."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "나를 언팔한 사람",
+      "desc": "이전 업로드에서는 나를 팔로우했지만 지금은 아님"
+    },
+    "notFollowingBack": {
+      "title": "맞팔 안 하는 사람",
+      "desc": "나는 팔로우하지만 상대는 나를 팔로우하지 않음",
+      "tsLabel": "팔로우 시작"
+    },
+    "fans": {
+      "title": "나의 팬",
+      "desc": "상대는 나를 팔로우하지만 나는 팔로우하지 않음",
+      "tsLabel": "나를 팔로우한 날"
+    },
+    "newFollowers": {
+      "title": "새 팔로워",
+      "desc": "지난 업로드 이후 나를 팔로우하기 시작함",
+      "tsLabel": "나를 팔로우한 날"
+    },
+    "mutual": {
+      "title": "맞팔",
+      "desc": "서로 팔로우하는 사이",
+      "tsLabel": "나를 팔로우한 날"
+    },
+    "pendingSent": {
+      "title": "대기 중인 내 요청",
+      "desc": "팔로우 요청을 보냈지만 아직 수락되지 않음"
+    },
+    "requestsReceived": {
+      "title": "나에게 온 요청",
+      "desc": "내가 수락하기를 기다리는 사람"
+    },
+    "stoppedFollowing": {
+      "title": "내가 언팔한 계정",
+      "desc": "지난 업로드 이후 내가 팔로우를 끊은 계정"
+    },
+    "startedFollowing": {
+      "title": "새로 팔로우한 계정",
+      "desc": "지난 업로드 이후 내가 팔로우하기 시작한 계정"
+    },
+    "recentlyUnfollowed": {
+      "title": "최근 내가 언팔한 계정",
+      "desc": "최근 팔로우를 취소했다고 Instagram이 기록한 계정"
+    },
+    "closeFriends": {
+      "title": "친한 친구",
+      "desc": "친한 친구 목록에 있는 계정"
+    },
+    "blocked": {
+      "title": "내가 차단한 계정",
+      "desc": "내가 차단한 계정"
+    },
+    "followers": {
+      "title": "모든 팔로워",
+      "desc": "나를 팔로우하는 모든 사람",
+      "tsLabel": "나를 팔로우한 날"
+    },
+    "following": {
+      "title": "모든 팔로잉",
+      "desc": "내가 팔로우하는 모든 계정",
+      "tsLabel": "팔로우 시작"
+    }
+  },
+  "fmt": {
+    "months": [
+      "1월",
+      "2월",
+      "3월",
+      "4월",
+      "5월",
+      "6월",
+      "7월",
+      "8월",
+      "9월",
+      "10월",
+      "11월",
+      "12월"
+    ],
+    "date": "{{y}}년 {{m}} {{d}}일",
+    "thousandsSep": ",",
+    "justNow": "방금",
+    "minutesAgo_other": "{{count}}분 전",
+    "hoursAgo_other": "{{count}}시간 전",
+    "daysAgo_other": "{{count}}일 전",
+    "monthsAgo_other": "{{count}}개월 전",
+    "yearsAgo_other": "{{count}}년 전"
+  },
+  "settings": {
+    "title": "설정",
+    "subtitle": "언어, 사진, 기기 내 데이터",
+    "privacyTitle": "광고 개인정보",
+    "privacyDesc": "Google이 제공하는 광고 동의 설정을 여기서 관리하세요."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: 광고 제거",
+    "activeLabel": "Premium 사용 중: 구매 정보",
+    "title": "Premium",
+    "headline": "광고 없는 분석",
+    "desc": "한 번 구매로 배너 광고와 전면 광고를 영구적으로 제거하세요.",
+    "note": "모든 분석 기능은 계속 무료입니다. 구독이 아닙니다.",
+    "restore": "구매 복원",
+    "restoreDesc": "이미 광고 제거를 구매했다면 같은 Google Play 계정으로 다시 확인하세요."
+  }
+}

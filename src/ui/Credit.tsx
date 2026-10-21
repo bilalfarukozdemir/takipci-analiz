@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { I18nManager, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { openUrl } from '../lib/ig';
 import { APP_VERSION, C, S, YAPIMCI_AD, YAPIMCI_URL } from '../theme';
@@ -21,7 +21,7 @@ export function Credit() {
           {YAPIMCI_AD}
         </Text>
       </View>
-      <Text style={st.chev}>›</Text>
+      <Text style={st.chev}>{I18nManager.isRTL ? '‹' : '›'}</Text>
     </Pressable>
   );
 }

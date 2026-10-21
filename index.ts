@@ -1,3 +1,5 @@
+// çoğul kuralları her şeyden önce: i18next init'te Intl.PluralRules'u arar
+import './src/i18n/plurals';
 import { registerRootComponent } from 'expo';
 
 import App from './App';

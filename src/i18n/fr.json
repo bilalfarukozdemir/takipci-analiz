@@ -1,0 +1,461 @@
+{
+  "common": {
+    "cancel": "Annuler",
+    "continueBtn": "Continuer",
+    "skip": "Passer",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "clear": "Effacer",
+    "connectInstagram": "Se connecter à Instagram",
+    "pickArchiveFile": "Choisir le fichier de données",
+    "loadingFile": "Lecture du fichier…",
+    "followersLower": "abonnés",
+    "followingLower": "abonnements",
+    "copy": "📋  Copier",
+    "share": "📤  Partager"
+  },
+  "tabs": {
+    "home": "Analyse",
+    "history": "Historique",
+    "help": "Aide",
+    "settings": "Réglages"
+  },
+  "app": {
+    "fileType": {
+      "title": "Quel est ce fichier ?",
+      "message": "Impossible de déterminer le type de « {{name}} ». Que représentent les comptes qu’il contient ?",
+      "followers": "Mes abonnés",
+      "following": "Mes abonnements"
+    },
+    "source": {
+      "live": "Instagram (récupération en direct)",
+      "multipleFiles_one": "{{count}} fichier",
+      "multipleFiles_many": "{{count}} fichiers",
+      "multipleFiles_other": "{{count}} fichiers"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "La liste est vide",
+        "message": "Instagram n’a renvoyé aucun compte. Réessayez un peu plus tard, ou utilisez plutôt la méthode du fichier de données."
+      },
+      "pickFailed": {
+        "title": "Impossible d’ouvrir le fichier",
+        "message": "Un problème est survenu lors du choix du fichier. Voulez-vous réessayer ?"
+      },
+      "tooLarge": {
+        "title": "Fichier très volumineux",
+        "message": "Le fichier choisi semble très volumineux ; vous avez sans doute téléchargé toutes vos données Instagram. L’app risque de se figer.\n\nMieux : téléchargez uniquement les données « Abonnés et abonnements » sur Instagram.",
+        "confirm": "Essayer quand même"
+      },
+      "noFollowerData": {
+        "title": "Aucune donnée d’abonnés trouvée",
+        "message": "Le fichier choisi ne contient pas de liste d’abonnés / d’abonnements.\n\nTéléchargez sur Instagram la section « Abonnés et abonnements » au format JSON et choisissez le fichier .zip obtenu. Les étapes détaillées sont dans l’onglet Aide."
+      },
+      "missingList": {
+        "title": "Liste manquante",
+        "message": "{{missing}} est introuvable dans le fichier. Les comparaisons seront incomplètes.\n\nEnregistrer quand même ?"
+      },
+      "zipNoData": {
+        "title": "Aucune donnée d’abonnés dans le zip",
+        "message": "Le fichier choisi ne contient pas de fichiers d’abonnés / d’abonnements.\n\nCochez bien « Abonnés et abonnements » lors du téléchargement sur Instagram."
+      },
+      "fileUnreadable": {
+        "title": "Impossible de lire le fichier",
+        "message": "Le fichier est peut-être endommagé ou n’a pas le format attendu. Ouvrez le zip et choisissez directement les fichiers followers_1.json et following.json."
+      }
+    },
+    "list": {
+      "followerList": "La liste des abonnés",
+      "followingList": "La liste des abonnements"
+    },
+    "messages": {
+      "liveSaved": "{{f}} abonnés et {{g}} abonnements récupérés",
+      "importSaved": "{{f}} abonnés et {{g}} abonnements chargés",
+      "allDataCleared": "Toutes les données ont été supprimées",
+      "selectedAsNew": "Choisi comme enregistrement récent",
+      "sameRecordError": "Le même enregistrement ne peut pas être à la fois récent et ancien",
+      "oldMustBeEarlier": "L’ancien enregistrement doit être antérieur au récent",
+      "selectedAsOld": "Choisi comme ancien enregistrement",
+      "recordDeleted": "Enregistrement supprimé"
+    }
+  },
+  "home": {
+    "adBadge": "▶ Pub",
+    "title": "Follower Analyzer",
+    "subtitle": "Les listes d’abonnés et les analyses sont stockées sur l’appareil ; les réglages Android peuvent sauvegarder les données éligibles. Dans les versions avec publicité, Google Mobile Ads peut traiter des données publicitaires.",
+    "stats": {
+      "followers": "Abonnés",
+      "following": "Abonnements",
+      "mutual": "Mutuels",
+      "notFollowingBack": "Ne vous suivent pas"
+    },
+    "noData": {
+      "title": "Récupérez votre liste pour commencer",
+      "fastLabel": "Méthode rapide :",
+      "fastText": " connectez-vous à Instagram, les listes sont récupérées directement.",
+      "safeLabel": "Méthode sûre :",
+      "safeText": " téléchargez sur Instagram les données « Abonnés et abonnements » en JSON et choisissez ici le fichier .zip.",
+      "whatsTheDifference": "Quelle différence ?"
+    },
+    "lastAnalysis": "Dernière analyse",
+    "compareWith": "🔁 Comparaison avec l’import du ",
+    "compareWithSuffix": "",
+    "needSecondUploadPre": "⚠️ Pour voir qui s’est désabonné, vous devez importer ",
+    "needSecondUploadBold": "un deuxième jeu de données",
+    "needSecondUploadPost": ". Téléchargez un nouveau fichier sur Instagram dans quelque temps et importez-le à nouveau.",
+    "highlights": "À retenir",
+    "otherLists": "Autres listes"
+  },
+  "history": {
+    "title": "Historique",
+    "recordCount_one": "{{count}} import enregistré",
+    "recordCount_many": "{{count}} imports enregistrés",
+    "recordCount_other": "{{count}} imports enregistrés",
+    "empty": {
+      "title": "Aucun enregistrement",
+      "desc": "Chaque fichier de données Instagram importé est conservé ici, et vous pouvez voir les différences entre eux."
+    },
+    "howItWorks": {
+      "title": "Comment ça marche ?",
+      "pre": "Les désabonnements se trouvent en comparant deux imports. L’enregistrement choisi comme ",
+      "mid": " représente l’état actuel, et celui choisi comme ",
+      "post": " un état antérieur."
+    },
+    "roleNew": "Récent",
+    "roleOld": "Ancien",
+    "deleteRecord": {
+      "title": "Supprimer l’enregistrement",
+      "message": "Supprimer cet import ?"
+    },
+    "vsPrevious": "vs précédent",
+    "photos": {
+      "title": "Photos de profil",
+      "desc": "Les photos des récupérations en direct sont téléchargées sur l’appareil la première fois qu’elles apparaissent dans une liste. Les adresses d’Instagram expirant vite, elles disparaîtraient sinon.",
+      "clearButton": "Supprimer les photos ({{mb}} Mo)",
+      "emptyCache": "Le cache est vide",
+      "confirmTitle": "Supprimer les photos de profil",
+      "confirmMessage": "Toutes les photos de profil téléchargées seront supprimées. Les listes afficheront des initiales à la place."
+    },
+    "marked": {
+      "title": "Vos comptes marqués",
+      "desc_one": "Vous avez {{n}} compte marqué d’un ✓ dans les listes. Les comptes marqués sont masqués des listes par défaut.",
+      "desc_many": "Vous avez {{n}} comptes marqués d’un ✓ dans les listes. Les comptes marqués sont masqués des listes par défaut.",
+      "desc_other": "Vous avez {{n}} comptes marqués d’un ✓ dans les listes. Les comptes marqués sont masqués des listes par défaut.",
+      "clearButton": "Effacer les marques",
+      "confirmTitle": "Effacer les marques",
+      "confirmMessage": "Retirer toutes les marques ✓ ?"
+    },
+    "clearAll": {
+      "button": "Supprimer toutes les données",
+      "confirmTitle": "Supprimer toutes les données",
+      "confirmMessage": "Tous les imports enregistrés et les marques seront supprimés. Action irréversible.",
+      "confirmButton": "Tout supprimer"
+    },
+    "language": {
+      "title": "Langue / Language",
+      "system": "Système"
+    }
+  },
+  "ads": {
+    "title": "Publicité",
+    "desc": "Un achat unique supprime les bannières et les publicités plein écran de cette app.",
+    "loading": "Chargement du produit Google Play…",
+    "retryButton": "Réessayer",
+    "productUnavailable": "L’achat pour supprimer la publicité n’est pas disponible sur Google Play pour le moment.",
+    "storeUnavailable": {
+      "title": "Impossible de charger la boutique",
+      "desc": "Connexion à Google Play impossible. Vérifiez votre connexion et réessayez."
+    },
+    "purchaseError": {
+      "title": "L’achat n’a pas abouti",
+      "desc": "Vérifiez votre connexion à Google Play et réessayez."
+    },
+    "label": "Sponsorisé",
+    "removeButton": "Supprimer la pub",
+    "removeDesc": "Cet achat unique supprime les bannières et les publicités plein écran.",
+    "removed": "Toutes les publicités ont été supprimées de cette app.",
+    "privacyButton": "Options de confidentialité des annonces",
+    "privacyUnavailable": {
+      "title": "Aucune option pour l’instant",
+      "desc": "Google ne propose pas actuellement de formulaire de confidentialité publicitaire modifiable pour vous."
+    }
+  },
+  "help": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Deux méthodes, le même résultat",
+    "connect": {
+      "title": "⚡ Se connecter à Instagram (rapide)",
+      "text": "Vous vous connectez sur la page officielle d’Instagram, et les listes sont récupérées en quelques minutes. Résultat immédiat ; récupère aussi les noms et photos de profil.",
+      "warning": "Cela enfreint les conditions d’utilisation d’Instagram ; un usage fréquent expose à un blocage temporaire des actions."
+    },
+    "archive": {
+      "title": "📂 Fichier de données (conforme)",
+      "text": "Lit le fichier fourni par Instagram lui-même. Aucun risque, et il indique depuis quand vous suivez chaque personne. Il faut attendre que le fichier soit prêt.",
+      "openDownloadPage": "Ouvrir la page de téléchargement"
+    },
+    "steps": [
+      {
+        "title": "Ouvrez l’Espace Comptes sur Instagram",
+        "desc": "Profil → menu ☰ en haut à droite → « Paramètres et confidentialité » → « Espace Comptes » en haut."
+      },
+      {
+        "title": "Allez dans « Télécharger vos informations »",
+        "desc": "« Vos informations et autorisations » → « Télécharger vos informations » → « Télécharger des informations »."
+      },
+      {
+        "title": "Choisissez seulement les données d’abonnés",
+        "desc": "Choisissez votre compte → « Sélectionner certaines de vos informations » → cochez seulement « Abonnés et abonnements ». Tout sélectionner rend le fichier long à préparer (plusieurs jours) et lourd (des centaines de Mo)."
+      },
+      {
+        "title": "Choisissez le format JSON",
+        "desc": "Période : « Depuis le début ». Format : « JSON ». Puis « Créer des fichiers ». Avec seulement les données d’abonnés, c’est en général prêt en quelques minutes."
+      },
+      {
+        "title": "Importez le fichier zip ici",
+        "desc": "Ouvrez le .zip téléchargé avec « Choisir le fichier de données ». Si vous l’avez déjà décompressé, vous pouvez aussi choisir ensemble followers_1.json et following.json."
+      }
+    ],
+    "faqSectionTitle": "Questions fréquentes",
+    "faq": [
+      {
+        "q": "Pourquoi je ne vois pas qui s’est désabonné la première fois ?",
+        "a": "Instagram ne fournit jamais l’information « qui s’est désabonné » — ni dans le fichier de données ni dans l’app. La seule façon de le savoir est de comparer votre liste d’abonnés à deux moments différents. La première récupération sert de point de départ ; les désabonnements apparaissent à partir de la deuxième."
+      },
+      {
+        "q": "Mon mot de passe est-il enregistré dans l’app ?",
+        "a": "Non. La page qui s’ouvre quand vous touchez « Se connecter à Instagram » est la page de connexion officielle d’Instagram. Vous saisissez votre mot de passe directement chez Instagram ; l’app ne le voit pas, ne l’enregistre pas et ne l’envoie nulle part. Seul le cookie de session obtenu reste sur votre téléphone."
+      },
+      {
+        "q": "La récupération en direct met-elle mon compte en danger ?",
+        "a": "Cette méthode enfreint les conditions d’utilisation d’Instagram. Les requêtes sont envoyées lentement et avec des pauses, mais en cas de répétition trop fréquente, Instagram peut imposer un « blocage d’actions » temporaire (levé en général en quelques heures). Ne le faites pas plus d’une fois par jour ; pour les très gros comptes, une fois par semaine suffit. Pour zéro risque, utilisez le fichier de données."
+      },
+      {
+        "q": "Mon compte est public, pourquoi dois-je me connecter ?",
+        "a": "Sans connexion, un profil public n’affiche que le nombre d’abonnés ; toucher la liste demande de se connecter. Les adresses qui renvoient la liste exigent un cookie de session même pour les comptes publics. C’est une restriction d’Instagram, pas de l’app."
+      },
+      {
+        "q": "Quelle différence entre les deux méthodes ?",
+        "a": "La récupération en direct donne un résultat immédiat avec noms et photos de profil, mais sans date d’abonnement, et elle enfreint les conditions d’utilisation. Le fichier de données est lent mais totalement conforme, et indique depuis quand vous suivez chaque personne ; il n’a pas de photos. Vous pouvez combiner les deux ; les enregistrements s’ajoutent à la même liste."
+      },
+      {
+        "q": "D’où viennent les photos de profil ?",
+        "a": "Lors de la récupération en direct, Instagram fournit aussi l’adresse des photos, mais ces adresses sont signées et expirent en quelques jours. C’est pourquoi une photo est téléchargée sur le téléphone la première fois qu’elle apparaît dans une liste ; ensuite elle s’affiche même hors connexion et ne disparaît pas des anciens enregistrements. Seul ce que vous faites défiler est téléchargé. Vous pouvez désactiver cela dans l’onglet Réglages ou supprimer ce qui est déjà téléchargé."
+      },
+      {
+        "q": "Mes données sont-elles envoyées quelque part ?",
+        "a": "Vos listes d’abonnés et les résultats d’analyse ne sont pas envoyés au serveur du développeur ; l’app les traite sur votre appareil. Dans les versions Android avec publicité, Google Mobile Ads peut traiter l’adresse IP, les identifiants de l’appareil, les interactions avec les annonces et des diagnostics pour diffuser et mesurer les annonces. Selon vos réglages de sauvegarde Android, les données de l’app peuvent être sauvegardées sur votre compte Google."
+      },
+      {
+        "q": "Puis-je me désabonner de comptes depuis l’app ?",
+        "a": "Non, c’est volontaire : se désabonner en masse est le moyen le plus rapide de se faire bloquer. Toucher un compte de la liste ouvre son profil sur Instagram, où vous pouvez vous désabonner manuellement. Marquez d’un ✓ ceux que vous avez traités pour les masquer de la liste."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Se connecter à Instagram",
+    "subtitleLogin": "Page de connexion officielle d’Instagram",
+    "subtitleWorking": "Récupération des listes",
+    "errors": {
+      "session": {
+        "title": "Session terminée",
+        "message": "Votre session Instagram a expiré. Vous devez vous reconnecter."
+      },
+      "challenge": {
+        "title": "Instagram demande une vérification",
+        "message": "Ouvrez l’app ou le site Instagram et terminez la vérification de sécurité. Reconnectez-vous ensuite ici. Les listes ne seront pas récupérées à nouveau automatiquement."
+      },
+      "limit": {
+        "title": "Instagram a imposé une limite",
+        "message": "Trop de requêtes ont été envoyées et Instagram les a bloquées temporairement. Attendez 15 à 30 minutes et réessayez. Votre compte n’a aucun problème ; le blocage se lève tout seul."
+      },
+      "http": {
+        "title": "Réponse inattendue d’Instagram",
+        "message": "L’interface d’Instagram a peut-être changé. Réessayez dans un moment ; si le problème persiste, utilisez la méthode d’import de fichier."
+      },
+      "timeout": {
+        "title": "Pas de réponse",
+        "message": "Instagram n’a pas répondu depuis longtemps. Vérifiez votre connexion et réessayez."
+      },
+      "cancel": {
+        "title": "Arrêté",
+        "message": "Vous avez arrêté l’opération."
+      },
+      "unknown": {
+        "title": "Un problème est survenu",
+        "message": "L’opération n’a pas pu aboutir. Réessayez ou utilisez la méthode d’import de fichier."
+      }
+    },
+    "ready": {
+      "title": "Connecté ✓",
+      "text": "Vos listes d’abonnés et d’abonnements seront récupérées sur Instagram page par page. Une pause de 1 à 2 secondes sépare les requêtes pour réduire le risque de blocage ; cela peut prendre quelques minutes pour les gros comptes.",
+      "warning": "Cette méthode enfreint les conditions d’utilisation d’Instagram. La répéter trop souvent peut entraîner un blocage temporaire des actions sur votre compte. Je déconseille de le faire plus d’une fois par jour.",
+      "fetchButton": "Récupérer les listes"
+    },
+    "working": {
+      "fetchingFollowing": "Récupération de vos abonnements",
+      "fetchingFollowers": "Récupération de vos abonnés",
+      "backgroundWarning": "Ne mettez pas l’app en arrière-plan, cela arrêterait l’opération.",
+      "stopButton": "Arrêter"
+    },
+    "error": {
+      "partialData": "{{f}} abonnés et {{g}} abonnements avaient déjà été récupérés. Les données incomplètes ne sont pas enregistrées.",
+      "retryButton": "Réessayer",
+      "loginAgainButton": "Se reconnecter",
+      "backButton": "Retour"
+    },
+    "disclosure": {
+      "accessibilityLabel": "Mention open source et confidentialité",
+      "openSource": "Le code source est ouvert ; ",
+      "githubLink": "consultez-le sur GitHub.",
+      "login": "La connexion se fait sur la page officielle d’Instagram.",
+      "localData": "Pendant la récupération en direct, vos listes d’abonnés et d’abonnements sont traitées et stockées sur cet appareil ; elles ne sont pas envoyées au serveur du développeur et le développeur ne peut pas les consulter à distance.",
+      "liveFetchRisk": "La récupération en direct n’utilise pas l’API officielle d’Instagram ; elle peut enfreindre les Conditions d’utilisation d’Instagram et comporte un risque de restrictions temporaires du compte.",
+      "archive": "Vous pouvez plutôt importer un fichier de données Instagram et l’analyser sans vous connecter."
+    }
+  },
+  "list": {
+    "searchPlaceholder": "Rechercher un nom d’utilisateur…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "Plus récents",
+      "oldest": "Plus anciens"
+    },
+    "hideMarked": "Masquer ceux que j’ai marqués",
+    "accountCount_one": "{{n}} compte",
+    "accountCount_many": "{{n}} comptes",
+    "accountCount_other": "{{n}} comptes",
+    "hiddenSuffix_one": " · {{count}} masqué",
+    "hiddenSuffix_many": " · {{count}} masqués",
+    "hiddenSuffix_other": " · {{count}} masqués",
+    "usernameCopied": "@{{username}} copié",
+    "usernamesCopied_one": "{{count}} nom d’utilisateur copié",
+    "usernamesCopied_many": "{{count}} noms d’utilisateur copiés",
+    "usernamesCopied_other": "{{count}} noms d’utilisateur copiés",
+    "empty": {
+      "noMatch": "Aucun résultat",
+      "noOne": "Personne dans cette liste",
+      "tryDifferent": "Essayez un autre nom d’utilisateur."
+    }
+  },
+  "credit": {
+    "label": "Créé par",
+    "footerNote": "Follower Analyzer v{{version}} · Sans lien avec Instagram ou Meta. Les listes sont stockées sur l’appareil ; les données éligibles peuvent être incluses dans la sauvegarde Android."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Désabonnés",
+      "desc": "Vous suivaient lors de l’import précédent, plus maintenant"
+    },
+    "notFollowingBack": {
+      "title": "Ne vous suivent pas",
+      "desc": "Vous les suivez, eux non",
+      "tsLabel": "Abonné depuis"
+    },
+    "fans": {
+      "title": "Vos fans",
+      "desc": "Ils vous suivent, vous non",
+      "tsLabel": "Date de leur abonnement"
+    },
+    "newFollowers": {
+      "title": "Nouveaux abonnés",
+      "desc": "Abonnés depuis le dernier import",
+      "tsLabel": "Date de leur abonnement"
+    },
+    "mutual": {
+      "title": "Abonnements mutuels",
+      "desc": "Vous vous suivez mutuellement",
+      "tsLabel": "Date de leur abonnement"
+    },
+    "pendingSent": {
+      "title": "Vos demandes en attente",
+      "desc": "Demande d’abonnement envoyée, pas encore acceptée"
+    },
+    "requestsReceived": {
+      "title": "Demandes reçues",
+      "desc": "Personnes qui attendent que vous acceptiez leur demande"
+    },
+    "stoppedFollowing": {
+      "title": "Vous vous êtes désabonné",
+      "desc": "Comptes dont vous vous êtes désabonné depuis le dernier import"
+    },
+    "startedFollowing": {
+      "title": "Nouveaux abonnements",
+      "desc": "Comptes que vous suivez depuis le dernier import"
+    },
+    "recentlyUnfollowed": {
+      "title": "Désabonnements récents",
+      "desc": "Comptes dont Instagram a enregistré votre désabonnement récent"
+    },
+    "closeFriends": {
+      "title": "Amis proches",
+      "desc": "Comptes de votre liste d’amis proches"
+    },
+    "blocked": {
+      "title": "Bloqués par vous",
+      "desc": "Comptes que vous avez bloqués"
+    },
+    "followers": {
+      "title": "Tous vos abonnés",
+      "desc": "Toutes les personnes qui vous suivent",
+      "tsLabel": "Date de leur abonnement"
+    },
+    "following": {
+      "title": "Tous vos abonnements",
+      "desc": "Tous les comptes que vous suivez",
+      "tsLabel": "Abonné depuis"
+    }
+  },
+  "fmt": {
+    "months": [
+      "janv.",
+      "févr.",
+      "mars",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ],
+    "date": "{{d}} {{m}} {{y}}",
+    "thousandsSep": " ",
+    "justNow": "à l’instant",
+    "minutesAgo_one": "il y a {{count}} min",
+    "minutesAgo_many": "il y a {{count}} min",
+    "minutesAgo_other": "il y a {{count}} min",
+    "hoursAgo_one": "il y a {{count}} h",
+    "hoursAgo_many": "il y a {{count}} h",
+    "hoursAgo_other": "il y a {{count}} h",
+    "daysAgo_one": "il y a {{count}} jour",
+    "daysAgo_many": "il y a {{count}} jours",
+    "daysAgo_other": "il y a {{count}} jours",
+    "monthsAgo_one": "il y a {{count}} mois",
+    "monthsAgo_many": "il y a {{count}} mois",
+    "monthsAgo_other": "il y a {{count}} mois",
+    "yearsAgo_one": "il y a {{count}} an",
+    "yearsAgo_many": "il y a {{count}} ans",
+    "yearsAgo_other": "il y a {{count}} ans"
+  },
+  "settings": {
+    "title": "Réglages",
+    "subtitle": "Langue, photos et données sur l’appareil",
+    "privacyTitle": "Confidentialité des annonces",
+    "privacyDesc": "Gérez ici les choix de consentement publicitaire proposés par Google."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium : supprimer la pub",
+    "activeLabel": "Premium actif : détails de l’achat",
+    "title": "Premium",
+    "headline": "Analyse sans publicité",
+    "desc": "Supprimez définitivement les bannières et les publicités plein écran avec un achat unique.",
+    "note": "Toutes les fonctions d’analyse restent gratuites. Sans abonnement.",
+    "restore": "Restaurer l’achat",
+    "restoreDesc": "Si vous avez déjà acheté la suppression de la pub, vérifiez à nouveau avec le même compte Google Play."
+  }
+}

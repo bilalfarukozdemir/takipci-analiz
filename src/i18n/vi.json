@@ -1,0 +1,439 @@
+{
+  "common": {
+    "cancel": "Hủy",
+    "continueBtn": "Tiếp tục",
+    "skip": "Bỏ qua",
+    "delete": "Xóa",
+    "save": "Lưu",
+    "clear": "Xóa sạch",
+    "connectInstagram": "Kết nối Instagram",
+    "pickArchiveFile": "Chọn tệp dữ liệu",
+    "loadingFile": "Đang đọc tệp…",
+    "followersLower": "người theo dõi",
+    "followingLower": "đang theo dõi",
+    "copy": "📋  Sao chép",
+    "share": "📤  Chia sẻ"
+  },
+  "tabs": {
+    "home": "Phân tích",
+    "history": "Lịch sử",
+    "help": "Trợ giúp",
+    "settings": "Cài đặt"
+  },
+  "app": {
+    "fileType": {
+      "title": "Đây là tệp gì?",
+      "message": "Không xác định được loại của \"{{name}}\". Các tài khoản bên trong là gì?",
+      "followers": "Người theo dõi tôi",
+      "following": "Tài khoản tôi theo dõi"
+    },
+    "source": {
+      "live": "Instagram (lấy trực tiếp)",
+      "multipleFiles_other": "{{count}} tệp"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "Danh sách trống",
+        "message": "Instagram không trả về tài khoản nào. Hãy thử lại sau ít phút hoặc dùng cách tệp dữ liệu."
+      },
+      "pickFailed": {
+        "title": "Không mở được tệp",
+        "message": "Đã xảy ra lỗi khi chọn tệp. Bạn muốn thử lại không?"
+      },
+      "tooLarge": {
+        "title": "Tệp rất lớn",
+        "message": "Tệp bạn chọn có vẻ rất lớn; có lẽ bạn đã tải toàn bộ dữ liệu Instagram. Ứng dụng có thể bị treo.\n\nCách tốt hơn: chỉ tải dữ liệu \"Người theo dõi và đang theo dõi\" từ Instagram.",
+        "confirm": "Vẫn thử"
+      },
+      "noFollowerData": {
+        "title": "Không tìm thấy dữ liệu người theo dõi",
+        "message": "Tệp bạn chọn không chứa danh sách người theo dõi / đang theo dõi.\n\nHãy tải mục \"Người theo dõi và đang theo dõi\" từ Instagram ở định dạng JSON rồi chọn tệp .zip nhận được. Hướng dẫn từng bước có trong thẻ Trợ giúp."
+      },
+      "missingList": {
+        "title": "Thiếu danh sách",
+        "message": "Không tìm thấy {{missing}} trong tệp. Việc so sánh sẽ không đầy đủ.\n\nVẫn lưu?"
+      },
+      "zipNoData": {
+        "title": "Tệp zip không có dữ liệu người theo dõi",
+        "message": "Tệp bạn chọn không chứa tệp người theo dõi / đang theo dõi.\n\nHãy đánh dấu \"Người theo dõi và đang theo dõi\" khi tải từ Instagram."
+      },
+      "fileUnreadable": {
+        "title": "Không đọc được tệp",
+        "message": "Tệp có thể bị hỏng hoặc không đúng định dạng. Hãy mở tệp zip và chọn trực tiếp followers_1.json và following.json."
+      }
+    },
+    "list": {
+      "followerList": "danh sách người theo dõi",
+      "followingList": "danh sách đang theo dõi"
+    },
+    "messages": {
+      "liveSaved": "Đã lấy {{f}} người theo dõi, {{g}} đang theo dõi",
+      "importSaved": "Đã tải {{f}} người theo dõi, {{g}} đang theo dõi",
+      "allDataCleared": "Đã xóa toàn bộ dữ liệu",
+      "selectedAsNew": "Đã chọn làm bản ghi mới",
+      "sameRecordError": "Một bản ghi không thể vừa mới vừa cũ",
+      "oldMustBeEarlier": "Bản ghi cũ phải sớm hơn bản ghi mới",
+      "selectedAsOld": "Đã chọn làm bản ghi cũ",
+      "recordDeleted": "Đã xóa bản ghi"
+    }
+  },
+  "home": {
+    "adBadge": "▶ Q.cáo",
+    "title": "Follower Analyzer",
+    "subtitle": "Danh sách người theo dõi và kết quả phân tích được lưu trên thiết bị; cài đặt Android có thể sao lưu dữ liệu đủ điều kiện. Ở bản có quảng cáo, Google Mobile Ads có thể xử lý dữ liệu quảng cáo.",
+    "stats": {
+      "followers": "Người theo dõi",
+      "following": "Đang theo dõi",
+      "mutual": "Theo dõi chéo",
+      "notFollowingBack": "Không theo dõi lại"
+    },
+    "noData": {
+      "title": "Lấy danh sách để bắt đầu",
+      "fastLabel": "Cách nhanh:",
+      "fastText": " kết nối Instagram, danh sách được lấy trực tiếp.",
+      "safeLabel": "Cách an toàn:",
+      "safeText": " tải dữ liệu \"Người theo dõi và đang theo dõi\" từ Instagram dạng JSON rồi chọn tệp .zip tại đây.",
+      "whatsTheDifference": "Khác nhau thế nào?"
+    },
+    "lastAnalysis": "Phân tích gần nhất",
+    "compareWith": "🔁 Đang so sánh với lần tải lên ngày ",
+    "compareWithSuffix": "",
+    "needSecondUploadPre": "⚠️ Để xem ai đã bỏ theo dõi bạn, bạn cần tải lên ",
+    "needSecondUploadBold": "bộ dữ liệu thứ hai",
+    "needSecondUploadPost": ". Sau một thời gian, hãy tải tệp mới từ Instagram rồi tải lên lại.",
+    "highlights": "Nổi bật",
+    "otherLists": "Danh sách khác"
+  },
+  "history": {
+    "title": "Lịch sử",
+    "recordCount_other": "{{count}} lần tải lên đã lưu",
+    "empty": {
+      "title": "Chưa có bản ghi",
+      "desc": "Mỗi tệp dữ liệu Instagram bạn tải lên sẽ được lưu ở đây, và bạn có thể xem sự khác biệt giữa chúng."
+    },
+    "howItWorks": {
+      "title": "Hoạt động thế nào?",
+      "pre": "Người bỏ theo dõi được tìm bằng cách so sánh hai lần tải lên. Bản ghi bạn chọn làm ",
+      "mid": " là trạng thái hiện tại, bản ghi bạn chọn làm ",
+      "post": " là trạng thái trước đó."
+    },
+    "roleNew": "Mới",
+    "roleOld": "Cũ",
+    "deleteRecord": {
+      "title": "Xóa bản ghi",
+      "message": "Xóa bản ghi tải lên này?"
+    },
+    "vsPrevious": "so với trước",
+    "photos": {
+      "title": "Ảnh đại diện",
+      "desc": "Ảnh từ lần lấy trực tiếp được tải về thiết bị khi lần đầu xuất hiện trong danh sách. Vì địa chỉ của Instagram nhanh hết hạn, ảnh sẽ biến mất nếu không được tải về.",
+      "clearButton": "Xóa ảnh ({{mb}} MB)",
+      "emptyCache": "Bộ nhớ đệm trống",
+      "confirmTitle": "Xóa ảnh đại diện",
+      "confirmMessage": "Mọi ảnh đại diện đã tải sẽ bị xóa. Danh sách sẽ hiển thị chữ cái thay thế."
+    },
+    "marked": {
+      "title": "Đã đánh dấu",
+      "desc_other": "Bạn có {{n}} tài khoản được đánh dấu ✓ trong danh sách. Tài khoản đã đánh dấu được ẩn khỏi danh sách theo mặc định.",
+      "clearButton": "Bỏ đánh dấu",
+      "confirmTitle": "Bỏ đánh dấu",
+      "confirmMessage": "Bỏ tất cả dấu ✓?"
+    },
+    "clearAll": {
+      "button": "Xóa toàn bộ dữ liệu",
+      "confirmTitle": "Xóa toàn bộ dữ liệu",
+      "confirmMessage": "Mọi lần tải lên đã lưu và các dấu sẽ bị xóa. Không thể hoàn tác.",
+      "confirmButton": "Xóa tất cả"
+    },
+    "language": {
+      "title": "Ngôn ngữ / Language",
+      "system": "Hệ thống"
+    }
+  },
+  "ads": {
+    "title": "Quảng cáo",
+    "desc": "Mua một lần để gỡ quảng cáo biểu ngữ và toàn màn hình khỏi ứng dụng này.",
+    "loading": "Đang tải sản phẩm Google Play…",
+    "retryButton": "Thử lại",
+    "productUnavailable": "Gói gỡ quảng cáo hiện không có trên Google Play.",
+    "storeUnavailable": {
+      "title": "Không tải được cửa hàng",
+      "desc": "Không kết nối được Google Play. Hãy kiểm tra kết nối và thử lại."
+    },
+    "purchaseError": {
+      "title": "Chưa hoàn tất giao dịch",
+      "desc": "Hãy kiểm tra kết nối Google Play và thử lại."
+    },
+    "label": "Được tài trợ",
+    "removeButton": "Gỡ quảng cáo",
+    "removeDesc": "Mua một lần để gỡ quảng cáo biểu ngữ và toàn màn hình.",
+    "removed": "Đã gỡ toàn bộ quảng cáo khỏi ứng dụng này.",
+    "privacyButton": "Tùy chọn quyền riêng tư quảng cáo",
+    "privacyUnavailable": {
+      "title": "Hiện chưa có tùy chọn",
+      "desc": "Hiện Google không có biểu mẫu quyền riêng tư quảng cáo nào để bạn thay đổi."
+    }
+  },
+  "help": {
+    "title": "Hoạt động thế nào?",
+    "subtitle": "Hai cách, cùng một kết quả",
+    "connect": {
+      "title": "⚡ Kết nối Instagram (nhanh)",
+      "text": "Bạn đăng nhập trên trang đăng nhập chính thức của Instagram, danh sách được lấy trong vài phút. Có kết quả ngay; kèm cả tên và ảnh đại diện.",
+      "warning": "Cách này vi phạm điều khoản sử dụng của Instagram; dùng thường xuyên có thể bị chặn thao tác tạm thời."
+    },
+    "archive": {
+      "title": "📂 Tệp dữ liệu (đúng quy định)",
+      "text": "Đọc tệp do chính Instagram cung cấp. Không có rủi ro, và có thông tin bạn theo dõi từng người từ khi nào. Bạn cần chờ tệp được chuẩn bị.",
+      "openDownloadPage": "Mở trang tải xuống"
+    },
+    "steps": [
+      {
+        "title": "Mở Trung tâm tài khoản trên Instagram",
+        "desc": "Trang cá nhân → menu ☰ ở góc trên bên phải → \"Cài đặt và quyền riêng tư\" → \"Trung tâm tài khoản\" ở trên cùng."
+      },
+      {
+        "title": "Vào mục \"Tải thông tin của bạn xuống\"",
+        "desc": "\"Thông tin và quyền của bạn\" → \"Tải thông tin của bạn xuống\" → \"Tải thông tin xuống\"."
+      },
+      {
+        "title": "Chỉ chọn dữ liệu người theo dõi",
+        "desc": "Chọn tài khoản → \"Chọn một số thông tin của bạn\" → chỉ đánh dấu \"Người theo dõi và đang theo dõi\". Nếu chọn tất cả, tệp sẽ mất nhiều ngày và nặng hàng trăm MB."
+      },
+      {
+        "title": "Chọn định dạng JSON",
+        "desc": "Khoảng thời gian: \"Mọi lúc\". Định dạng: \"JSON\". Sau đó \"Tạo tệp\". Khi chỉ chọn dữ liệu người theo dõi, tệp thường xong trong vài phút."
+      },
+      {
+        "title": "Tải tệp zip lên tại đây",
+        "desc": "Mở tệp .zip đã tải bằng \"Chọn tệp dữ liệu\". Nếu đã giải nén, bạn cũng có thể chọn cùng lúc followers_1.json và following.json."
+      }
+    ],
+    "faqSectionTitle": "Câu hỏi thường gặp",
+    "faq": [
+      {
+        "q": "Sao lần đầu tôi không thấy ai đã bỏ theo dõi?",
+        "a": "Instagram không cung cấp thông tin \"ai đã bỏ theo dõi bạn\" bằng bất kỳ cách nào — không có trong tệp dữ liệu lẫn trong ứng dụng. Cách duy nhất là so sánh danh sách người theo dõi ở hai thời điểm khác nhau. Lần lấy đầu tiên là điểm khởi đầu; từ lần thứ hai bạn sẽ thấy ai đã bỏ theo dõi."
+      },
+      {
+        "q": "Ứng dụng có lưu mật khẩu của tôi không?",
+        "a": "Không. Trang mở ra khi bạn chạm \"Kết nối Instagram\" là trang đăng nhập chính thức của Instagram. Bạn nhập mật khẩu trực tiếp vào Instagram; ứng dụng không bao giờ thấy, lưu hay gửi nó đi đâu. Chỉ cookie phiên đăng nhập nằm lại trên điện thoại."
+      },
+      {
+        "q": "Lấy trực tiếp có gây nguy hiểm cho tài khoản không?",
+        "a": "Cách này vi phạm điều khoản sử dụng của Instagram. Yêu cầu được gửi chậm và có ngắt quãng, nhưng nếu lặp lại quá nhiều, Instagram có thể \"chặn thao tác\" tạm thời (thường hết sau vài giờ). Đừng làm quá một lần mỗi ngày; tài khoản rất lớn thì một lần mỗi tuần là đủ. Muốn không có rủi ro, hãy dùng tệp dữ liệu."
+      },
+      {
+        "q": "Tài khoản tôi công khai, sao vẫn phải đăng nhập?",
+        "a": "Khi chưa đăng nhập, ở trang công khai bạn chỉ thấy số người theo dõi; chạm vào danh sách thì Instagram yêu cầu đăng nhập. Các địa chỉ trả về danh sách cần cookie phiên ngay cả với tài khoản công khai. Đây là giới hạn của Instagram, không phải của ứng dụng."
+      },
+      {
+        "q": "Hai cách khác nhau thế nào?",
+        "a": "Lấy trực tiếp cho kết quả ngay, kèm tên và ảnh đại diện, nhưng không có ngày bắt đầu theo dõi và vi phạm điều khoản sử dụng. Tệp dữ liệu chậm nhưng hoàn toàn đúng quy định, có thông tin bạn theo dõi từng người từ khi nào; không có ảnh. Bạn có thể dùng cả hai; các bản ghi được gộp vào cùng một danh sách."
+      },
+      {
+        "q": "Ảnh đại diện lấy từ đâu?",
+        "a": "Khi lấy trực tiếp, Instagram cũng gửi địa chỉ ảnh, nhưng các địa chỉ này có chữ ký và hết hạn sau vài ngày. Vì vậy ảnh được tải về điện thoại khi lần đầu xuất hiện trong danh sách; sau đó vẫn hiện khi không có mạng và không mất khỏi bản ghi cũ. Chỉ những gì bạn cuộn qua mới được tải. Bạn có thể tắt việc này ở thẻ Cài đặt hoặc xóa những ảnh đã tải."
+      },
+      {
+        "q": "Dữ liệu của tôi có bị gửi đi đâu không?",
+        "a": "Danh sách người theo dõi và kết quả phân tích không được gửi đến máy chủ của nhà phát triển; ứng dụng xử lý trên thiết bị của bạn. Ở bản Android có quảng cáo, Google Mobile Ads có thể xử lý địa chỉ IP, mã nhận dạng thiết bị, tương tác quảng cáo và dữ liệu chẩn đoán để hiển thị và đo lường quảng cáo. Tùy cài đặt sao lưu Android, dữ liệu ứng dụng có thể được sao lưu vào tài khoản Google của bạn."
+      },
+      {
+        "q": "Tôi có thể bỏ theo dõi ngay trong ứng dụng không?",
+        "a": "Không, tính năng này cố ý bị bỏ đi — bỏ theo dõi hàng loạt là cách nhanh nhất để bị khóa tài khoản. Chạm vào một tài khoản trong danh sách sẽ mở trang của họ trên Instagram, nơi bạn có thể bỏ theo dõi thủ công. Đánh dấu ✓ những tài khoản đã xử lý để ẩn khỏi danh sách."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Kết nối Instagram",
+    "subtitleLogin": "Trang đăng nhập chính thức của Instagram",
+    "subtitleWorking": "Đang lấy danh sách",
+    "errors": {
+      "session": {
+        "title": "Phiên đã kết thúc",
+        "message": "Phiên Instagram của bạn đã bị ngắt. Bạn cần đăng nhập lại."
+      },
+      "challenge": {
+        "title": "Instagram yêu cầu xác minh",
+        "message": "Hãy mở ứng dụng hoặc trang web Instagram và hoàn tất bước kiểm tra bảo mật. Sau đó đăng nhập lại tại đây. Danh sách sẽ không tự động được lấy lại."
+      },
+      "limit": {
+        "title": "Instagram đã giới hạn",
+        "message": "Đã gửi quá nhiều yêu cầu và Instagram tạm dừng chúng. Hãy chờ 15–30 phút rồi thử lại. Tài khoản của bạn không sao; giới hạn sẽ tự hết."
+      },
+      "http": {
+        "title": "Instagram phản hồi bất thường",
+        "message": "Có thể giao diện của Instagram đã thay đổi. Hãy thử lại sau ít phút; nếu vẫn lỗi, hãy dùng cách tải tệp lên."
+      },
+      "timeout": {
+        "title": "Không có phản hồi",
+        "message": "Instagram không phản hồi trong thời gian dài. Hãy kiểm tra kết nối và thử lại."
+      },
+      "cancel": {
+        "title": "Đã dừng",
+        "message": "Bạn đã dừng quá trình."
+      },
+      "unknown": {
+        "title": "Đã xảy ra lỗi",
+        "message": "Không thể hoàn tất. Hãy thử lại hoặc dùng cách tải tệp lên."
+      }
+    },
+    "ready": {
+      "title": "Đã đăng nhập ✓",
+      "text": "Danh sách người theo dõi và đang theo dõi sẽ được lấy từ Instagram theo từng trang. Có khoảng nghỉ 1–2 giây giữa các yêu cầu để giảm nguy cơ bị chặn; tài khoản lớn có thể mất vài phút.",
+      "warning": "Cách này vi phạm điều khoản sử dụng của Instagram. Lặp lại quá nhiều có thể khiến tài khoản bị chặn thao tác tạm thời. Tôi khuyên không nên làm quá một lần mỗi ngày.",
+      "fetchButton": "Lấy danh sách"
+    },
+    "working": {
+      "fetchingFollowing": "Đang lấy các tài khoản bạn theo dõi",
+      "fetchingFollowers": "Đang lấy người theo dõi bạn",
+      "backgroundWarning": "Đừng chuyển ứng dụng xuống nền, quá trình sẽ dừng.",
+      "stopButton": "Dừng"
+    },
+    "error": {
+      "partialData": "Đã lấy được {{f}} người theo dõi và {{g}} đang theo dõi. Dữ liệu chưa đầy đủ sẽ không được lưu.",
+      "retryButton": "Thử lại",
+      "loginAgainButton": "Đăng nhập lại",
+      "backButton": "Quay lại"
+    },
+    "disclosure": {
+      "accessibilityLabel": "Thông tin mã nguồn mở và quyền riêng tư",
+      "openSource": "Mã nguồn được công khai; ",
+      "githubLink": "xem trên GitHub.",
+      "login": "Việc đăng nhập diễn ra trên trang chính thức của Instagram.",
+      "localData": "Khi lấy trực tiếp, danh sách người theo dõi và đang theo dõi được xử lý và lưu trên thiết bị này; không gửi đến máy chủ của nhà phát triển và nhà phát triển không thể xem từ xa.",
+      "liveFetchRisk": "Việc lấy trực tiếp không dùng API chính thức của Instagram; có thể vi phạm Điều khoản sử dụng của Instagram và có nguy cơ bị hạn chế tài khoản tạm thời.",
+      "archive": "Thay vào đó, bạn có thể tải lên tệp dữ liệu Instagram và phân tích mà không cần đăng nhập."
+    }
+  },
+  "list": {
+    "searchPlaceholder": "Tìm tên người dùng…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "Mới nhất",
+      "oldest": "Cũ nhất"
+    },
+    "hideMarked": "Ẩn những tài khoản tôi đã đánh dấu",
+    "accountCount_other": "{{n}} tài khoản",
+    "hiddenSuffix_other": " · {{count}} đã ẩn",
+    "usernameCopied": "Đã sao chép @{{username}}",
+    "usernamesCopied_other": "Đã sao chép {{count}} tên người dùng",
+    "empty": {
+      "noMatch": "Không có kết quả",
+      "noOne": "Danh sách này trống",
+      "tryDifferent": "Hãy thử tên người dùng khác."
+    }
+  },
+  "credit": {
+    "label": "Phát triển bởi",
+    "footerNote": "Follower Analyzer v{{version}} · Không liên kết với Instagram hay Meta. Danh sách được lưu trên thiết bị; dữ liệu đủ điều kiện có thể nằm trong bản sao lưu Android."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Đã bỏ theo dõi bạn",
+      "desc": "Từng theo dõi bạn ở lần tải trước, giờ thì không"
+    },
+    "notFollowingBack": {
+      "title": "Không theo dõi lại",
+      "desc": "Bạn theo dõi họ, họ không theo dõi bạn",
+      "tsLabel": "Bắt đầu theo dõi"
+    },
+    "fans": {
+      "title": "Người hâm mộ",
+      "desc": "Họ theo dõi bạn, bạn không theo dõi họ",
+      "tsLabel": "Ngày họ theo dõi bạn"
+    },
+    "newFollowers": {
+      "title": "Người theo dõi mới",
+      "desc": "Bắt đầu theo dõi bạn từ lần tải gần nhất",
+      "tsLabel": "Ngày họ theo dõi bạn"
+    },
+    "mutual": {
+      "title": "Theo dõi chéo",
+      "desc": "Hai bên cùng theo dõi nhau",
+      "tsLabel": "Ngày họ theo dõi bạn"
+    },
+    "pendingSent": {
+      "title": "Yêu cầu bạn đang chờ",
+      "desc": "Bạn đã gửi yêu cầu theo dõi, chưa được chấp nhận"
+    },
+    "requestsReceived": {
+      "title": "Yêu cầu gửi bạn",
+      "desc": "Những người đang chờ bạn chấp nhận yêu cầu"
+    },
+    "stoppedFollowing": {
+      "title": "Bạn đã bỏ theo dõi",
+      "desc": "Tài khoản bạn bỏ theo dõi từ lần tải gần nhất"
+    },
+    "startedFollowing": {
+      "title": "Bạn bắt đầu theo dõi",
+      "desc": "Tài khoản bạn bắt đầu theo dõi từ lần tải gần nhất"
+    },
+    "recentlyUnfollowed": {
+      "title": "Bạn vừa bỏ theo dõi",
+      "desc": "Tài khoản mà Instagram ghi nhận bạn vừa bỏ theo dõi"
+    },
+    "closeFriends": {
+      "title": "Bạn thân",
+      "desc": "Tài khoản trong danh sách bạn thân"
+    },
+    "blocked": {
+      "title": "Bạn đã chặn",
+      "desc": "Tài khoản bạn đã chặn"
+    },
+    "followers": {
+      "title": "Tất cả người theo dõi",
+      "desc": "Mọi người đang theo dõi bạn",
+      "tsLabel": "Ngày họ theo dõi bạn"
+    },
+    "following": {
+      "title": "Tất cả bạn đang theo dõi",
+      "desc": "Mọi tài khoản bạn đang theo dõi",
+      "tsLabel": "Bắt đầu theo dõi"
+    }
+  },
+  "fmt": {
+    "months": [
+      "thg 1",
+      "thg 2",
+      "thg 3",
+      "thg 4",
+      "thg 5",
+      "thg 6",
+      "thg 7",
+      "thg 8",
+      "thg 9",
+      "thg 10",
+      "thg 11",
+      "thg 12"
+    ],
+    "date": "{{d}} {{m}}, {{y}}",
+    "thousandsSep": ".",
+    "justNow": "vừa xong",
+    "minutesAgo_other": "{{count}} phút trước",
+    "hoursAgo_other": "{{count}} giờ trước",
+    "daysAgo_other": "{{count}} ngày trước",
+    "monthsAgo_other": "{{count}} tháng trước",
+    "yearsAgo_other": "{{count}} năm trước"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Ngôn ngữ, ảnh và dữ liệu trên thiết bị",
+    "privacyTitle": "Quyền riêng tư quảng cáo",
+    "privacyDesc": "Quản lý các lựa chọn đồng ý quảng cáo do Google cung cấp tại đây."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: gỡ quảng cáo",
+    "activeLabel": "Premium đang hoạt động: chi tiết giao dịch",
+    "title": "Premium",
+    "headline": "Phân tích không quảng cáo",
+    "desc": "Gỡ vĩnh viễn quảng cáo biểu ngữ và toàn màn hình chỉ với một lần mua.",
+    "note": "Mọi tính năng phân tích vẫn miễn phí. Không cần đăng ký gói.",
+    "restore": "Khôi phục giao dịch",
+    "restoreDesc": "Nếu bạn đã mua gói gỡ quảng cáo, hãy kiểm tra lại bằng cùng tài khoản Google Play."
+  }
+}

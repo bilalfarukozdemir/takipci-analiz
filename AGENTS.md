@@ -26,11 +26,17 @@ Bunlar bilinçli tercihler, "eksik" değil:
   kullanır. Play Billing uygulamada yalnızca reklam kaldırma satın alımı içindir.
 - **Uygulama içinde şifre isteyen giriş formu yok.** Giriş her zaman WebView
   içinde Instagram'ın kendi sayfasında yapılır; kod şifreyi hiç görmez.
-- **Yedek dil İngilizce; uygulama Türkçe ve İngilizce'yi destekler (i18n).**
-  Telefonun dili Türkçe değilse hem arayüz hem ana ekrandaki uygulama adı
-  İngilizcedir ("Follower Analyzer"); Türkçe telefonda "Takipçi Analiz". Yeni
-  kullanıcı metinleri `src/i18n/tr.json` ve `en.json`'a eklenir, koda hardcoded
-  yazılmaz.
+- **Yedek dil İngilizce; uygulama 14 dili destekler (i18n).** Dil listesinin tek
+  kaynağı `src/i18n/languages.ts`; telefonun tercih ettiği diller arasında
+  desteklenen ilki seçilir, yoksa İngilizce. Yeni kullanıcı metinleri her dilin
+  `src/i18n/<kod>.json` dosyasına eklenir, koda hardcoded yazılmaz.
+  `tests/i18n.test.js` anahtar, `{{değişken}}`, dizi uzunluğu ve CLDR çoğul
+  biçimlerinin (`_one`, `_few`…) tüm dillerde eşit olduğunu denetler. Sayı geçen
+  metinde `count` sayı olmalı; biçimli gösterim için ayrıca `n` verilir.
+  Arapça/Farsça sağdan soladır: yön `I18nManager` ile yazılır, değişirse
+  uygulama `reloadAppAsync` ile yeniden yüklenir. Yeni dil eklemek:
+  `languages.ts` + `<kod>.json` + `src/i18n/index.ts` + `src/i18n/plurals.ts`
+  + `app.json` supportedLocales + `withLocalizedAppName.js` + `store/listings/`.
 
 ## Yapı
 
@@ -49,7 +55,7 @@ config plugin yaz. Mevcut olanlar:
 
 | Plugin | İş |
 | --- | --- |
-| `withLocalizedAppName.js` | Ana ekrandaki uygulama adı: `values/strings.xml` İngilizce (yedek), `values-tr/strings.xml` Türkçe (Gradle proje adı ASCII kalsın diye `app.json`'dan ayrı) |
+| `withLocalizedAppName.js` | Ana ekrandaki uygulama adı: `values/strings.xml` İngilizce (yedek), diğer 13 dil `values-<kod>/strings.xml` (Gradle proje adı ASCII kalsın diye `app.json`'dan ayrı) |
 | `withInstagramQuery.js` | `instagram://` için `<queries>` paket görünürlüğü |
 | `withBuildTuning.js` | `reactNativeArchitectures` sadece ARM; release'de R8 + kaynak küçültme açık (Play bellek/DEX uyarısı) |
 | `withReleaseSigning.js` | `credentials/` klasöründen release imzalama |
@@ -62,6 +68,12 @@ adımı native modülleri derleyemez ve **derlemenin sonunda** patlar
 `npm run apk`, `scripts/build-apk.ps1` üzerinden kaynağı kısa bir yola aynalayıp
 orada derler. `cd android && gradlew assembleRelease` demeden önce bunu hatırla.
 
+Linux Mint'te de aynı sebeple boşluksuz kısa bir aynada derlenir (`~/rnb/...`,
+`JAVA_HOME` JDK 21). Gradle 9.3.1 ile `@react-native/gradle-plugin`'in
+sabitlediği `foojay-resolver-convention` 0.5.0 açılışta "JvmVendorSpec
+IBM_SEMERU" hatası verir; aynadaki `node_modules/@react-native/gradle-plugin/
+settings.gradle.kts` içinde sürüm 1.0.0 yapılınca derlenir.
+
 ## Doğrulama
 
 ```bash
@@ -69,6 +81,8 @@ npm run typecheck
 npm test
 ```
 
+`tests/i18n.test.js` dil dosyalarını, `tests/store.test.js` `store/listings/`
+altındaki Play mağaza metinlerinin karakter sınırlarını denetler.
 `tests/parse.test.js` bağımlılıksız düz Node'dur; `pretest` betiği `src/lib/*.ts`
 dosyalarını `.testbuild/` altına derler. Çözümleyiciye dokunduysan mutlaka çalıştır —
 gerçek arşiv biçimleriyle 33 kontrol var.

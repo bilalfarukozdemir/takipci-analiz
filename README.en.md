@@ -35,12 +35,13 @@ No app server or account. Follower lists and analyses are processed on-device; e
 </tr>
 </table>
 
-<sub>Screenshots show the Turkish interface; the app is also available in English.</sub>
+<sub>Screenshots show the Turkish interface; the app is available in 14 languages.</sub>
 
 </div>
 
-> The app's interface is in **English and Turkish** — it follows the phone's language
-> and falls back to English. This document is for developers who want to read or
+> The app's interface is available in **14 languages** (English, Turkish, Spanish,
+> Portuguese, French, German, Italian, Indonesian, Vietnamese, Hindi, Arabic, Persian,
+> Japanese, Korean) — it follows the phone's language and falls back to English. This document is for developers who want to read or
 > contribute to the code.
 
 ---

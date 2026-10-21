@@ -1,4 +1,5 @@
 import i18n from '../i18n';
+import { miladidenSemsiye } from './jalali';
 
 const pad = (n: number) => (n < 10 ? `0${n}` : String(n));
 
@@ -12,16 +13,26 @@ export function tarih(unixSeconds?: number): string {
   if (!unixSeconds) return '';
   const d = new Date(unixSeconds * 1000);
   if (Number.isNaN(d.getTime())) return '';
-  return `${d.getDate()} ${aylar()[d.getMonth()]} ${d.getFullYear()}`;
+  return gunAyYil(d);
+}
+
+/**
+ * Dile göre gün/ay/yıl sırası (ör. ja: "2024年8月12日"); şablon `fmt.date`.
+ * Farsçada takvim Hicri Şemsi'dir; fa.json'daki ay adları da Şemsi aylardır.
+ */
+function gunAyYil(d: Date): string {
+  if (i18n.language === 'fa') {
+    const [y, m, g] = miladidenSemsiye(d.getFullYear(), d.getMonth() + 1, d.getDate());
+    return i18n.t('fmt.date', { d: g, m: aylar()[m - 1], y });
+  }
+  return i18n.t('fmt.date', { d: d.getDate(), m: aylar()[d.getMonth()], y: d.getFullYear() });
 }
 
 /** ms -> "12 Ağu 2024 · 14:05" */
 export function tarihSaat(unixMs: number): string {
   const d = new Date(unixMs);
   if (Number.isNaN(d.getTime())) return '';
-  return `${d.getDate()} ${aylar()[d.getMonth()]} ${d.getFullYear()} · ${pad(d.getHours())}:${pad(
-    d.getMinutes()
-  )}`;
+  return `${gunAyYil(d)} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
 /** "3 gün önce" */
@@ -39,7 +50,7 @@ export function goreceli(unixMs: number): string {
   return i18n.t('fmt.yearsAgo', { count: Math.floor(ay / 12) });
 }
 
-/** 12345 -> "12.345" */
+/** 12345 -> "12.345" (tr) / "12,345" (en); ayırıcı `fmt.thousandsSep`. */
 export function sayi(n: number): string {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, i18n.t('fmt.thousandsSep'));
 }

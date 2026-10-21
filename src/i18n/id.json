@@ -1,0 +1,439 @@
+{
+  "common": {
+    "cancel": "Batal",
+    "continueBtn": "Lanjut",
+    "skip": "Lewati",
+    "delete": "Hapus",
+    "save": "Simpan",
+    "clear": "Bersihkan",
+    "connectInstagram": "Hubungkan ke Instagram",
+    "pickArchiveFile": "Pilih file arsip data",
+    "loadingFile": "Membaca file…",
+    "followersLower": "pengikut",
+    "followingLower": "mengikuti",
+    "copy": "📋  Salin",
+    "share": "📤  Bagikan"
+  },
+  "tabs": {
+    "home": "Analisis",
+    "history": "Riwayat",
+    "help": "Bantuan",
+    "settings": "Pengaturan"
+  },
+  "app": {
+    "fileType": {
+      "title": "File apa ini?",
+      "message": "Jenis file \"{{name}}\" tidak dapat dikenali. Akun di dalamnya mewakili apa?",
+      "followers": "Pengikut saya",
+      "following": "Akun yang saya ikuti"
+    },
+    "source": {
+      "live": "Instagram (ambil langsung)",
+      "multipleFiles_other": "{{count}} file"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "Daftar kosong",
+        "message": "Instagram tidak mengembalikan akun apa pun. Coba lagi sebentar lagi, atau gunakan metode arsip data."
+      },
+      "pickFailed": {
+        "title": "File tidak bisa dibuka",
+        "message": "Terjadi kesalahan saat memilih file. Mau coba lagi?"
+      },
+      "tooLarge": {
+        "title": "File sangat besar",
+        "message": "Arsip yang kamu pilih tampak sangat besar; kemungkinan kamu mengunduh semua data Instagram. Aplikasi bisa macet.\n\nPilihan lebih baik: unduh hanya data \"Pengikut dan mengikuti\" dari Instagram.",
+        "confirm": "Tetap coba"
+      },
+      "noFollowerData": {
+        "title": "Data pengikut tidak ditemukan",
+        "message": "File yang kamu pilih tidak berisi daftar pengikut / mengikuti.\n\nPastikan kamu mengunduh bagian \"Pengikut dan mengikuti\" dari Instagram dalam format JSON lalu pilih file .zip yang dihasilkan. Langkah-langkahnya ada di tab Bantuan."
+      },
+      "missingList": {
+        "title": "Daftar tidak lengkap",
+        "message": "{{missing}} tidak ditemukan di dalam file. Perbandingan akan tidak lengkap.\n\nTetap simpan?"
+      },
+      "zipNoData": {
+        "title": "Tidak ada data pengikut di zip",
+        "message": "Arsip yang kamu pilih tidak berisi file pengikut / mengikuti.\n\nPastikan kamu mencentang \"Pengikut dan mengikuti\" saat mengunduh dari Instagram."
+      },
+      "fileUnreadable": {
+        "title": "File tidak bisa dibaca",
+        "message": "File mungkin rusak atau formatnya tidak sesuai. Buka zip lalu pilih langsung file followers_1.json dan following.json."
+      }
+    },
+    "list": {
+      "followerList": "Daftar pengikut",
+      "followingList": "Daftar mengikuti"
+    },
+    "messages": {
+      "liveSaved": "{{f}} pengikut dan {{g}} mengikuti berhasil diambil",
+      "importSaved": "{{f}} pengikut dan {{g}} mengikuti berhasil dimuat",
+      "allDataCleared": "Semua data dihapus",
+      "selectedAsNew": "Dipilih sebagai catatan baru",
+      "sameRecordError": "Catatan yang sama tidak bisa sekaligus baru dan lama",
+      "oldMustBeEarlier": "Catatan lama harus lebih awal dari catatan baru",
+      "selectedAsOld": "Dipilih sebagai catatan lama",
+      "recordDeleted": "Catatan dihapus"
+    }
+  },
+  "home": {
+    "adBadge": "▶ Iklan",
+    "title": "Follower Analyzer",
+    "subtitle": "Daftar pengikut dan hasil analisis disimpan di perangkat; pengaturan Android dapat mencadangkan data yang memenuhi syarat. Di versi beriklan, Google Mobile Ads dapat memproses data iklan.",
+    "stats": {
+      "followers": "Pengikut",
+      "following": "Mengikuti",
+      "mutual": "Saling ikut",
+      "notFollowingBack": "Tidak follow balik"
+    },
+    "noData": {
+      "title": "Ambil daftarmu untuk mulai",
+      "fastLabel": "Cara cepat:",
+      "fastText": " hubungkan ke Instagram, daftar langsung diambil.",
+      "safeLabel": "Cara aman:",
+      "safeText": " unduh data \"Pengikut dan mengikuti\" dari Instagram dalam format JSON lalu pilih file .zip di sini.",
+      "whatsTheDifference": "Apa bedanya?"
+    },
+    "lastAnalysis": "Analisis terakhir",
+    "compareWith": "🔁 Dibandingkan dengan unggahan tanggal ",
+    "compareWithSuffix": "",
+    "needSecondUploadPre": "⚠️ Untuk melihat siapa yang berhenti mengikutimu, kamu perlu mengunggah ",
+    "needSecondUploadBold": "data kedua",
+    "needSecondUploadPost": ". Setelah beberapa waktu, unduh arsip baru dari Instagram lalu unggah lagi.",
+    "highlights": "Sorotan",
+    "otherLists": "Daftar lainnya"
+  },
+  "history": {
+    "title": "Riwayat",
+    "recordCount_other": "{{count}} unggahan tersimpan",
+    "empty": {
+      "title": "Belum ada catatan",
+      "desc": "Setiap arsip data Instagram yang kamu unggah disimpan di sini, dan kamu bisa melihat perbedaannya."
+    },
+    "howItWorks": {
+      "title": "Bagaimana cara kerjanya?",
+      "pre": "Siapa yang berhenti mengikutimu ditemukan dengan membandingkan dua unggahan. Catatan yang kamu pilih sebagai ",
+      "mid": " mewakili keadaan sekarang, dan yang kamu pilih sebagai ",
+      "post": " mewakili keadaan sebelumnya."
+    },
+    "roleNew": "Baru",
+    "roleOld": "Lama",
+    "deleteRecord": {
+      "title": "Hapus catatan",
+      "message": "Hapus catatan unggahan ini?"
+    },
+    "vsPrevious": "vs. sebelumnya",
+    "photos": {
+      "title": "Foto profil",
+      "desc": "Foto dari pengambilan langsung diunduh ke perangkat saat pertama kali muncul di daftar. Karena alamat Instagram cepat kedaluwarsa, foto akan hilang nanti jika tidak diunduh.",
+      "clearButton": "Hapus foto ({{mb}} MB)",
+      "emptyCache": "Cache kosong",
+      "confirmTitle": "Hapus foto profil",
+      "confirmMessage": "Semua foto profil yang diunduh akan dihapus. Daftar akan menampilkan ikon huruf sebagai gantinya."
+    },
+    "marked": {
+      "title": "Yang kamu tandai",
+      "desc_other": "Ada {{n}} akun yang kamu tandai dengan ✓ di daftar. Akun yang ditandai disembunyikan dari daftar secara default.",
+      "clearButton": "Hapus tanda",
+      "confirmTitle": "Hapus tanda",
+      "confirmMessage": "Hapus semua tanda ✓?"
+    },
+    "clearAll": {
+      "button": "Hapus semua data",
+      "confirmTitle": "Hapus semua data",
+      "confirmMessage": "Semua unggahan tersimpan dan tanda akan dihapus. Ini tidak bisa dibatalkan.",
+      "confirmButton": "Hapus semuanya"
+    },
+    "language": {
+      "title": "Bahasa / Language",
+      "system": "Sistem"
+    }
+  },
+  "ads": {
+    "title": "Iklan",
+    "desc": "Pembelian sekali bayar menghapus iklan banner dan layar penuh dari aplikasi ini.",
+    "loading": "Memuat produk Google Play…",
+    "retryButton": "Coba lagi",
+    "productUnavailable": "Pembelian penghapus iklan saat ini tidak tersedia di Google Play.",
+    "storeUnavailable": {
+      "title": "Info toko tidak bisa dimuat",
+      "desc": "Tidak bisa terhubung ke Google Play. Periksa koneksimu dan coba lagi."
+    },
+    "purchaseError": {
+      "title": "Pembelian tidak selesai",
+      "desc": "Periksa koneksi Google Play-mu dan coba lagi."
+    },
+    "label": "Bersponsor",
+    "removeButton": "Hapus iklan",
+    "removeDesc": "Pembelian sekali bayar ini menghapus iklan banner dan layar penuh.",
+    "removed": "Semua iklan telah dihapus dari aplikasi ini.",
+    "privacyButton": "Opsi privasi iklan",
+    "privacyUnavailable": {
+      "title": "Belum ada opsi",
+      "desc": "Saat ini Google tidak memiliki formulir privasi iklan yang bisa kamu ubah."
+    }
+  },
+  "help": {
+    "title": "Bagaimana cara kerjanya?",
+    "subtitle": "Dua metode, hasil yang sama",
+    "connect": {
+      "title": "⚡ Hubungkan ke Instagram (cepat)",
+      "text": "Kamu masuk di halaman login resmi Instagram, dan daftar diambil dalam beberapa menit. Hasil instan; juga menampilkan nama dan foto profil.",
+      "warning": "Ini melanggar ketentuan penggunaan Instagram; sering menggunakannya berisiko terkena pemblokiran tindakan sementara."
+    },
+    "archive": {
+      "title": "📂 Arsip data (sesuai aturan)",
+      "text": "Membaca arsip yang disediakan Instagram sendiri. Tanpa risiko, dan mencakup sejak kapan kamu mengikuti seseorang. Kamu perlu menunggu file siap.",
+      "openDownloadPage": "Buka halaman unduhan"
+    },
+    "steps": [
+      {
+        "title": "Buka Pusat Akun di Instagram",
+        "desc": "Profil → menu ☰ di kanan atas → \"Pengaturan dan privasi\" → \"Pusat Akun\" di bagian atas."
+      },
+      {
+        "title": "Masuk ke \"Unduh informasi Anda\"",
+        "desc": "\"Informasi dan izin Anda\" → \"Unduh informasi Anda\" → \"Unduh informasi\"."
+      },
+      {
+        "title": "Pilih hanya data pengikut",
+        "desc": "Pilih akunmu → \"Pilih beberapa informasi Anda\" → centang hanya \"Pengikut dan mengikuti\". Jika memilih semuanya, arsip butuh berhari-hari dan ratusan MB."
+      },
+      {
+        "title": "Atur format ke JSON",
+        "desc": "Rentang tanggal: \"Sepanjang waktu\". Format: \"JSON\". Lalu \"Buat file\". Jika hanya data pengikut yang dipilih, biasanya siap dalam beberapa menit."
+      },
+      {
+        "title": "Unggah file zip di sini",
+        "desc": "Buka file .zip yang diunduh dengan \"Pilih file arsip data\". Jika zip sudah diekstrak, kamu juga bisa memilih file followers_1.json dan following.json sekaligus."
+      }
+    ],
+    "faqSectionTitle": "Pertanyaan umum",
+    "faq": [
+      {
+        "q": "Kenapa pertama kali saya tidak bisa melihat siapa yang berhenti mengikuti?",
+        "a": "Instagram tidak pernah memberikan info \"siapa yang berhenti mengikutimu\" lewat cara apa pun — catatan itu tidak ada di arsip maupun di aplikasi. Satu-satunya cara mengetahuinya adalah membandingkan daftar pengikutmu di dua waktu berbeda. Pengambilan pertama jadi titik awal; mulai yang kedua, yang berhenti mengikuti akan terlihat."
+      },
+      {
+        "q": "Apakah kata sandi saya disimpan di aplikasi?",
+        "a": "Tidak. Halaman yang terbuka saat kamu mengetuk \"Hubungkan ke Instagram\" adalah halaman login resmi Instagram. Kamu memasukkan kata sandi langsung ke Instagram; aplikasi tidak pernah melihat, menyimpan, atau mengirimkannya ke mana pun. Hanya cookie sesi yang tersimpan di ponselmu."
+      },
+      {
+        "q": "Apakah pengambilan langsung membahayakan akun saya?",
+        "a": "Metode ini melanggar ketentuan penggunaan Instagram. Permintaan dikirim perlahan dengan jeda, tetapi jika terlalu sering diulang, Instagram bisa memberlakukan \"pemblokiran tindakan\" sementara (biasanya hilang dalam beberapa jam). Jangan lebih dari sekali sehari; untuk akun yang sangat besar, seminggu sekali sudah cukup. Untuk risiko nol, gunakan metode arsip data."
+      },
+      {
+        "q": "Akun saya publik, kenapa tetap harus login?",
+        "a": "Tanpa login, di profil publik kamu hanya bisa melihat jumlah pengikut; saat mengetuk daftar, Instagram meminta login. Alamat yang mengembalikan daftar membutuhkan cookie sesi bahkan untuk akun publik. Ini batasan dari Instagram, bukan dari aplikasi."
+      },
+      {
+        "q": "Apa beda kedua metode?",
+        "a": "Pengambilan langsung memberi hasil instan beserta nama dan foto profil, tetapi tanpa tanggal mulai mengikuti dan melanggar ketentuan penggunaan. Arsip data lambat tetapi sepenuhnya sesuai aturan, dan mencakup sejak kapan kamu mengikuti seseorang; tidak ada foto. Kamu bisa memakai keduanya; catatan terkumpul di daftar yang sama."
+      },
+      {
+        "q": "Dari mana foto profil berasal?",
+        "a": "Saat pengambilan langsung, Instagram juga memberikan alamat foto, tetapi alamat itu bertanda tangan dan kedaluwarsa dalam beberapa hari. Karena itu foto diunduh ke ponsel saat pertama kali muncul di daftar; setelah itu tetap tampil tanpa internet dan tidak hilang dari catatan lama. Hanya yang kamu gulir yang diunduh. Kamu bisa mematikannya di tab Pengaturan atau menghapus yang sudah diunduh."
+      },
+      {
+        "q": "Apakah data saya dikirim ke suatu tempat?",
+        "a": "Daftar pengikut dan hasil analisismu tidak dikirim ke server pengembang; aplikasi memprosesnya di perangkatmu. Di versi Android beriklan, Google Mobile Ads dapat memproses alamat IP, pengenal perangkat, interaksi iklan, dan data diagnostik untuk menayangkan dan mengukur iklan. Tergantung pengaturan cadangan Android-mu, data aplikasi dapat dicadangkan ke akun Google-mu."
+      },
+      {
+        "q": "Bisakah saya berhenti mengikuti akun dari aplikasi?",
+        "a": "Tidak, ini sengaja tidak disediakan — berhenti mengikuti secara massal adalah cara tercepat akun diblokir. Mengetuk akun di daftar membuka profilnya di Instagram, tempat kamu bisa berhenti mengikuti secara manual. Tandai yang sudah kamu urus dengan ✓ untuk menyembunyikannya dari daftar."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Hubungkan ke Instagram",
+    "subtitleLogin": "Halaman login resmi Instagram",
+    "subtitleWorking": "Mengambil daftar",
+    "errors": {
+      "session": {
+        "title": "Sesi berakhir",
+        "message": "Sesi Instagram-mu terputus. Kamu perlu login lagi."
+      },
+      "challenge": {
+        "title": "Instagram meminta verifikasi",
+        "message": "Buka aplikasi atau situs Instagram dan selesaikan pemeriksaan keamanan. Lalu login lagi di sini. Daftar tidak akan diambil ulang secara otomatis."
+      },
+      "limit": {
+        "title": "Instagram menerapkan batas",
+        "message": "Terlalu banyak permintaan dikirim dan Instagram menghentikannya sementara. Tunggu 15–30 menit lalu coba lagi. Akunmu baik-baik saja; blokir akan hilang dengan sendirinya."
+      },
+      "http": {
+        "title": "Instagram memberi respons tak terduga",
+        "message": "Tampilan Instagram mungkin berubah. Coba lagi sebentar lagi; jika masalah berlanjut, gunakan metode unggah file."
+      },
+      "timeout": {
+        "title": "Tidak ada respons",
+        "message": "Instagram lama tidak merespons. Periksa koneksimu dan coba lagi."
+      },
+      "cancel": {
+        "title": "Dihentikan",
+        "message": "Kamu menghentikan proses."
+      },
+      "unknown": {
+        "title": "Terjadi kesalahan",
+        "message": "Proses tidak dapat diselesaikan. Coba lagi atau gunakan metode unggah file."
+      }
+    },
+    "ready": {
+      "title": "Sudah login ✓",
+      "text": "Daftar pengikut dan mengikuti akan diambil dari Instagram halaman demi halaman. Ada jeda 1–2 detik antar permintaan untuk mengurangi risiko pemblokiran; untuk akun besar bisa memakan beberapa menit.",
+      "warning": "Metode ini melanggar ketentuan penggunaan Instagram. Terlalu sering mengulanginya dapat menyebabkan pemblokiran tindakan sementara pada akunmu. Saya tidak menyarankan lebih dari sekali sehari.",
+      "fetchButton": "Ambil daftar"
+    },
+    "working": {
+      "fetchingFollowing": "Mengambil akun yang kamu ikuti",
+      "fetchingFollowers": "Mengambil pengikutmu",
+      "backgroundWarning": "Jangan pindahkan aplikasi ke latar belakang, proses akan berhenti.",
+      "stopButton": "Berhenti"
+    },
+    "error": {
+      "partialData": "{{f}} pengikut dan {{g}} mengikuti sudah diambil. Data yang tidak lengkap tidak disimpan.",
+      "retryButton": "Coba lagi",
+      "loginAgainButton": "Login lagi",
+      "backButton": "Kembali"
+    },
+    "disclosure": {
+      "accessibilityLabel": "Keterangan sumber terbuka dan privasi",
+      "openSource": "Kode sumbernya terbuka; ",
+      "githubLink": "lihat di GitHub.",
+      "login": "Login dilakukan di halaman resmi Instagram.",
+      "localData": "Selama pengambilan langsung, daftar pengikut dan mengikuti diproses dan disimpan di perangkat ini; tidak dikirim ke server pengembang dan pengembang tidak dapat melihatnya dari jauh.",
+      "liveFetchRisk": "Pengambilan langsung tidak memakai API resmi Instagram; dapat melanggar Ketentuan Penggunaan Instagram dan berisiko pembatasan akun sementara.",
+      "archive": "Sebagai gantinya, kamu bisa mengunggah arsip data Instagram dan menganalisisnya tanpa login."
+    }
+  },
+  "list": {
+    "searchPlaceholder": "Cari nama pengguna…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "Terbaru",
+      "oldest": "Terlama"
+    },
+    "hideMarked": "Sembunyikan yang sudah saya tandai",
+    "accountCount_other": "{{n}} akun",
+    "hiddenSuffix_other": " · {{count}} disembunyikan",
+    "usernameCopied": "@{{username}} disalin",
+    "usernamesCopied_other": "{{count}} nama pengguna disalin",
+    "empty": {
+      "noMatch": "Tidak ada yang cocok",
+      "noOne": "Tidak ada siapa pun di daftar ini",
+      "tryDifferent": "Coba nama pengguna lain."
+    }
+  },
+  "credit": {
+    "label": "Dibuat oleh",
+    "footerNote": "Follower Analyzer v{{version}} · Tidak berafiliasi dengan Instagram atau Meta. Daftar disimpan di perangkat; data yang memenuhi syarat dapat masuk ke cadangan Android."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Berhenti mengikutimu",
+      "desc": "Mengikutimu di unggahan sebelumnya, sekarang tidak lagi"
+    },
+    "notFollowingBack": {
+      "title": "Tidak follow balik",
+      "desc": "Kamu mengikuti mereka, mereka tidak mengikutimu",
+      "tsLabel": "Mulai mengikuti"
+    },
+    "fans": {
+      "title": "Penggemarmu",
+      "desc": "Mereka mengikutimu, kamu tidak mengikuti mereka",
+      "tsLabel": "Tanggal mereka mengikutimu"
+    },
+    "newFollowers": {
+      "title": "Pengikut baru",
+      "desc": "Mulai mengikutimu sejak unggahan terakhir",
+      "tsLabel": "Tanggal mereka mengikutimu"
+    },
+    "mutual": {
+      "title": "Saling mengikuti",
+      "desc": "Kalian saling mengikuti",
+      "tsLabel": "Tanggal mereka mengikutimu"
+    },
+    "pendingSent": {
+      "title": "Permintaanmu yang tertunda",
+      "desc": "Kamu mengirim permintaan mengikuti, belum diterima"
+    },
+    "requestsReceived": {
+      "title": "Permintaan untukmu",
+      "desc": "Orang yang menunggu kamu menerima permintaan mereka"
+    },
+    "stoppedFollowing": {
+      "title": "Kamu berhenti mengikuti",
+      "desc": "Akun yang berhenti kamu ikuti sejak unggahan terakhir"
+    },
+    "startedFollowing": {
+      "title": "Kamu mulai mengikuti",
+      "desc": "Akun yang mulai kamu ikuti sejak unggahan terakhir"
+    },
+    "recentlyUnfollowed": {
+      "title": "Baru kamu berhenti ikuti",
+      "desc": "Akun yang menurut catatan Instagram baru saja berhenti kamu ikuti"
+    },
+    "closeFriends": {
+      "title": "Teman dekat",
+      "desc": "Akun di daftar teman dekatmu"
+    },
+    "blocked": {
+      "title": "Kamu blokir",
+      "desc": "Akun yang kamu blokir"
+    },
+    "followers": {
+      "title": "Semua pengikutmu",
+      "desc": "Semua orang yang mengikutimu",
+      "tsLabel": "Tanggal mereka mengikutimu"
+    },
+    "following": {
+      "title": "Semua yang kamu ikuti",
+      "desc": "Semua akun yang kamu ikuti",
+      "tsLabel": "Mulai mengikuti"
+    }
+  },
+  "fmt": {
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Des"
+    ],
+    "date": "{{d}} {{m}} {{y}}",
+    "thousandsSep": ".",
+    "justNow": "baru saja",
+    "minutesAgo_other": "{{count}} mnt lalu",
+    "hoursAgo_other": "{{count}} jam lalu",
+    "daysAgo_other": "{{count}} hari lalu",
+    "monthsAgo_other": "{{count}} bln lalu",
+    "yearsAgo_other": "{{count}} thn lalu"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Bahasa, foto, dan data di perangkat",
+    "privacyTitle": "Privasi iklan",
+    "privacyDesc": "Kelola pilihan persetujuan iklan dari Google di sini."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: hapus iklan",
+    "activeLabel": "Premium aktif: detail pembelian",
+    "title": "Premium",
+    "headline": "Analisis tanpa iklan",
+    "desc": "Hapus iklan banner dan layar penuh selamanya dengan sekali bayar.",
+    "note": "Semua fitur analisis tetap gratis. Tanpa langganan.",
+    "restore": "Pulihkan pembelian",
+    "restoreDesc": "Jika kamu sudah membeli penghapus iklan, periksa lagi dengan akun Google Play yang sama."
+  }
+}

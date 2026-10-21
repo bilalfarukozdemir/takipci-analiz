@@ -29,7 +29,8 @@
     },
     "source": {
       "live": "Instagram (live fetch)",
-      "multipleFiles": "{{count}} files"
+      "multipleFiles_one": "{{count}} file",
+      "multipleFiles_other": "{{count}} files"
     },
     "alerts": {
       "emptyLive": {
@@ -106,7 +107,8 @@
   },
   "history": {
     "title": "History",
-    "recordCount": "{{count}} saved uploads",
+    "recordCount_one": "{{count}} saved upload",
+    "recordCount_other": "{{count}} saved uploads",
     "empty": {
       "title": "No records yet",
       "desc": "As you upload Instagram data archives, each upload is stored here and you can see the difference between them."
@@ -134,7 +136,8 @@
     },
     "marked": {
       "title": "What you've marked",
-      "desc": "You have {{count}} accounts marked with ✓ in the lists. Marked accounts are hidden from lists by default.",
+      "desc_one": "You have {{n}} account marked with ✓ in the lists. Marked accounts are hidden from lists by default.",
+      "desc_other": "You have {{n}} accounts marked with ✓ in the lists. Marked accounts are hidden from lists by default.",
       "clearButton": "Clear marks",
       "confirmTitle": "Clear marks",
       "confirmMessage": "Remove all ✓ marks?"
@@ -147,9 +150,7 @@
     },
     "language": {
       "title": "Dil / Language",
-      "system": "System",
-      "turkish": "Türkçe",
-      "english": "English"
+      "system": "System"
     }
   },
   "ads": {
@@ -318,10 +319,13 @@
       "oldest": "Oldest"
     },
     "hideMarked": "Hide the ones I've marked",
-    "accountCount": "{{count}} accounts",
-    "hiddenSuffix": " · {{count}} hidden",
+    "accountCount_one": "{{n}} account",
+    "accountCount_other": "{{n}} accounts",
+    "hiddenSuffix_one": " · {{count}} hidden",
+    "hiddenSuffix_other": " · {{count}} hidden",
     "usernameCopied": "@{{username}} copied",
-    "usernamesCopied": "{{count}} usernames copied",
+    "usernamesCopied_one": "{{count}} username copied",
+    "usernamesCopied_other": "{{count}} usernames copied",
     "empty": {
       "noMatch": "No matches",
       "noOne": "No one is in this list",
@@ -411,12 +415,19 @@
       "Nov",
       "Dec"
     ],
+    "date": "{{d}} {{m}} {{y}}",
+    "thousandsSep": ",",
     "justNow": "just now",
-    "minutesAgo": "{{count}}m ago",
-    "hoursAgo": "{{count}}h ago",
-    "daysAgo": "{{count}}d ago",
-    "monthsAgo": "{{count}}mo ago",
-    "yearsAgo": "{{count}}y ago"
+    "minutesAgo_one": "{{count}}m ago",
+    "minutesAgo_other": "{{count}}m ago",
+    "hoursAgo_one": "{{count}}h ago",
+    "hoursAgo_other": "{{count}}h ago",
+    "daysAgo_one": "{{count}}d ago",
+    "daysAgo_other": "{{count}}d ago",
+    "monthsAgo_one": "{{count}}mo ago",
+    "monthsAgo_other": "{{count}}mo ago",
+    "yearsAgo_one": "{{count}}y ago",
+    "yearsAgo_other": "{{count}}y ago"
   },
   "settings": {
     "title": "Settings",

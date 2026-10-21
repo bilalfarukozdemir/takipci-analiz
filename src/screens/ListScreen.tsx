@@ -104,7 +104,7 @@ export function ListScreen({
     <View style={{ flex: 1 }}>
       <Header
         title={t(cat.titleKey)}
-        subtitle={`${t('list.accountCount', { count: sayi(data.length) })}${
+        subtitle={`${t('list.accountCount', { count: data.length, n: sayi(data.length) })}${
           markedCount && hideMarked ? t('list.hiddenSuffix', { count: markedCount }) : ''
         }`}
         onBack={onBack}

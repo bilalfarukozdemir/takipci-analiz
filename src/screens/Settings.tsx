@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, ScrollView, StyleSheet, Switch, Text, View, Pressable } from 'react-native';
-import { changeLanguagePreference, getLanguagePreference, type LanguagePreference } from '../i18n';
+import { Alert, I18nManager, Modal, ScrollView, StyleSheet, Switch, Text, View, Pressable } from 'react-native';
+import {
+  changeLanguagePreference,
+  getLanguagePreference,
+  type LanguagePreference,
+  resolveLanguage,
+} from '../i18n';
+import { LANGUAGES } from '../i18n/languages';
 import { avatarCacheSize, clearAvatarCache } from '../lib/avatars';
 import { reklamGizliligiSecenekleriniAc } from '../lib/ads';
 import { sayi } from '../lib/fmt';
@@ -12,33 +18,6 @@ import { PremiumButton } from '../ui/PremiumButton';
 type Props = { markedCount: number; onClearMarks: () => void; onClearAll: () => void;
   avatarsOn: boolean; onToggleAvatars: (value: boolean) => void;
   onPremium: () => void; premiumActive: boolean; };
-
-function RoleBtn({
-  label,
-  active,
-  color,
-  onPress,
-}: {
-  label: string;
-  active: boolean;
-  color: string;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        st.roleBtn,
-        {
-          backgroundColor: active ? color : 'transparent',
-          borderColor: active ? color : C.border,
-          opacity: pressed ? 0.7 : 1,
-        },
-      ]}>
-      <Text style={[st.roleTxt, { color: active ? '#0A0A0F' : C.sub }]}>{label}</Text>
-    </Pressable>
-  );
-}
 
 export function SettingsScreen({ markedCount, onClearMarks, onClearAll, avatarsOn,
   onToggleAvatars, onPremium, premiumActive }: Props) {
@@ -106,7 +85,7 @@ export function SettingsScreen({ markedCount, onClearMarks, onClearAll, avatarsO
 
         <Card>
           <Text style={st.infoTitle}>{t('history.marked.title')}</Text>
-          <Text style={st.infoTxt}>{t('history.marked.desc', { count: sayi(markedCount) })}</Text>
+          <Text style={st.infoTxt}>{t('history.marked.desc', { count: markedCount, n: sayi(markedCount) })}</Text>
           <View style={{ height: 12 }} />
           <Btn
             label={t('history.marked.clearButton')}
@@ -143,10 +122,14 @@ export function SettingsScreen({ markedCount, onClearMarks, onClearAll, avatarsO
   );
 }
 
-/** Dil / Language: Sistem, Türkçe, English arasında seçim. Seçim src/lib/storage.ts'e kalıcı yazılır. */
+/**
+ * Dil / Language: seçili dili gösteren satır; dokununca tüm diller kendi
+ * adlarıyla listelenir. Seçim src/lib/storage.ts'e kalıcı yazılır.
+ */
 function LanguageCard() {
   const { t } = useTranslation();
   const [pref, setPref] = useState<LanguagePreference>('system');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -158,30 +141,65 @@ function LanguageCard() {
     };
   }, []);
 
-  const secenekler: { key: LanguagePreference; label: string }[] = [
-    { key: 'system', label: t('history.language.system') },
-    { key: 'tr', label: t('history.language.turkish') },
-    { key: 'en', label: t('history.language.english') },
-  ];
+  const adi = (p: LanguagePreference) => {
+    if (p !== 'system') return LANGUAGES.find((l) => l.code === p)?.native ?? p;
+    const sistemDili = LANGUAGES.find((l) => l.code === resolveLanguage('system'))?.native;
+    return `${t('history.language.system')} · ${sistemDili}`;
+  };
+
+  const sec = (p: LanguagePreference) => {
+    setOpen(false);
+    setPref(p);
+    changeLanguagePreference(p).catch(() => undefined);
+  };
+
+  const secenekler: LanguagePreference[] = ['system', ...LANGUAGES.map((l) => l.code)];
 
   return (
     <Card>
       <Text style={st.infoTitle}>{t('history.language.title')}</Text>
-      <View style={{ height: 10 }} />
-      <Row style={{ gap: 8 }}>
-        {secenekler.map((s) => (
-          <RoleBtn
-            key={s.key}
-            label={s.label}
-            color={C.pink}
-            active={pref === s.key}
-            onPress={() => {
-              setPref(s.key);
-              changeLanguagePreference(s.key).catch(() => undefined);
-            }}
-          />
-        ))}
-      </Row>
+      <Pressable
+        onPress={() => setOpen(true)}
+        accessibilityRole="button"
+        style={({ pressed }) => [st.langRow, { opacity: pressed ? 0.7 : 1 }]}>
+        <Text style={st.langCurrent} numberOfLines={1}>
+          {adi(pref)}
+        </Text>
+        <Text style={st.chev}>{I18nManager.isRTL ? '‹' : '›'}</Text>
+      </Pressable>
+
+      <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
+        <Pressable style={st.backdrop} onPress={() => setOpen(false)}>
+          <Pressable style={st.sheet} onPress={() => undefined}>
+            <Text style={[st.infoTitle, { paddingHorizontal: 18, paddingTop: 16 }]}>
+              {t('history.language.title')}
+            </Text>
+            <ScrollView contentContainerStyle={{ paddingBottom: 10 }}>
+              {secenekler.map((p) => {
+                const aktif = p === pref;
+                return (
+                  <Pressable
+                    key={p}
+                    onPress={() => sec(p)}
+                    accessibilityRole="radio"
+                    accessibilityState={{ selected: aktif }}
+                    style={({ pressed }) => [
+                      st.langOption,
+                      { backgroundColor: pressed ? C.cardAlt : 'transparent' },
+                    ]}>
+                    <Text
+                      style={[st.langOptionTxt, { color: aktif ? C.pink : C.text }]}
+                      numberOfLines={1}>
+                      {adi(p)}
+                    </Text>
+                    {aktif ? <Text style={st.check}>✓</Text> : null}
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          </Pressable>
+        </Pressable>
+      </Modal>
     </Card>
   );
 }
@@ -189,6 +207,39 @@ function LanguageCard() {
 const st = StyleSheet.create({
   infoTitle: { color: C.text, fontSize: 15, fontWeight: '800', marginBottom: 6 },
   infoTxt: { color: C.sub, fontSize: 12.5, lineHeight: 19 },
-  roleBtn: { paddingHorizontal: 16, paddingVertical: 7, borderRadius: 999, borderWidth: 1 },
-  roleTxt: { fontSize: 12.5, fontWeight: '800' },
+  langRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
+    borderRadius: S.radiusSm,
+    borderWidth: 1,
+    borderColor: C.border,
+  },
+  langCurrent: { flex: 1, color: C.text, fontSize: 14, fontWeight: '700' },
+  chev: { color: C.dim, fontSize: 22, lineHeight: 22 },
+  backdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    justifyContent: 'center',
+    padding: 24,
+  },
+  sheet: {
+    maxHeight: '80%',
+    backgroundColor: C.card,
+    borderRadius: S.radius,
+    borderWidth: 1,
+    borderColor: C.border,
+    overflow: 'hidden',
+  },
+  langOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 13,
+  },
+  langOptionTxt: { flex: 1, fontSize: 15, fontWeight: '600' },
+  check: { color: C.pink, fontSize: 16, fontWeight: '800' },
 });

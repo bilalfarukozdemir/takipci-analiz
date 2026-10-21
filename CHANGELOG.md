@@ -6,6 +6,31 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.9] – 2026-10-22
+
+### Eklendi
+- 12 yeni dil: İspanyolca, Portekizce (Brezilya), Fransızca, Almanca, İtalyanca,
+  Endonezce, Vietnamca, Hintçe, Arapça, Farsça, Japonca ve Korece. Telefonun
+  tercih ettiği diller arasında desteklenen ilki seçiliyor; hiçbiri yoksa
+  İngilizce. Ana ekrandaki uygulama adı da dile göre değişiyor.
+- Arapça ve Farsça için sağdan sola düzen. Dil değiştirince yön de
+  değişiyorsa uygulama kendini yeniden yüklüyor.
+- Android 13 ve sonrası: uygulamanın dili telefonun Ayarlar → Uygulama dili
+  menüsünden de seçilebiliyor.
+- Başarılı bir analizden sonra Google Play'in kendi puan penceresi isteniyor
+  (en fazla 30 günde bir; pencerenin çıkıp çıkmayacağına Play karar veriyor).
+
+### Değişti
+- Ayarlar'daki dil seçici artık tüm dilleri kendi adlarıyla listeleyen bir
+  pencere açıyor.
+- Tarih biçimi ve binlik ayırıcı dile göre ("12,345" / "12.345";
+  Japonca/Korecede yıl-ay-gün). Farsçada tarihler Hicri Şemsi takvimle
+  gösteriliyor.
+
+### Düzeltildi
+- Sayı geçen metinlerde tekil/çoğul ayrımı ("1 accounts" yerine "1 account");
+  çoğul kuralları her cihazda aynı olsun diye CLDR verisi uygulamayla geliyor.
+
 ## [1.3.8] – 2026-10-18
 
 ### Değişti

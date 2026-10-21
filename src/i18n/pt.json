@@ -1,0 +1,461 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "continueBtn": "Continuar",
+    "skip": "Pular",
+    "delete": "Excluir",
+    "save": "Salvar",
+    "clear": "Limpar",
+    "connectInstagram": "Conectar ao Instagram",
+    "pickArchiveFile": "Escolher arquivo de dados",
+    "loadingFile": "Lendo arquivo…",
+    "followersLower": "seguidores",
+    "followingLower": "seguindo",
+    "copy": "📋  Copiar",
+    "share": "📤  Compartilhar"
+  },
+  "tabs": {
+    "home": "Análise",
+    "history": "Histórico",
+    "help": "Ajuda",
+    "settings": "Ajustes"
+  },
+  "app": {
+    "fileType": {
+      "title": "Que arquivo é este?",
+      "message": "Não foi possível identificar o tipo de \"{{name}}\". O que as contas dentro dele representam?",
+      "followers": "Meus seguidores",
+      "following": "Contas que eu sigo"
+    },
+    "source": {
+      "live": "Instagram (busca ao vivo)",
+      "multipleFiles_one": "{{count}} arquivo",
+      "multipleFiles_many": "{{count}} arquivos",
+      "multipleFiles_other": "{{count}} arquivos"
+    },
+    "alerts": {
+      "emptyLive": {
+        "title": "A lista veio vazia",
+        "message": "O Instagram não retornou nenhuma conta. Tente de novo daqui a pouco ou use o método do arquivo de dados."
+      },
+      "pickFailed": {
+        "title": "Não foi possível abrir o arquivo",
+        "message": "Algo deu errado ao escolher o arquivo. Quer tentar de novo?"
+      },
+      "tooLarge": {
+        "title": "O arquivo é muito grande",
+        "message": "O arquivo escolhido parece muito grande; você provavelmente baixou todos os seus dados do Instagram. O app pode travar.\n\nOpção melhor: baixe do Instagram só os dados de \"Seguidores e seguindo\".",
+        "confirm": "Tentar mesmo assim"
+      },
+      "noFollowerData": {
+        "title": "Nenhum dado de seguidores encontrado",
+        "message": "O arquivo escolhido não contém uma lista de seguidores / seguindo.\n\nBaixe do Instagram a seção \"Seguidores e seguindo\" no formato JSON e escolha o arquivo .zip gerado. O passo a passo está na aba Ajuda."
+      },
+      "missingList": {
+        "title": "Lista ausente",
+        "message": "Não encontramos {{missing}} no arquivo. As comparações ficarão incompletas.\n\nSalvar mesmo assim?"
+      },
+      "zipNoData": {
+        "title": "O zip não tem dados de seguidores",
+        "message": "O arquivo escolhido não contém arquivos de seguidores / seguindo.\n\nMarque a opção \"Seguidores e seguindo\" ao baixar do Instagram."
+      },
+      "fileUnreadable": {
+        "title": "Não foi possível ler o arquivo",
+        "message": "O arquivo pode estar corrompido ou fora do formato esperado. Abra o zip e escolha diretamente os arquivos followers_1.json e following.json."
+      }
+    },
+    "list": {
+      "followerList": "a lista de seguidores",
+      "followingList": "a lista de quem você segue"
+    },
+    "messages": {
+      "liveSaved": "{{f}} seguidores e {{g}} seguindo obtidos",
+      "importSaved": "{{f}} seguidores e {{g}} seguindo carregados",
+      "allDataCleared": "Todos os dados foram apagados",
+      "selectedAsNew": "Escolhido como registro novo",
+      "sameRecordError": "O mesmo registro não pode ser novo e antigo ao mesmo tempo",
+      "oldMustBeEarlier": "O registro antigo precisa ser anterior ao novo",
+      "selectedAsOld": "Escolhido como registro antigo",
+      "recordDeleted": "Registro excluído"
+    }
+  },
+  "home": {
+    "adBadge": "▶ Anúncio",
+    "title": "Follower Analyzer",
+    "subtitle": "As listas de seguidores e as análises ficam salvas no aparelho; as configurações do Android podem fazer backup de dados elegíveis. Nas versões com anúncios, o Google Mobile Ads pode processar dados de anúncios.",
+    "stats": {
+      "followers": "Seguidores",
+      "following": "Seguindo",
+      "mutual": "Mútuos",
+      "notFollowingBack": "Não te seguem"
+    },
+    "noData": {
+      "title": "Pegue sua lista para começar",
+      "fastLabel": "Jeito rápido:",
+      "fastText": " conecte ao Instagram e as listas são obtidas direto.",
+      "safeLabel": "Jeito seguro:",
+      "safeText": " baixe do Instagram os dados de \"Seguidores e seguindo\" em JSON e escolha o arquivo .zip aqui.",
+      "whatsTheDifference": "Qual é a diferença?"
+    },
+    "lastAnalysis": "Última análise",
+    "compareWith": "🔁 Comparando com o envio de ",
+    "compareWithSuffix": "",
+    "needSecondUploadPre": "⚠️ Para ver quem deixou de te seguir, você precisa enviar ",
+    "needSecondUploadBold": "um segundo conjunto de dados",
+    "needSecondUploadPost": ". Baixe um novo arquivo do Instagram daqui a um tempo e envie de novo.",
+    "highlights": "Destaques",
+    "otherLists": "Outras listas"
+  },
+  "history": {
+    "title": "Histórico",
+    "recordCount_one": "{{count}} envio salvo",
+    "recordCount_many": "{{count}} envios salvos",
+    "recordCount_other": "{{count}} envios salvos",
+    "empty": {
+      "title": "Nenhum registro ainda",
+      "desc": "Cada arquivo de dados do Instagram que você enviar fica salvo aqui, e você pode ver a diferença entre eles."
+    },
+    "howItWorks": {
+      "title": "Como funciona?",
+      "pre": "Quem deixou de te seguir é descoberto comparando dois envios. O registro escolhido como ",
+      "mid": " representa o estado atual, e o escolhido como ",
+      "post": " representa um estado anterior."
+    },
+    "roleNew": "Novo",
+    "roleOld": "Antigo",
+    "deleteRecord": {
+      "title": "Excluir registro",
+      "message": "Excluir este registro de envio?"
+    },
+    "vsPrevious": "vs. anterior",
+    "photos": {
+      "title": "Fotos de perfil",
+      "desc": "As fotos das buscas ao vivo são baixadas para o aparelho na primeira vez que aparecem numa lista. Como os endereços do Instagram expiram rápido, elas sumiriam depois se não fossem baixadas.",
+      "clearButton": "Excluir fotos ({{mb}} MB)",
+      "emptyCache": "O cache está vazio",
+      "confirmTitle": "Excluir fotos de perfil",
+      "confirmMessage": "Todas as fotos de perfil baixadas serão excluídas. As listas vão mostrar iniciais no lugar."
+    },
+    "marked": {
+      "title": "O que você marcou",
+      "desc_one": "Você tem {{n}} conta marcada com ✓ nas listas. Contas marcadas ficam ocultas nas listas por padrão.",
+      "desc_many": "Você tem {{n}} contas marcadas com ✓ nas listas. Contas marcadas ficam ocultas nas listas por padrão.",
+      "desc_other": "Você tem {{n}} contas marcadas com ✓ nas listas. Contas marcadas ficam ocultas nas listas por padrão.",
+      "clearButton": "Limpar marcações",
+      "confirmTitle": "Limpar marcações",
+      "confirmMessage": "Remover todas as marcações ✓?"
+    },
+    "clearAll": {
+      "button": "Excluir todos os dados",
+      "confirmTitle": "Excluir todos os dados",
+      "confirmMessage": "Todos os envios salvos e as marcações serão excluídos. Isso não pode ser desfeito.",
+      "confirmButton": "Excluir tudo"
+    },
+    "language": {
+      "title": "Idioma / Language",
+      "system": "Sistema"
+    }
+  },
+  "ads": {
+    "title": "Anúncios",
+    "desc": "Uma compra única remove os anúncios de banner e de tela cheia deste app.",
+    "loading": "Carregando produto do Google Play…",
+    "retryButton": "Tentar de novo",
+    "productUnavailable": "A compra para remover anúncios não está disponível no Google Play agora.",
+    "storeUnavailable": {
+      "title": "Não foi possível carregar a loja",
+      "desc": "Não foi possível conectar ao Google Play. Verifique sua conexão e tente de novo."
+    },
+    "purchaseError": {
+      "title": "Não foi possível concluir a compra",
+      "desc": "Verifique sua conexão com o Google Play e tente de novo."
+    },
+    "label": "Patrocinado",
+    "removeButton": "Remover anúncios",
+    "removeDesc": "Esta compra única remove os anúncios de banner e de tela cheia.",
+    "removed": "Todos os anúncios foram removidos deste app.",
+    "privacyButton": "Opções de privacidade de anúncios",
+    "privacyUnavailable": {
+      "title": "Nenhuma opção no momento",
+      "desc": "O Google não tem agora um formulário de privacidade de anúncios para você alterar."
+    }
+  },
+  "help": {
+    "title": "Como funciona?",
+    "subtitle": "Dois métodos, o mesmo resultado",
+    "connect": {
+      "title": "⚡ Conectar ao Instagram (rápido)",
+      "text": "Você entra na página oficial de login do Instagram e as listas são obtidas em poucos minutos. Resultado na hora; também traz nomes e fotos de perfil.",
+      "warning": "Isso vai contra os termos de uso do Instagram; usar com frequência pode causar um bloqueio temporário de ações."
+    },
+    "archive": {
+      "title": "📂 Arquivo de dados (dentro das regras)",
+      "text": "Lê o arquivo fornecido pelo próprio Instagram. Nenhum risco, e inclui desde quando você segue cada pessoa. Você vai precisar esperar o arquivo ficar pronto.",
+      "openDownloadPage": "Abrir a página de download"
+    },
+    "steps": [
+      {
+        "title": "Abra a Central de Contas no Instagram",
+        "desc": "Perfil → menu ☰ no canto superior direito → \"Configurações e privacidade\" → \"Central de Contas\" no topo."
+      },
+      {
+        "title": "Vá até \"Baixar suas informações\"",
+        "desc": "\"Suas informações e permissões\" → \"Baixar suas informações\" → \"Baixar informações\"."
+      },
+      {
+        "title": "Escolha só os dados de seguidores",
+        "desc": "Escolha sua conta → \"Selecionar algumas de suas informações\" → marque só \"Seguidores e seguindo\". Se escolher tudo, o arquivo demora dias e ocupa centenas de MB."
+      },
+      {
+        "title": "Defina o formato como JSON",
+        "desc": "Intervalo de datas: \"Desde o início\". Formato: \"JSON\". Depois, \"Criar arquivos\". Com só os dados de seguidores, costuma ficar pronto em minutos."
+      },
+      {
+        "title": "Envie o arquivo zip aqui",
+        "desc": "Abra o .zip baixado com \"Escolher arquivo de dados\". Se já extraiu o zip, também pode escolher juntos os arquivos followers_1.json e following.json."
+      }
+    ],
+    "faqSectionTitle": "Perguntas frequentes",
+    "faq": [
+      {
+        "q": "Por que não vejo quem deixou de me seguir na primeira vez?",
+        "a": "O Instagram nunca informa \"quem deixou de te seguir\" por nenhum meio — esse registro não existe nem no arquivo nem no app. O único jeito de descobrir é comparar sua lista de seguidores em dois momentos diferentes. A primeira busca vira seu ponto de partida; a partir da segunda você vê quem deixou de te seguir."
+      },
+      {
+        "q": "O app guarda minha senha?",
+        "a": "Não. A página que abre ao tocar em \"Conectar ao Instagram\" é a página oficial de login do Instagram. Você digita a senha direto no Instagram; o app nunca a vê, não a guarda e não a envia para lugar nenhum. Só o cookie de sessão resultante fica no seu celular."
+      },
+      {
+        "q": "A busca ao vivo coloca minha conta em risco?",
+        "a": "Este método vai contra os termos de uso do Instagram. As solicitações são enviadas devagar e com pausas, mas se você repetir demais, o Instagram pode aplicar um \"bloqueio de ações\" temporário (normalmente some em algumas horas). Não faça mais de uma vez por dia; para contas muito grandes, uma vez por semana basta. Se quiser risco zero, use o método do arquivo de dados."
+      },
+      {
+        "q": "Minha conta é pública, por que preciso entrar?",
+        "a": "Sem login, num perfil público você só vê o número de seguidores; ao tocar na lista, o Instagram pede login. Os endereços que retornam a lista exigem um cookie de sessão mesmo em contas públicas. É uma restrição do próprio Instagram, não do app."
+      },
+      {
+        "q": "Qual é a diferença entre os dois métodos?",
+        "a": "A busca ao vivo dá resultado na hora e traz nomes e fotos de perfil, mas não tem a data em que você começou a seguir e vai contra os termos de uso. O arquivo de dados é lento, mas totalmente dentro das regras, e inclui desde quando você segue cada pessoa; não traz fotos. Você pode usar os dois; os registros se acumulam na mesma lista."
+      },
+      {
+        "q": "De onde vêm as fotos de perfil?",
+        "a": "Na busca ao vivo, o Instagram também fornece os endereços das fotos, mas eles são assinados e expiram em poucos dias. Por isso cada foto é baixada para o celular na primeira vez que aparece numa lista; depois ela aparece até sem internet e não some dos registros antigos. Só é baixado o que você rola, não tudo de uma vez. Dá para desativar isso na aba Ajustes ou excluir o que já foi baixado."
+      },
+      {
+        "q": "Meus dados são enviados para algum lugar?",
+        "a": "Suas listas de seguidores e os resultados da análise não são enviados ao servidor do desenvolvedor; o app processa tudo no seu aparelho. Nas versões Android com anúncios, o Google Mobile Ads pode processar endereço IP, identificadores do aparelho, interações com anúncios e diagnósticos para exibir e medir anúncios. Dependendo das suas configurações de backup do Android, os dados do app podem ser copiados para sua conta Google."
+      },
+      {
+        "q": "Posso deixar de seguir contas pelo app?",
+        "a": "Não, isso ficou de fora de propósito — deixar de seguir em massa é o jeito mais rápido de ter a conta bloqueada. Tocar numa conta da lista abre o perfil dela no Instagram, onde você pode deixar de seguir manualmente. Marque com ✓ as que já resolveu para ocultá-las da lista."
+      }
+    ]
+  },
+  "connect": {
+    "headerTitle": "Conectar ao Instagram",
+    "subtitleLogin": "Página oficial de login do Instagram",
+    "subtitleWorking": "Obtendo listas",
+    "errors": {
+      "session": {
+        "title": "A sessão acabou",
+        "message": "Sua sessão do Instagram caiu. Você precisa entrar de novo."
+      },
+      "challenge": {
+        "title": "O Instagram pede verificação",
+        "message": "Abra o app ou o site do Instagram e conclua a verificação de segurança. Depois entre de novo aqui. As listas não serão obtidas de novo automaticamente."
+      },
+      "limit": {
+        "title": "O Instagram aplicou um limite",
+        "message": "Foram enviadas solicitações demais e o Instagram as interrompeu por um tempo. Espere 15–30 minutos e tente de novo. Não há nada de errado com sua conta; o bloqueio sai sozinho."
+      },
+      "http": {
+        "title": "O Instagram deu uma resposta inesperada",
+        "message": "A interface do Instagram pode ter mudado. Tente de novo daqui a pouco; se o problema continuar, use o método de envio de arquivo."
+      },
+      "timeout": {
+        "title": "Sem resposta",
+        "message": "O Instagram demorou muito para responder. Verifique sua conexão e tente de novo."
+      },
+      "cancel": {
+        "title": "Interrompido",
+        "message": "Você interrompeu o processo."
+      },
+      "unknown": {
+        "title": "Algo deu errado",
+        "message": "Não foi possível concluir o processo. Tente de novo ou use o método de envio de arquivo."
+      }
+    },
+    "ready": {
+      "title": "Login feito ✓",
+      "text": "Suas listas de seguidores e de quem você segue serão obtidas do Instagram página por página. Há uma pausa de 1–2 segundos entre as solicitações para reduzir o risco de bloqueio; em contas grandes pode levar alguns minutos.",
+      "warning": "Este método vai contra os termos de uso do Instagram. Repetir demais pode causar um bloqueio temporário de ações na sua conta. Não recomendo fazer mais de uma vez por dia.",
+      "fetchButton": "Obter listas"
+    },
+    "working": {
+      "fetchingFollowing": "Obtendo as contas que você segue",
+      "fetchingFollowers": "Obtendo seus seguidores",
+      "backgroundWarning": "Não deixe o app em segundo plano, senão o processo para.",
+      "stopButton": "Parar"
+    },
+    "error": {
+      "partialData": "Já tinham sido obtidos {{f}} seguidores e {{g}} seguindo. Dados incompletos não são salvos.",
+      "retryButton": "Tentar de novo",
+      "loginAgainButton": "Entrar de novo",
+      "backButton": "Voltar"
+    },
+    "disclosure": {
+      "accessibilityLabel": "Aviso de código aberto e privacidade",
+      "openSource": "O código-fonte é aberto; ",
+      "githubLink": "confira no GitHub.",
+      "login": "O login acontece na página oficial do Instagram.",
+      "localData": "Durante a busca ao vivo, suas listas de seguidores e de quem você segue são processadas e salvas neste aparelho; não são enviadas ao servidor do desenvolvedor e o desenvolvedor não pode vê-las remotamente.",
+      "liveFetchRisk": "A busca ao vivo não usa a API oficial do Instagram; pode violar os Termos de Uso do Instagram e traz risco de restrições temporárias na conta.",
+      "archive": "Em vez disso, você pode enviar um arquivo de dados do Instagram e analisá-lo sem fazer login."
+    }
+  },
+  "list": {
+    "searchPlaceholder": "Buscar usuário…",
+    "sort": {
+      "az": "A → Z",
+      "za": "Z → A",
+      "newest": "Mais recentes",
+      "oldest": "Mais antigos"
+    },
+    "hideMarked": "Ocultar os que marquei",
+    "accountCount_one": "{{n}} conta",
+    "accountCount_many": "{{n}} contas",
+    "accountCount_other": "{{n}} contas",
+    "hiddenSuffix_one": " · {{count}} oculta",
+    "hiddenSuffix_many": " · {{count}} ocultas",
+    "hiddenSuffix_other": " · {{count}} ocultas",
+    "usernameCopied": "@{{username}} copiado",
+    "usernamesCopied_one": "{{count}} nome de usuário copiado",
+    "usernamesCopied_many": "{{count}} nomes de usuário copiados",
+    "usernamesCopied_other": "{{count}} nomes de usuário copiados",
+    "empty": {
+      "noMatch": "Nenhum resultado",
+      "noOne": "Ninguém nesta lista",
+      "tryDifferent": "Tente outro nome de usuário."
+    }
+  },
+  "credit": {
+    "label": "Feito por",
+    "footerNote": "Follower Analyzer v{{version}} · Sem vínculo com o Instagram ou a Meta. As listas ficam no aparelho; dados elegíveis podem entrar no backup do Android."
+  },
+  "categories": {
+    "lostFollowers": {
+      "title": "Deixaram de te seguir",
+      "desc": "Te seguiam no envio anterior, agora não"
+    },
+    "notFollowingBack": {
+      "title": "Não te seguem de volta",
+      "desc": "Você segue, eles não te seguem",
+      "tsLabel": "Começou a seguir"
+    },
+    "fans": {
+      "title": "Seus fãs",
+      "desc": "Te seguem, mas você não segue",
+      "tsLabel": "Data em que te seguiu"
+    },
+    "newFollowers": {
+      "title": "Novos seguidores",
+      "desc": "Começaram a te seguir desde o último envio",
+      "tsLabel": "Data em que te seguiu"
+    },
+    "mutual": {
+      "title": "Seguem um ao outro",
+      "desc": "Vocês se seguem",
+      "tsLabel": "Data em que te seguiu"
+    },
+    "pendingSent": {
+      "title": "Suas solicitações pendentes",
+      "desc": "Você enviou uma solicitação para seguir que ainda não foi aceita"
+    },
+    "requestsReceived": {
+      "title": "Solicitações para você",
+      "desc": "Pessoas esperando você aceitar a solicitação delas"
+    },
+    "stoppedFollowing": {
+      "title": "Você deixou de seguir",
+      "desc": "Contas que você deixou de seguir desde o último envio"
+    },
+    "startedFollowing": {
+      "title": "Você começou a seguir",
+      "desc": "Contas que você começou a seguir desde o último envio"
+    },
+    "recentlyUnfollowed": {
+      "title": "Deixou de seguir recentemente",
+      "desc": "Contas que o Instagram registrou que você deixou de seguir há pouco"
+    },
+    "closeFriends": {
+      "title": "Amigos próximos",
+      "desc": "Contas da sua lista de amigos próximos"
+    },
+    "blocked": {
+      "title": "Bloqueados por você",
+      "desc": "Contas que você bloqueou"
+    },
+    "followers": {
+      "title": "Todos os seus seguidores",
+      "desc": "Todo mundo que te segue",
+      "tsLabel": "Data em que te seguiu"
+    },
+    "following": {
+      "title": "Todos que você segue",
+      "desc": "Todas as contas que você segue",
+      "tsLabel": "Começou a seguir"
+    }
+  },
+  "fmt": {
+    "months": [
+      "jan",
+      "fev",
+      "mar",
+      "abr",
+      "mai",
+      "jun",
+      "jul",
+      "ago",
+      "set",
+      "out",
+      "nov",
+      "dez"
+    ],
+    "date": "{{d}} {{m}} {{y}}",
+    "thousandsSep": ".",
+    "justNow": "agora mesmo",
+    "minutesAgo_one": "há {{count}} min",
+    "minutesAgo_many": "há {{count}} min",
+    "minutesAgo_other": "há {{count}} min",
+    "hoursAgo_one": "há {{count}} h",
+    "hoursAgo_many": "há {{count}} h",
+    "hoursAgo_other": "há {{count}} h",
+    "daysAgo_one": "há {{count}} dia",
+    "daysAgo_many": "há {{count}} dias",
+    "daysAgo_other": "há {{count}} dias",
+    "monthsAgo_one": "há {{count}} mês",
+    "monthsAgo_many": "há {{count}} meses",
+    "monthsAgo_other": "há {{count}} meses",
+    "yearsAgo_one": "há {{count}} ano",
+    "yearsAgo_many": "há {{count}} anos",
+    "yearsAgo_other": "há {{count}} anos"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "subtitle": "Idioma, fotos e dados do aparelho",
+    "privacyTitle": "Privacidade de anúncios",
+    "privacyDesc": "Gerencie aqui as opções de consentimento de anúncios oferecidas pelo Google."
+  },
+  "premium": {
+    "button": "Premium",
+    "active": "Premium ✓",
+    "openLabel": "Premium: remover anúncios",
+    "activeLabel": "Premium ativo: detalhes da compra",
+    "title": "Premium",
+    "headline": "Análise sem anúncios",
+    "desc": "Remova para sempre os anúncios de banner e de tela cheia com uma compra única.",
+    "note": "Todos os recursos de análise continuam grátis. Sem assinatura.",
+    "restore": "Restaurar compra",
+    "restoreDesc": "Se você já comprou a remoção de anúncios, verifique de novo usando a mesma conta do Google Play."
+  }
+}
