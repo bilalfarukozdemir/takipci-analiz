@@ -27,5 +27,6 @@ Her sürümde `app.json` `versionCode` +1, `version` + `package.json` + `src/the
 
 ## Geçmiş
 
+- 2026-10-30 — Mağaza ayarları → iletişim bilgileri: web sitesi `https://vitrincim.com` → `https://vitrincim.com/isler/follower-analyzer` (Bilal onayı; "Kaydet ve yayınla", inceleme yok, sayfa yeniden açılıp okundu). Kategori: Uygulama / Araçlar.
 - 2026-10-22 — 1.3.9 (16): 12 yeni dil + puan isteği. Mint emülatöründe denendi (dil seçici, ja/ar/fa, RTL yeniden yükleme, Şemsi tarih, Android 13 uygulama dili). AAB Mint'te derlendi (`~/play-aab/follower-analyzer-1.3.9-vc16.aab`, SHA-256 `107d6f2c…de71b`, imza 97:53:4B:E9…). Mağazaya 13 dil eklendi, EN/TR başlık+açıklama+görseller yenilendi, 15 dilde görseller; sürüm notları 15/15; üretim %100, tüm ülkeler. Bilal onayıyla 22 değişiklik incelemeye gönderildi ("İncelenmekte"), kanıt `~/play-aab/follower-1.3.9-review-1022.png`.
 - Yükleme notu: görselleri kitaplıktan topluca eklemek sırayı bozuyor (3,4,2,1 geldi); her görseli tek tek yükleyip "Ekle" demek sırayı korur.
