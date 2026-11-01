@@ -6,6 +6,8 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.10] – 2026-11-02
+
 ### Eklendi
 - Ana ekranın ve Yardım'ın altında "Google Play'de değerlendir" kartı. Önce
   Play'in kendi puan penceresi açılıyor; Play kota yüzünden pencereyi
