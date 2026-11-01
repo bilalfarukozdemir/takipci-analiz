@@ -334,6 +334,8 @@
   },
   "credit": {
     "label": "Yapımcı",
+    "rateLabel": "Beğendin mi?",
+    "rateTitle": "Google Play'de bizi değerlendir",
     "footerNote": "Takipçi Analiz v{{version}} · Instagram veya Meta ile bağlantılı değildir. Listeler cihazda saklanır; uygun veriler Android yedeklemesine girebilir."
   },
   "categories": {

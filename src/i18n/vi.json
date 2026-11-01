@@ -328,6 +328,8 @@
   },
   "credit": {
     "label": "Phát triển bởi",
+    "rateLabel": "Bạn thấy hữu ích?",
+    "rateTitle": "Đánh giá chúng tôi trên Google Play",
     "footerNote": "Follower Analyzer v{{version}} · Không liên kết với Instagram hay Meta. Danh sách được lưu trên thiết bị; dữ liệu đủ điều kiện có thể nằm trong bản sao lưu Android."
   },
   "categories": {

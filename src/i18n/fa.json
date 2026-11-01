@@ -334,6 +334,8 @@
   },
   "credit": {
     "label": "ساخته‌شده توسط",
+    "rateLabel": "از برنامه راضی هستی؟",
+    "rateTitle": "در Google Play به ما امتیاز بده",
     "footerNote": "Follower Analyzer v{{version}} · وابسته به Instagram یا Meta نیست. فهرست‌ها روی دستگاه ذخیره می‌شوند؛ داده‌های مجاز ممکن است در نسخه پشتیبان Android قرار بگیرند."
   },
   "categories": {

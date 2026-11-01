@@ -328,6 +328,8 @@
   },
   "credit": {
     "label": "제작",
+    "rateLabel": "마음에 드셨나요?",
+    "rateTitle": "Google Play에서 평가하기",
     "footerNote": "Follower Analyzer v{{version}} · Instagram 및 Meta와 관련이 없습니다. 목록은 기기에 저장되며, 해당 데이터는 Android 백업에 포함될 수 있습니다."
   },
   "categories": {

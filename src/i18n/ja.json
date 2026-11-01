@@ -328,6 +328,8 @@
   },
   "credit": {
     "label": "制作",
+    "rateLabel": "気に入りましたか？",
+    "rateTitle": "Google Play で評価する",
     "footerNote": "Follower Analyzer v{{version}} · InstagramおよびMetaとは関係ありません。リストは端末に保存されます。対象データはAndroidのバックアップに含まれる場合があります。"
   },
   "categories": {

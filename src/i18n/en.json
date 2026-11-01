@@ -334,6 +334,8 @@
   },
   "credit": {
     "label": "Made by",
+    "rateLabel": "Enjoying it?",
+    "rateTitle": "Rate us on Google Play",
     "footerNote": "Follower Analyzer v{{version}} · Not affiliated with Instagram or Meta. Lists are stored on-device; eligible data may be included in Android backup."
   },
   "categories": {

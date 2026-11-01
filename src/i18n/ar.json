@@ -358,6 +358,8 @@
   },
   "credit": {
     "label": "من تطوير",
+    "rateLabel": "هل أعجبك التطبيق؟",
+    "rateTitle": "قيّمنا على Google Play",
     "footerNote": "Follower Analyzer v{{version}} · غير تابع لـ Instagram أو Meta. تُحفظ القوائم على الجهاز؛ وقد تُضمَّن البيانات المؤهلة في النسخ الاحتياطي لـ Android."
   },
   "categories": {

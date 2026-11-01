@@ -340,6 +340,8 @@
   },
   "credit": {
     "label": "Hecho por",
+    "rateLabel": "¿Te gusta?",
+    "rateTitle": "Valóranos en Google Play",
     "footerNote": "Follower Analyzer v{{version}} · Sin relación con Instagram ni Meta. Las listas se guardan en el dispositivo; los datos aptos pueden incluirse en la copia de seguridad de Android."
   },
   "categories": {

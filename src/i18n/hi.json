@@ -334,6 +334,8 @@
   },
   "credit": {
     "label": "निर्माता",
+    "rateLabel": "पसंद आया?",
+    "rateTitle": "Google Play पर हमें रेटिंग दें",
     "footerNote": "Follower Analyzer v{{version}} · Instagram या Meta से संबद्ध नहीं। सूचियाँ डिवाइस पर सेव रहती हैं; योग्य डेटा Android बैकअप में शामिल हो सकता है।"
   },
   "categories": {

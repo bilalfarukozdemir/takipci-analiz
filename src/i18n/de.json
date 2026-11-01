@@ -334,6 +334,8 @@
   },
   "credit": {
     "label": "Erstellt von",
+    "rateLabel": "Gefällt’s dir?",
+    "rateTitle": "Bewerte uns bei Google Play",
     "footerNote": "Follower Analyzer v{{version}} · Keine Verbindung zu Instagram oder Meta. Listen werden auf dem Gerät gespeichert; geeignete Daten können in die Android-Sicherung aufgenommen werden."
   },
   "categories": {

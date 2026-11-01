@@ -6,6 +6,14 @@ izler.
 
 ## [Yayınlanmamış]
 
+### Eklendi
+- Ana ekranın ve Yardım'ın altında "Google Play'de değerlendir" kartı. Önce
+  Play'in kendi puan penceresi açılıyor; Play kota yüzünden pencereyi
+  göstermezse uygulamanın mağaza sayfası açılıyor.
+
+### Değişti
+- Yapımcı künyesinin simgesi Vitrincim logosu oldu.
+
 ## [1.3.9] – 2026-10-22
 
 ### Eklendi

@@ -328,6 +328,8 @@
   },
   "credit": {
     "label": "Dibuat oleh",
+    "rateLabel": "Suka aplikasinya?",
+    "rateTitle": "Beri kami rating di Google Play",
     "footerNote": "Follower Analyzer v{{version}} · Tidak berafiliasi dengan Instagram atau Meta. Daftar disimpan di perangkat; data yang memenuhi syarat dapat masuk ke cadangan Android."
   },
   "categories": {
