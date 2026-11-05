@@ -145,7 +145,7 @@
     "clearAll": {
       "button": "Tüm verileri sil",
       "confirmTitle": "Tüm verileri sil",
-      "confirmMessage": "Kayıtlı tüm yüklemeler ve işaretler silinecek. Bu geri alınamaz.",
+      "confirmMessage": "Kayıtlı tüm yüklemeler ve işaretler silinecek. Bu geri alınamaz. Bu uygulamadaki Instagram oturumun da kapanır.",
       "confirmButton": "Hepsini sil"
     },
     "language": {
@@ -286,6 +286,8 @@
       "title": "Giriş yapıldı ✓",
       "text": "Takipçi ve takip listen Instagram’dan sayfa sayfa çekilecek. Hesap engeli riskini düşürmek için istekler arasında 1–2 saniye bekleniyor; büyük hesaplarda birkaç dakika sürebilir.",
       "warning": "Bu yöntem Instagram’ın kullanım şartlarına aykırıdır. Çok sık tekrarlarsan hesabına geçici işlem engeli gelebilir. Günde bir kereden fazla çekmeni önermem.",
+      "account": "Bağlı hesap: @{{username}}",
+      "switchAccount": "Farklı hesapla giriş yap",
       "fetchButton": "Listeleri çek"
     },
     "working": {
@@ -304,7 +306,7 @@
       "accessibilityLabel": "Açık kaynak ve gizlilik açıklaması",
       "openSource": "Kaynak kodu açık; ",
       "githubLink": "GitHub’da inceleyebilirsin.",
-      "login": "Giriş Instagram’ın kendi sayfasında yapılır.",
+      "login": "Giriş Instagram’ın kendi sayfasında yapılır. Oturumun yalnız bu cihazda açık kalır, her seferinde giriş yapman gerekmez.",
       "localData": "Canlı çekimde takipçi ve takip listelerin bu cihazda işlenip saklanır; geliştiricinin sunucusuna gönderilmez ve geliştirici tarafından uzaktan görülemez.",
       "liveFetchRisk": "Canlı çekim Instagram’ın resmi API’sini kullanmaz; kullanım şartlarına aykırı olabilir ve geçici hesap kısıtlaması riski taşıyabilir.",
       "archive": "İstersen Instagram veri arşivini yükleyerek giriş yapmadan analiz edebilirsin."

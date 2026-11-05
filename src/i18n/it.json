@@ -148,7 +148,7 @@
     "clearAll": {
       "button": "Elimina tutti i dati",
       "confirmTitle": "Elimina tutti i dati",
-      "confirmMessage": "Tutti i caricamenti salvati e i segni verranno eliminati. Non si può annullare.",
+      "confirmMessage": "Tutti i caricamenti salvati e i segni verranno eliminati. Non si può annullare. Verrà chiusa anche la tua sessione di Instagram in questa app.",
       "confirmButton": "Elimina tutto"
     },
     "language": {
@@ -289,6 +289,8 @@
       "title": "Accesso eseguito ✓",
       "text": "Le liste di follower e seguiti verranno recuperate da Instagram pagina per pagina. Tra una richiesta e l'altra c'è una pausa di 1–2 secondi per ridurre il rischio di blocco; per account grandi può richiedere qualche minuto.",
       "warning": "Questo metodo viola le condizioni d'uso di Instagram. Ripeterlo troppo spesso può causare un blocco temporaneo delle azioni sul tuo account. Sconsiglio di farlo più di una volta al giorno.",
+      "account": "Account collegato: @{{username}}",
+      "switchAccount": "Accedi con un altro account",
       "fetchButton": "Recupera le liste"
     },
     "working": {
@@ -307,7 +309,7 @@
       "accessibilityLabel": "Informativa open source e privacy",
       "openSource": "Il codice sorgente è aperto; ",
       "githubLink": "consultalo su GitHub.",
-      "login": "L'accesso avviene sulla pagina ufficiale di Instagram.",
+      "login": "L'accesso avviene sulla pagina ufficiale di Instagram. La sessione resta aperta solo su questo dispositivo, così non devi accedere ogni volta.",
       "localData": "Durante il recupero dal vivo, le liste di follower e seguiti vengono elaborate e salvate su questo dispositivo; non vengono inviate al server dello sviluppatore e lo sviluppatore non può vederle da remoto.",
       "liveFetchRisk": "Il recupero dal vivo non usa l'API ufficiale di Instagram; può violare le Condizioni d'uso di Instagram e comporta il rischio di limitazioni temporanee dell'account.",
       "archive": "In alternativa puoi caricare un archivio dati di Instagram e analizzarlo senza accedere."

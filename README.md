@@ -94,7 +94,8 @@ vardır. `401/login_required` → oturum düştü, güvenlik doğrulaması/`403`
 Instagram'da kontrolü tamamla, `429` → hız sınırı olarak ayrı ele alınır;
 75 sn yanıt gelmezse zaman aşımı devreye girer.
 Giriş, eski hesap çerezine değil Instagram'ın mevcut hesap yanıtına göre doğrulanır.
-Giriş penceresi geçicidir; yeniden girişte eski oturum temizlenir. Oturum veya
+Oturum cihazda kalır, her çekimde yeniden giriş istenmez; "Farklı hesapla giriş yap"
+ve "Tüm verileri sil" uygulama içi çerezleri temizler. Oturum veya
 güvenlik hatasında otomatik liste çekimi durur; kayıtlı analiz geçmişi korunur.
 
 > [!WARNING]

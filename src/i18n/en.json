@@ -145,7 +145,7 @@
     "clearAll": {
       "button": "Delete all data",
       "confirmTitle": "Delete all data",
-      "confirmMessage": "All saved uploads and marks will be deleted. This can't be undone.",
+      "confirmMessage": "All saved uploads and marks will be deleted. This can't be undone. Your Instagram session in this app will also be signed out.",
       "confirmButton": "Delete everything"
     },
     "language": {
@@ -286,6 +286,8 @@
       "title": "Logged in ✓",
       "text": "Your follower and following lists will be fetched from Instagram page by page. There's a 1–2 second delay between requests to reduce the risk of an account block; this can take a few minutes for large accounts.",
       "warning": "This method is against Instagram's terms of service. Repeating it too often may result in a temporary action block on your account. I don't recommend fetching more than once a day.",
+      "account": "Connected account: @{{username}}",
+      "switchAccount": "Sign in with another account",
       "fetchButton": "Fetch lists"
     },
     "working": {
@@ -304,7 +306,7 @@
       "accessibilityLabel": "Open-source and privacy disclosure",
       "openSource": "The source code is open; ",
       "githubLink": "review it on GitHub.",
-      "login": "Login takes place on Instagram’s own page.",
+      "login": "Login takes place on Instagram’s own page. You stay signed in on this device only, so you don't have to log in every time.",
       "localData": "During live fetch, your followers and following lists are processed and stored on this device; they are not sent to the developer’s server and cannot be viewed remotely by the developer.",
       "liveFetchRisk": "Live fetch does not use Instagram’s official API; it may violate Instagram’s Terms of Use and carries a risk of temporary account restrictions.",
       "archive": "You can instead upload an Instagram data archive and analyze it without logging in."

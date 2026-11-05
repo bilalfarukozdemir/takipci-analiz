@@ -60,10 +60,13 @@ script'i çalışır (`src/lib/igLive.ts`). Bu script:
 - Oturum çerezinin kendisi, tarayıcı motorunun (Android sistem WebView'i)
   kendi çerez deposunda kalır; uygulamanın kendi kodu (`src/lib/storage.ts`)
   bu çerezi hiçbir zaman okumaz ya da kaydetmez.
-- Giriş penceresi geçici (incognito) modda açılır. Her yeni giriş penceresinde
-  uygulama içi WebView'in eski çerezleri temizlenir; harici tarayıcı veya Instagram
-  uygulamasındaki oturum değiştirilmez. Giriş durumu Instagram'ın mevcut hesap
-  uç noktasından kontrol edilir. Kayıtlı takipçi listeleri bu işlemde silinmez.
+- Oturumun, sen kapatana kadar bu cihazdaki WebView çerez deposunda kalır; böylece
+  her çekimde yeniden giriş ve güvenlik kodu istenmez. "Farklı hesapla giriş yap"
+  veya "Tüm verileri sil" uygulama içi WebView'in çerezlerini temizler ("Tüm verileri
+  sil"de temizlik bir sonraki bağlan penceresi açılırken yapılır); harici tarayıcı
+  veya Instagram uygulamasındaki oturum değiştirilmez. Giriş durumu Instagram'ın
+  mevcut hesap uç noktasından kontrol edilir. Kayıtlı takipçi listeleri hesap
+  değiştirmekle silinmez.
 
 Bu yöntem, Instagram'ın resmî olarak belgelenmiş bir geliştirici arayüzünü
 değil, web arayüzünün kendi kullandığı uçları kullanır. Sık kullanımda

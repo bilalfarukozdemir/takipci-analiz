@@ -142,7 +142,7 @@
     "clearAll": {
       "button": "Xóa toàn bộ dữ liệu",
       "confirmTitle": "Xóa toàn bộ dữ liệu",
-      "confirmMessage": "Mọi lần tải lên đã lưu và các dấu sẽ bị xóa. Không thể hoàn tác.",
+      "confirmMessage": "Mọi lần tải lên đã lưu và các dấu sẽ bị xóa. Không thể hoàn tác. Phiên Instagram của bạn trong ứng dụng này cũng sẽ bị đăng xuất.",
       "confirmButton": "Xóa tất cả"
     },
     "language": {
@@ -283,6 +283,8 @@
       "title": "Đã đăng nhập ✓",
       "text": "Danh sách người theo dõi và đang theo dõi sẽ được lấy từ Instagram theo từng trang. Có khoảng nghỉ 1–2 giây giữa các yêu cầu để giảm nguy cơ bị chặn; tài khoản lớn có thể mất vài phút.",
       "warning": "Cách này vi phạm điều khoản sử dụng của Instagram. Lặp lại quá nhiều có thể khiến tài khoản bị chặn thao tác tạm thời. Tôi khuyên không nên làm quá một lần mỗi ngày.",
+      "account": "Tài khoản đã kết nối: @{{username}}",
+      "switchAccount": "Đăng nhập bằng tài khoản khác",
       "fetchButton": "Lấy danh sách"
     },
     "working": {
@@ -301,7 +303,7 @@
       "accessibilityLabel": "Thông tin mã nguồn mở và quyền riêng tư",
       "openSource": "Mã nguồn được công khai; ",
       "githubLink": "xem trên GitHub.",
-      "login": "Việc đăng nhập diễn ra trên trang chính thức của Instagram.",
+      "login": "Việc đăng nhập diễn ra trên trang chính thức của Instagram. Phiên đăng nhập chỉ được giữ trên thiết bị này nên bạn không cần đăng nhập lại mỗi lần.",
       "localData": "Khi lấy trực tiếp, danh sách người theo dõi và đang theo dõi được xử lý và lưu trên thiết bị này; không gửi đến máy chủ của nhà phát triển và nhà phát triển không thể xem từ xa.",
       "liveFetchRisk": "Việc lấy trực tiếp không dùng API chính thức của Instagram; có thể vi phạm Điều khoản sử dụng của Instagram và có nguy cơ bị hạn chế tài khoản tạm thời.",
       "archive": "Thay vào đó, bạn có thể tải lên tệp dữ liệu Instagram và phân tích mà không cần đăng nhập."

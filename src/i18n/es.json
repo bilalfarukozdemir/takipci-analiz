@@ -148,7 +148,7 @@
     "clearAll": {
       "button": "Eliminar todos los datos",
       "confirmTitle": "Eliminar todos los datos",
-      "confirmMessage": "Se eliminarán todas las cargas guardadas y las marcas. No se puede deshacer.",
+      "confirmMessage": "Se eliminarán todas las cargas guardadas y las marcas. No se puede deshacer. También se cerrará tu sesión de Instagram en esta app.",
       "confirmButton": "Eliminar todo"
     },
     "language": {
@@ -289,6 +289,8 @@
       "title": "Sesión iniciada ✓",
       "text": "Tus listas de seguidores y seguidos se obtendrán de Instagram página a página. Hay una pausa de 1–2 segundos entre solicitudes para reducir el riesgo de bloqueo; en cuentas grandes puede tardar unos minutos.",
       "warning": "Este método va contra las condiciones de uso de Instagram. Repetirlo demasiado puede provocar un bloqueo temporal de acciones en tu cuenta. No recomiendo hacerlo más de una vez al día.",
+      "account": "Cuenta conectada: @{{username}}",
+      "switchAccount": "Iniciar sesión con otra cuenta",
       "fetchButton": "Obtener listas"
     },
     "working": {
@@ -307,7 +309,7 @@
       "accessibilityLabel": "Aviso de código abierto y privacidad",
       "openSource": "El código fuente es abierto; ",
       "githubLink": "revísalo en GitHub.",
-      "login": "El inicio de sesión se hace en la página oficial de Instagram.",
+      "login": "El inicio de sesión se hace en la página oficial de Instagram. Tu sesión sigue abierta solo en este dispositivo, así no tienes que iniciar sesión cada vez.",
       "localData": "Durante la obtención en vivo, tus listas de seguidores y seguidos se procesan y guardan en este dispositivo; no se envían al servidor del desarrollador y el desarrollador no puede verlas a distancia.",
       "liveFetchRisk": "La obtención en vivo no usa la API oficial de Instagram; puede infringir las Condiciones de uso de Instagram y conlleva riesgo de restricciones temporales en la cuenta.",
       "archive": "En su lugar, puedes subir un archivo de datos de Instagram y analizarlo sin iniciar sesión."

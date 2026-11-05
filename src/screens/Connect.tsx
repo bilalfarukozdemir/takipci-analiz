@@ -25,12 +25,15 @@ type Phase = 'login' | 'ready' | 'working' | 'error';
 type Props = {
   onBack: () => void;
   onFinish: (followers: IgUser[], following: IgUser[]) => void;
+  /** "Tüm verileri sil" sonrası: pencere açılırken Instagram çerezleri de silinir. */
+  clearSession?: boolean;
+  onSessionCleared?: () => void;
 };
 
 /** connect.errors.<kod>.title / .message anahtarlarına karşılık gelir (src/i18n/{tr,en}.json). */
 const HATA_KODLARI = ['session', 'challenge', 'limit', 'http', 'timeout', 'cancel', 'unknown'] as const;
 
-export function Connect({ onBack, onFinish }: Props) {
+export function Connect({ onBack, onFinish, clearSession = false, onSessionCleared }: Props) {
   const { t } = useTranslation();
   const web = useRef<WebView>(null);
   const followers = useRef(new Map<string, IgUser>());
@@ -39,6 +42,12 @@ export function Connect({ onBack, onFinish }: Props) {
   const [loginGeneration, setLoginGeneration] = useState(0);
   const loginGenerationRef = useRef(0);
   const sessionInvalid = useRef(false);
+  // `incognito` Android'de uygulamanın TÜM WebView çerezlerini siler; "bu cihaza güven"
+  // çerezi de gider ve Instagram her girişte doğrulama ister. Bu yüzden yalnız bilerek
+  // temiz başlanan pencerede açık olur.
+  const [incognito, setIncognito] = useState(clearSession);
+  const sessionRetries = useRef(0);
+  const [username, setUsername] = useState('');
 
   const [phase, setPhase] = useState<Phase>('login');
   const [hata, setHata] = useState<string>('unknown');
@@ -57,17 +66,35 @@ export function Connect({ onBack, onFinish }: Props) {
     setPhase(next);
   }, []);
 
-  const yenidenGiris = useCallback(() => {
+  useEffect(() => {
+    if (clearSession) onSessionCleared?.();
+    // Çerez silme bu pencerenin açılışında bir kez olur.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const yeniPencere = useCallback((temiz: boolean) => {
     web.current?.injectJavaScript(STOP_JS);
     followers.current.clear();
     following.current.clear();
     setTotals({ followers: null, following: null });
     setIlerleme(null);
+    setUsername('');
+    setIncognito(temiz);
     sessionInvalid.current = false;
     loginGenerationRef.current += 1;
     setLoginGeneration(loginGenerationRef.current);
     changePhase('login');
   }, [changePhase]);
+
+  // Güvenlik doğrulaması bu ekranda tamamlanamadığı için temiz başlar. Düşen oturumda güven
+  // çerezi korunur; aynı hata ikinci kez gelirse eski çerez sorun demektir, temizlenir.
+  const yenidenGiris = useCallback(() => {
+    const temiz = hata === 'challenge' || sessionRetries.current > 0;
+    sessionRetries.current += 1;
+    yeniPencere(temiz);
+  }, [hata, yeniPencere]);
+
+  const farkliHesap = useCallback(() => yeniPencere(true), [yeniPencere]);
 
   // ilerleme durursa kullanıcıyı bekletme
   useEffect(() => {
@@ -120,7 +147,10 @@ export function Connect({ onBack, onFinish }: Props) {
 
       switch (m.t) {
         case 'state':
-          if (m.logged && phaseRef.current === 'login') changePhase('ready');
+          if (m.logged && phaseRef.current === 'login') {
+            setUsername(m.username ?? '');
+            changePhase('ready');
+          }
           else if (!m.logged && (phaseRef.current === 'ready' || phaseRef.current === 'working')) {
             sessionInvalid.current = true;
             web.current?.injectJavaScript(STOP_JS);
@@ -191,7 +221,7 @@ export function Connect({ onBack, onFinish }: Props) {
           source={{ uri: LOGIN_URL }}
           onMessage={onMessage}
           injectedJavaScript={PROBE_JS}
-          incognito
+          incognito={incognito}
           javaScriptEnabled
           domStorageEnabled
           sharedCookiesEnabled={false}
@@ -206,12 +236,17 @@ export function Connect({ onBack, onFinish }: Props) {
             {phase === 'ready' ? (
               <Card>
                 <Text style={st.h}>{t('connect.ready.title')}</Text>
+                {username ? (
+                  <Text style={[st.p, st.account]}>{t('connect.ready.account', { username })}</Text>
+                ) : null}
                 <Text style={st.p}>{t('connect.ready.text')}</Text>
                 <Text style={[st.p, { color: C.yellow, marginTop: 10 }]}>
                   {t('connect.ready.warning')}
                 </Text>
                 <View style={{ height: 16 }} />
                 <Btn label={t('connect.ready.fetchButton')} icon="⬇️" onPress={basla} />
+                <View style={{ height: 8 }} />
+                <Btn label={t('connect.ready.switchAccount')} kind="ghost" onPress={farkliHesap} />
               </Card>
             ) : phase === 'working' ? (
               <Card>
@@ -309,6 +344,7 @@ const st = StyleSheet.create({
   },
   h: { color: C.text, fontSize: 17, fontWeight: '800', marginBottom: 8, textAlign: 'center' },
   p: { color: C.sub, fontSize: 13, lineHeight: 20 },
+  account: { color: C.text, fontWeight: '700', textAlign: 'center', marginBottom: 8 },
   big: { color: C.text, fontSize: 30, fontWeight: '900' },
   note: {
     backgroundColor: C.card,

@@ -6,6 +6,15 @@ izler.
 
 ## [Yayınlanmamış]
 
+### Düzeltildi
+- Her çekimde yeniden Instagram girişi ve güvenlik kodu istenmesi. Giriş penceresi
+  her açılışta tüm çerezleri siliyordu; "bu cihaza güven" seçimi de gidiyordu. Oturum
+  artık cihazda kalır.
+
+### Eklendi
+- Hazır ekranında bağlı hesabın adı ve "Farklı hesapla giriş yap" butonu.
+- "Tüm verileri sil" uygulama içi Instagram oturumunu da kapatır.
+
 ## [1.3.10] – 2026-11-02
 
 ### Eklendi

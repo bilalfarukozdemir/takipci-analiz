@@ -148,7 +148,7 @@
     "clearAll": {
       "button": "Excluir todos os dados",
       "confirmTitle": "Excluir todos os dados",
-      "confirmMessage": "Todos os envios salvos e as marcações serão excluídos. Isso não pode ser desfeito.",
+      "confirmMessage": "Todos os envios salvos e as marcações serão excluídos. Isso não pode ser desfeito. Sua sessão do Instagram neste app também será encerrada.",
       "confirmButton": "Excluir tudo"
     },
     "language": {
@@ -289,6 +289,8 @@
       "title": "Login feito ✓",
       "text": "Suas listas de seguidores e de quem você segue serão obtidas do Instagram página por página. Há uma pausa de 1–2 segundos entre as solicitações para reduzir o risco de bloqueio; em contas grandes pode levar alguns minutos.",
       "warning": "Este método vai contra os termos de uso do Instagram. Repetir demais pode causar um bloqueio temporário de ações na sua conta. Não recomendo fazer mais de uma vez por dia.",
+      "account": "Conta conectada: @{{username}}",
+      "switchAccount": "Entrar com outra conta",
       "fetchButton": "Obter listas"
     },
     "working": {
@@ -307,7 +309,7 @@
       "accessibilityLabel": "Aviso de código aberto e privacidade",
       "openSource": "O código-fonte é aberto; ",
       "githubLink": "confira no GitHub.",
-      "login": "O login acontece na página oficial do Instagram.",
+      "login": "O login acontece na página oficial do Instagram. Sua sessão fica aberta só neste dispositivo, então você não precisa entrar toda vez.",
       "localData": "Durante a busca ao vivo, suas listas de seguidores e de quem você segue são processadas e salvas neste aparelho; não são enviadas ao servidor do desenvolvedor e o desenvolvedor não pode vê-las remotamente.",
       "liveFetchRisk": "A busca ao vivo não usa a API oficial do Instagram; pode violar os Termos de Uso do Instagram e traz risco de restrições temporárias na conta.",
       "archive": "Em vez disso, você pode enviar um arquivo de dados do Instagram e analisá-lo sem fazer login."

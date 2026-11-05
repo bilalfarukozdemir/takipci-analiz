@@ -21,7 +21,7 @@ const PAGE = 50;
 export type LiveKind = 'followers' | 'following';
 
 export type LiveMessage =
-  | { t: 'state'; logged: boolean; uid: string }
+  | { t: 'state'; logged: boolean; uid: string; username?: string }
   | { t: 'totals'; followers: number | null; following: number | null }
   | { t: 'chunk'; kind: LiveKind; users: { u: string; n?: string; p?: string }[] }
   | { t: 'progress'; kind: LiveKind; count: number; total: number | null }
@@ -105,14 +105,16 @@ export const PROBE_JS = `
     checked = uid;
     pending = true;
     headers['x-csrftoken'] = ck('csrftoken');
-    var accept = function(){
+    var accept = function(name){
       last = '1:' + uid;
-      post({ t: 'state', logged: true, uid: uid });
+      var m = { t: 'state', logged: true, uid: uid };
+      if (name) { m.username = String(name); }
+      post(m);
     };
     jget('/api/v1/accounts/current_user/?edit=true').then(function(j){
       if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
       if (j && j.user && String(j.user.pk) !== uid) throw new Error('session');
-      accept();
+      accept(j && j.user && j.user.username);
     }).catch(function(e){
       if (uid !== ck('ds_user_id') || authPath(window.location.pathname)) return;
       var code = String((e && e.message) || e);

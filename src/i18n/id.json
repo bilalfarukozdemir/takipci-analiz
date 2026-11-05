@@ -142,7 +142,7 @@
     "clearAll": {
       "button": "Hapus semua data",
       "confirmTitle": "Hapus semua data",
-      "confirmMessage": "Semua unggahan tersimpan dan tanda akan dihapus. Ini tidak bisa dibatalkan.",
+      "confirmMessage": "Semua unggahan tersimpan dan tanda akan dihapus. Ini tidak bisa dibatalkan. Sesi Instagram-mu di aplikasi ini juga akan ditutup.",
       "confirmButton": "Hapus semuanya"
     },
     "language": {
@@ -283,6 +283,8 @@
       "title": "Sudah login ✓",
       "text": "Daftar pengikut dan mengikuti akan diambil dari Instagram halaman demi halaman. Ada jeda 1–2 detik antar permintaan untuk mengurangi risiko pemblokiran; untuk akun besar bisa memakan beberapa menit.",
       "warning": "Metode ini melanggar ketentuan penggunaan Instagram. Terlalu sering mengulanginya dapat menyebabkan pemblokiran tindakan sementara pada akunmu. Saya tidak menyarankan lebih dari sekali sehari.",
+      "account": "Akun terhubung: @{{username}}",
+      "switchAccount": "Login dengan akun lain",
       "fetchButton": "Ambil daftar"
     },
     "working": {
@@ -301,7 +303,7 @@
       "accessibilityLabel": "Keterangan sumber terbuka dan privasi",
       "openSource": "Kode sumbernya terbuka; ",
       "githubLink": "lihat di GitHub.",
-      "login": "Login dilakukan di halaman resmi Instagram.",
+      "login": "Login dilakukan di halaman resmi Instagram. Sesimu tetap aktif hanya di perangkat ini, jadi kamu tidak perlu login setiap kali.",
       "localData": "Selama pengambilan langsung, daftar pengikut dan mengikuti diproses dan disimpan di perangkat ini; tidak dikirim ke server pengembang dan pengembang tidak dapat melihatnya dari jauh.",
       "liveFetchRisk": "Pengambilan langsung tidak memakai API resmi Instagram; dapat melanggar Ketentuan Penggunaan Instagram dan berisiko pembatasan akun sementara.",
       "archive": "Sebagai gantinya, kamu bisa mengunggah arsip data Instagram dan menganalisisnya tanpa login."

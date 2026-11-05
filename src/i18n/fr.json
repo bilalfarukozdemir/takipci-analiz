@@ -148,7 +148,7 @@
     "clearAll": {
       "button": "Supprimer toutes les données",
       "confirmTitle": "Supprimer toutes les données",
-      "confirmMessage": "Tous les imports enregistrés et les marques seront supprimés. Action irréversible.",
+      "confirmMessage": "Tous les imports enregistrés et les marques seront supprimés. Action irréversible. Votre session Instagram dans cette application sera aussi fermée.",
       "confirmButton": "Tout supprimer"
     },
     "language": {
@@ -289,6 +289,8 @@
       "title": "Connecté ✓",
       "text": "Vos listes d’abonnés et d’abonnements seront récupérées sur Instagram page par page. Une pause de 1 à 2 secondes sépare les requêtes pour réduire le risque de blocage ; cela peut prendre quelques minutes pour les gros comptes.",
       "warning": "Cette méthode enfreint les conditions d’utilisation d’Instagram. La répéter trop souvent peut entraîner un blocage temporaire des actions sur votre compte. Je déconseille de le faire plus d’une fois par jour.",
+      "account": "Compte connecté : @{{username}}",
+      "switchAccount": "Se connecter avec un autre compte",
       "fetchButton": "Récupérer les listes"
     },
     "working": {
@@ -307,7 +309,7 @@
       "accessibilityLabel": "Mention open source et confidentialité",
       "openSource": "Le code source est ouvert ; ",
       "githubLink": "consultez-le sur GitHub.",
-      "login": "La connexion se fait sur la page officielle d’Instagram.",
+      "login": "La connexion se fait sur la page officielle d’Instagram. Votre session reste ouverte sur cet appareil uniquement : inutile de vous reconnecter à chaque fois.",
       "localData": "Pendant la récupération en direct, vos listes d’abonnés et d’abonnements sont traitées et stockées sur cet appareil ; elles ne sont pas envoyées au serveur du développeur et le développeur ne peut pas les consulter à distance.",
       "liveFetchRisk": "La récupération en direct n’utilise pas l’API officielle d’Instagram ; elle peut enfreindre les Conditions d’utilisation d’Instagram et comporte un risque de restrictions temporaires du compte.",
       "archive": "Vous pouvez plutôt importer un fichier de données Instagram et l’analyser sans vous connecter."

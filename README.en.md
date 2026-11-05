@@ -92,7 +92,7 @@ Instagram's automation detection. `401/login_required` is handled as a lost sess
 security checks/`403` require verification in Instagram, `429` as
 a rate limit, and a 75 s stall as a timeout.
 Login is confirmed using Instagram's current-account response, not a stale account
-cookie. The login window is temporary; signing in again clears its previous session.
+cookie. The session stays on the device, so fetching again needs no new login; "Sign in with another account" and "Delete all data" clear the app's cookies.
 Authentication and security errors stop automatic fetching; saved analysis history remains.
 
 > [!WARNING]

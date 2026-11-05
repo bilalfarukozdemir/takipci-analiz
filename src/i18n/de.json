@@ -145,7 +145,7 @@
     "clearAll": {
       "button": "Alle Daten löschen",
       "confirmTitle": "Alle Daten löschen",
-      "confirmMessage": "Alle gespeicherten Uploads und Markierungen werden gelöscht. Das lässt sich nicht rückgängig machen.",
+      "confirmMessage": "Alle gespeicherten Uploads und Markierungen werden gelöscht. Das lässt sich nicht rückgängig machen. Auch deine Instagram-Sitzung in dieser App wird beendet.",
       "confirmButton": "Alles löschen"
     },
     "language": {
@@ -286,6 +286,8 @@
       "title": "Angemeldet ✓",
       "text": "Deine Follower- und Gefolgt-Listen werden Seite für Seite von Instagram abgerufen. Zwischen den Anfragen liegen 1–2 Sekunden, um das Sperrrisiko zu senken; bei großen Konten kann das ein paar Minuten dauern.",
       "warning": "Diese Methode verstößt gegen Instagrams Nutzungsbedingungen. Zu häufiges Wiederholen kann zu einer vorübergehenden Aktionssperre deines Kontos führen. Ich empfehle höchstens einen Abruf pro Tag.",
+      "account": "Verbundenes Konto: @{{username}}",
+      "switchAccount": "Mit anderem Konto anmelden",
       "fetchButton": "Listen abrufen"
     },
     "working": {
@@ -304,7 +306,7 @@
       "accessibilityLabel": "Hinweis zu Open Source und Datenschutz",
       "openSource": "Der Quellcode ist offen; ",
       "githubLink": "sieh ihn dir auf GitHub an.",
-      "login": "Die Anmeldung erfolgt auf Instagrams eigener Seite.",
+      "login": "Die Anmeldung erfolgt auf Instagrams eigener Seite. Du bleibst nur auf diesem Gerät angemeldet und musst dich nicht jedes Mal neu anmelden.",
       "localData": "Beim Live-Abruf werden deine Follower- und Gefolgt-Listen auf diesem Gerät verarbeitet und gespeichert; sie werden nicht an den Server des Entwicklers gesendet und der Entwickler kann sie nicht aus der Ferne einsehen.",
       "liveFetchRisk": "Der Live-Abruf nutzt nicht die offizielle Instagram-API; er kann gegen Instagrams Nutzungsbedingungen verstoßen und birgt das Risiko vorübergehender Kontoeinschränkungen.",
       "archive": "Stattdessen kannst du ein Instagram-Datenarchiv hochladen und es ohne Anmeldung analysieren."

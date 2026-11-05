@@ -30,6 +30,8 @@ import { dedupe, parseFiles, ZipContentError } from './src/lib/parse';
 import { puanIsteginiPlanla } from './src/lib/review';
 import {
   clearEverything,
+  getIgSessionClearPending,
+  setIgSessionClearPending,
   DEFAULT_SETTINGS,
   deleteSnapshot,
   getSettings,
@@ -115,6 +117,7 @@ function Main() {
   const [tab, setTab] = useState<Tab>('home');
   const [openCat, setOpenCat] = useState<CatKey | null>(null);
   const [connectOpen, setConnectOpen] = useState(false);
+  const [igSessionClear, setIgSessionClear] = useState(false);
   const [premiumOpen, setPremiumOpen] = useState(false);
 
   const [snapshots, setSnapshots] = useState<SnapshotMeta[]>([]);
@@ -144,16 +147,18 @@ function Main() {
       SystemUI.setBackgroundColorAsync(C.bg).catch(() => undefined);
       loadAvatarIndex();
       await initI18n();
-      const [list, wl, ayarlar] = await Promise.all([
+      const [list, wl, ayarlar, igClear] = await Promise.all([
         listSnapshots(),
         getWhitelist(),
         getSettings(),
+        getIgSessionClearPending(),
       ]);
       setSnapshots(list);
       setCurrentId(list[0]?.id ?? null);
       setPrevId(list[1]?.id ?? null);
       setMarked(new Set(wl));
       setSettings(ayarlar);
+      setIgSessionClear(igClear);
       setReady(true);
     })();
     return () => {
@@ -424,6 +429,7 @@ function Main() {
 
   const wipe = useCallback(async () => {
     await clearEverything();
+    setIgSessionClear(true);
     clearAvatarCache();
     setSnapshots([]);
     setCurrentId(null);
@@ -490,7 +496,15 @@ function Main() {
             paddingTop: insets.top,
             paddingBottom: bannerReklamiAcik ? 0 : insets.bottom,
           }}>
-          <Connect onBack={() => setConnectOpen(false)} onFinish={canliBitti} />
+          <Connect
+            onBack={() => setConnectOpen(false)}
+            onFinish={canliBitti}
+            clearSession={igSessionClear}
+            onSessionCleared={() => {
+              setIgSessionClear(false);
+              setIgSessionClearPending(false).catch(() => undefined);
+            }}
+          />
         </View>
       ) : openCat && analysis ? (
         <View style={{ flex: 1, paddingTop: insets.top }}>

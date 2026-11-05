@@ -10,6 +10,7 @@ const K_SETTINGS = 'ig:settings';
 const K_LANGUAGE = 'ig:language';
 const K_REVIEW = 'ig:reviewAskedAt';
 const K_RTL_RELOAD = 'ig:rtlReloadAt';
+const K_IG_CLEAR = 'ig:clearSessionPending';
 
 /** Dil tercihi: 'system' cihaz diline uyar, dil kodu manuel zorlamadır. */
 export type LanguagePreference = 'system' | LangCode;
@@ -81,6 +82,20 @@ export async function clearEverything(): Promise<void> {
   }
   await Storage.setItem(K_INDEX, '[]');
   await Storage.setItem(K_WHITELIST, '[]');
+  await setIgSessionClearPending(true);
+}
+
+/**
+ * Instagram çerezleri yalnız WebView açılırken silinebilir. "Tüm verileri sil" bu bayrağı
+ * bırakır; bir sonraki bağlan penceresi çerezleri silip bayrağı kapatır.
+ */
+export async function getIgSessionClearPending(): Promise<boolean> {
+  return (await Storage.getItem(K_IG_CLEAR)) === '1';
+}
+
+export async function setIgSessionClearPending(pending: boolean): Promise<void> {
+  if (pending) await Storage.setItem(K_IG_CLEAR, '1');
+  else await Storage.removeItem(K_IG_CLEAR);
 }
 
 /** "Beyaz liste": listelerde işaretlenip gizlenen hesaplar. */

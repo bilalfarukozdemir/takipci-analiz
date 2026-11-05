@@ -142,7 +142,7 @@
     "clearAll": {
       "button": "모든 데이터 삭제",
       "confirmTitle": "모든 데이터 삭제",
-      "confirmMessage": "저장된 업로드와 표시가 모두 삭제됩니다. 되돌릴 수 없습니다.",
+      "confirmMessage": "저장된 업로드와 표시가 모두 삭제됩니다. 되돌릴 수 없습니다. 이 앱의 Instagram 세션도 로그아웃됩니다.",
       "confirmButton": "모두 삭제"
     },
     "language": {
@@ -283,6 +283,8 @@
       "title": "로그인됨 ✓",
       "text": "팔로워와 팔로잉 목록을 Instagram에서 한 페이지씩 가져옵니다. 차단 위험을 줄이기 위해 요청 사이에 1~2초 간격을 두며, 큰 계정은 몇 분 걸릴 수 있습니다.",
       "warning": "이 방법은 Instagram 이용약관에 어긋납니다. 너무 자주 반복하면 계정 활동이 일시적으로 제한될 수 있습니다. 하루 한 번 이하를 권장합니다.",
+      "account": "연결된 계정: @{{username}}",
+      "switchAccount": "다른 계정으로 로그인",
       "fetchButton": "목록 가져오기"
     },
     "working": {
@@ -301,7 +303,7 @@
       "accessibilityLabel": "오픈소스 및 개인정보 안내",
       "openSource": "소스 코드는 공개되어 있습니다. ",
       "githubLink": "GitHub에서 확인하세요.",
-      "login": "로그인은 Instagram 공식 페이지에서 이루어집니다.",
+      "login": "로그인은 Instagram 공식 페이지에서 이루어집니다. 이 기기에서만 로그인 상태가 유지되므로 매번 로그인할 필요가 없습니다.",
       "localData": "실시간 가져오기 중 팔로워와 팔로잉 목록은 이 기기에서 처리·저장되며, 개발자 서버로 전송되지 않고 개발자가 원격으로 볼 수도 없습니다.",
       "liveFetchRisk": "실시간 가져오기는 Instagram 공식 API를 사용하지 않으며, Instagram 이용약관을 위반할 수 있고 계정이 일시적으로 제한될 위험이 있습니다.",
       "archive": "대신 Instagram 데이터 파일을 업로드해 로그인 없이 분석할 수도 있습니다."

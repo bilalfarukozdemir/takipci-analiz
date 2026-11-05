@@ -29,7 +29,7 @@ function browser(script, replies, pathname = '/') {
 
 const settle = () => new Promise(resolve => setImmediate(resolve));
 
-function connectScreen() {
+function connectScreen(props = {}) {
   const fs = require('node:fs');
   const path = require('node:path');
   const ts = require('typescript');
@@ -74,7 +74,7 @@ function connectScreen() {
   };
   const render = () => {
     cursor = 0;
-    tree = module.exports.Connect({ onBack: () => {}, onFinish: () => finished++ });
+    tree = module.exports.Connect({ onBack: () => {}, onFinish: () => finished++, ...props });
     find(tree, n => n.type === 'WebView').props.ref.current = { injectJavaScript: () => {} };
   };
   render();
@@ -87,7 +87,46 @@ function connectScreen() {
   };
 }
 
-test('session error cannot be revived by stale messages; retry creates a fresh login window', () => {
+test('session is kept by default; only an account switch opens a clean window', () => {
+  const screen = connectScreen();
+  assert.equal(screen.web().props.incognito, false);
+  screen.message(screen.web(), { t: 'state', logged: true, uid: '42', username: 'bilal' });
+  screen.render();
+  assert.ok(screen.button('connect.ready.fetchButton'));
+  screen.button('connect.ready.switchAccount').props.onPress();
+  screen.render();
+  assert.equal(screen.web().props.key, 1);
+  assert.equal(screen.web().props.incognito, true);
+  assert.equal(screen.button('connect.ready.fetchButton'), null);
+});
+
+test('security check starts clean; a lost session keeps the trust cookie until it repeats', () => {
+  const challenge = connectScreen();
+  challenge.message(challenge.web(), { t: 'error', code: 'challenge' });
+  challenge.render();
+  challenge.button('connect.error.loginAgainButton').props.onPress();
+  challenge.render();
+  assert.equal(challenge.web().props.incognito, true);
+
+  const session = connectScreen();
+  session.message(session.web(), { t: 'error', code: 'session' });
+  session.render();
+  session.button('connect.error.loginAgainButton').props.onPress();
+  session.render();
+  assert.equal(session.web().props.incognito, false);
+  session.message(session.web(), { t: 'error', code: 'session' });
+  session.render();
+  session.button('connect.error.loginAgainButton').props.onPress();
+  session.render();
+  assert.equal(session.web().props.incognito, true);
+});
+
+test('delete all data clears the session once when the next window opens', () => {
+  const cleared = connectScreen({ clearSession: true });
+  assert.equal(cleared.web().props.incognito, true);
+});
+
+test('session error cannot be revived by stale messages; retry creates a new login window', () => {
   const screen = connectScreen();
   const oldWeb = screen.web();
   screen.message(oldWeb, { t: 'state', logged: true, uid: '42' });
@@ -104,7 +143,7 @@ test('session error cannot be revived by stale messages; retry creates a fresh l
   screen.button('connect.error.loginAgainButton').props.onPress();
   screen.render();
   assert.equal(screen.web().props.key, 1);
-  assert.equal(screen.web().props.incognito, true);
+  assert.equal(screen.web().props.incognito, false);
   screen.message(oldWeb, { t: 'state', logged: true, uid: '42' });
   screen.render();
   assert.equal(screen.button('connect.ready.fetchButton'), null);
@@ -146,6 +185,12 @@ test('valid current account is confirmed by server and revoked cookie reports lo
   b.document.cookie = '';
   b.intervals[0]();
   assert.deepEqual(b.messages[1], { t: 'state', logged: false, uid: '' });
+});
+
+test('confirmed account name reaches the screen', async () => {
+  const b = browser(PROBE_JS, [response(200, { status: 'ok', user: { pk: 42, username: 'bilal' } })]);
+  await settle();
+  assert.deepEqual(b.messages, [{ t: 'state', logged: true, uid: '42', username: 'bilal' }]);
 });
 
 test('login page with old cookie does not claim authentication or request lists', async () => {
