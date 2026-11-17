@@ -172,6 +172,7 @@
     },
     "label": "Sponsorisé",
     "removeButton": "Supprimer la pub",
+    "productName": "Supprimer la pub",
     "removeDesc": "Cet achat unique supprime les bannières et les publicités plein écran.",
     "removed": "Toutes les publicités ont été supprimées de cette app.",
     "privacyButton": "Options de confidentialité des annonces",

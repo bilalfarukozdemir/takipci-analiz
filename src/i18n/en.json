@@ -169,6 +169,7 @@
     },
     "label": "Sponsored",
     "removeButton": "Remove ads",
+    "productName": "Remove ads",
     "removeDesc": "This one-time purchase removes banner and full-screen ads.",
     "removed": "All ads have been removed from this app.",
     "privacyButton": "Ad privacy options",

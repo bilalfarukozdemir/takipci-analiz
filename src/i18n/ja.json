@@ -166,6 +166,7 @@
     },
     "label": "スポンサー",
     "removeButton": "広告を削除",
+    "productName": "広告を削除",
     "removeDesc": "この1回の購入で、バナー広告と全画面広告が削除されます。",
     "removed": "このアプリの広告はすべて削除されました。",
     "privacyButton": "広告のプライバシー設定",

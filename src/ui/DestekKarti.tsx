@@ -64,7 +64,7 @@ export function DestekKarti({ destek }: { destek: DestekModel }) {
             ) : reklamKaldirmaUrunu && reklamlarAcik() ? (
               <>
                 <Btn
-                  label={`${t('ads.removeButton')} · ${reklamKaldirmaUrunu.displayPrice}`}
+                  label={`${t('ads.productName')} · ${reklamKaldirmaUrunu.displayPrice}`}
                   kind="primary"
                   busy={aktifUrunId === REKLAMLARI_KALDIR_URUN_ID && durum === 'satin-aliniyor'}
                   disabled={durum === 'satin-aliniyor'}
