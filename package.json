@@ -38,7 +38,7 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "pretest": "tsc --ignoreConfig src/lib/parse.ts src/lib/analyze.ts src/lib/igLive.ts src/lib/jalali.ts --outDir .testbuild --module commonjs --target es2020 --moduleResolution node --ignoreDeprecations 6.0 --skipLibCheck --esModuleInterop",
-    "test": "node tests/parse.test.js && node --test tests/igLive.test.js tests/i18n.test.js tests/store.test.js tests/jalali.test.js",
+    "test": "node tests/parse.test.js && node --test tests/igLive.test.js tests/i18n.test.js tests/store.test.js tests/jalali.test.js tests/satinAlmaOnay.test.js",
     "apk": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-apk.ps1"
   },
   "private": true

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 
 import {
   ErrorCode,
@@ -14,6 +14,7 @@ import {
   satinAlmalariGetir,
   urunleriGetir,
 } from '../lib/iap';
+import { onaylanmamislariOnayla, sahiplikVarMi, taramaZamaniGeldiMi } from '../lib/satinAlmaOnay';
 
 /** Play Console'daki tek seferlik, tüketilmeyen reklam kaldırma ürünü. */
 export const REKLAMLARI_KALDIR_URUN_ID = 'remove_ads';
@@ -37,6 +38,14 @@ export function useDestek() {
   const [reklamsiz, setReklamsiz] = useState(false);
   const [satinAlmalarKontrolEdildi, setSatinAlmalarKontrolEdildi] = useState(false);
   const iptalRef = useRef(false);
+  const sonTaramaRef = useRef(0);
+
+  /** Onaylanmamış PURCHASED alımları onaylar; hata loglanır, sonraki taramada tekrar denenir. */
+  const onaylaTumunu = useCallback(
+    (satinAlmalar: Purchase[]) =>
+      onaylanmamislariOnayla(satinAlmalar, REKLAMLARI_KALDIR_URUN_ID, (s) => satinAlmayiTamamla(s, false)),
+    [],
+  );
 
   const urunleriYukle = useCallback(async () => {
     setDurum('yukleniyor');
@@ -54,17 +63,16 @@ export function useDestek() {
       ]);
       if (iptalRef.current) return;
 
-      const reklamKaldirmaAlinmis = satinAlmalar.some(
-        (satinAlma) => satinAlma.productId === REKLAMLARI_KALDIR_URUN_ID,
-      );
-      setReklamsiz(reklamKaldirmaAlinmis);
+      sonTaramaRef.current = Date.now();
+      setReklamsiz(sahiplikVarMi(satinAlmalar, REKLAMLARI_KALDIR_URUN_ID));
+      void onaylaTumunu(satinAlmalar);
       setSatinAlmalarKontrolEdildi(true);
       setUrunler(sonuc);
       setDurum('hazir');
     } catch {
       if (!iptalRef.current) setDurum('magaza-yok');
     }
-  }, []);
+  }, [onaylaTumunu]);
 
   useEffect(() => {
     // Google Play Billing yalnızca Android'de çalışır.
@@ -88,11 +96,17 @@ export function useDestek() {
             return;
           }
           const productId = purchase.productId ?? '';
-          await satinAlmayiTamamla(purchase, false);
+          // Para alındı: ürün önce verilir, onay hatası kullanıcıyı etkilemez;
+          // onaylanmamış alım bir sonraki taramada (açılış / ön plan) yeniden denenir.
           if (!iptalRef.current) {
             if (productId === REKLAMLARI_KALDIR_URUN_ID) setReklamsiz(true);
             setAktifUrunId(null);
             setDurum('tesekkur');
+          }
+          try {
+            await satinAlmayiTamamla(purchase, false);
+          } catch (hata) {
+            console.warn('[iap] satın alma onayı başarısız, sonraki taramada denenecek', hata);
           }
         } catch {
           if (!iptalRef.current) {
@@ -110,12 +124,30 @@ export function useDestek() {
       setDurum(hata.code === ErrorCode.UserCancelled ? 'hazir' : 'hata');
     });
 
+    // Uygulama ön plana dönünce (en çok dakikada bir) onaylanmamış alımları yeniden tara.
+    const appDurumuAbonesi = AppState.addEventListener('change', (durumu) => {
+      if (durumu !== 'active' || iptalRef.current) return;
+      if (!taramaZamaniGeldiMi(Date.now(), sonTaramaRef.current)) return;
+      sonTaramaRef.current = Date.now();
+      (async () => {
+        try {
+          const satinAlmalar = await satinAlmalariGetir();
+          if (iptalRef.current) return;
+          if (sahiplikVarMi(satinAlmalar, REKLAMLARI_KALDIR_URUN_ID)) setReklamsiz(true);
+          await onaylaTumunu(satinAlmalar);
+        } catch (hata) {
+          console.warn('[iap] ön plan taraması başarısız', hata);
+        }
+      })();
+    });
+
     return () => {
       iptalRef.current = true;
+      appDurumuAbonesi.remove();
       guncellemeAbonesi.remove();
       hataAbonesi.remove();
     };
-  }, [urunleriYukle]);
+  }, [urunleriYukle, onaylaTumunu]);
 
   const satinAl = useCallback(async (urunId: string) => {
     setAktifUrunId(urunId);
