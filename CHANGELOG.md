@@ -6,6 +6,12 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.12] – 2026-11-21
+
+### Düzeltildi
+- Satın alma onayı: açılışta ve uygulama ön plana dönünce bekleyen satın almalar onaylanır;
+  ödeme sonradan tamamlansa da ürün korunur.
+
 ## [1.3.11] – 2026-11-05
 
 ### Düzeltildi
