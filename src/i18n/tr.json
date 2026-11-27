@@ -169,12 +169,13 @@
     },
     "label": "Sponsorlu",
     "removeButton": "Reklamları kaldır",
+    "productName": "Reklamları kaldır",
     "removeDesc": "Bu tek seferlik satın alım banner ve tam sayfa reklamlarını kaldırır.",
     "removed": "Bu uygulamadaki tüm reklamlar kaldırıldı.",
     "privacyButton": "Reklam gizliliği seçenekleri",
     "privacyUnavailable": {
       "title": "Şu an seçenek yok",
-      "desc": "Google şu anda değiştirebileceğiniz bir reklam gizliliği formu sunmuyor."
+      "desc": "Google şu anda değiştirebileceğin bir reklam gizliliği formu sunmuyor."
     }
   },
   "help": {
@@ -249,7 +250,7 @@
     ]
   },
   "connect": {
-    "headerTitle": "Instagram'a bağlan",
+    "headerTitle": "Instagram’a bağlan",
     "subtitleLogin": "Instagram’ın kendi giriş sayfası",
     "subtitleWorking": "Listeler çekiliyor",
     "errors": {
@@ -382,7 +383,7 @@
       "desc": "Son yüklemeden bu yana takibe başladığın hesaplar"
     },
     "recentlyUnfollowed": {
-      "title": "Yakında bıraktıkların",
+      "title": "Son zamanlarda bıraktıkların",
       "desc": "Instagram'ın kaydettiği, son zamanlarda takipten çıktığın hesaplar"
     },
     "closeFriends": {
