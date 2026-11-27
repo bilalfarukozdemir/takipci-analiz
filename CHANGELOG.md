@@ -6,6 +6,11 @@ izler.
 
 ## [Yayınlanmamış]
 
+## [1.3.13] – 2026-11-28
+
+### Düzeltildi
+- Çeviri iyileştirmeleri (21 düzeltme).
+
 ## [1.3.12] – 2026-11-21
 
 ### Düzeltildi
